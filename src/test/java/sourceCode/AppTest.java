@@ -39,4 +39,12 @@ public class AppTest
 
         Assert.assertEquals(true, amm);
     }
+   
+   @Test
+   public void testTransactionManager1(){
+       int i = 0, j = 0, k = 0;
+       final boolean amm = trnMan.processTransaction(i,j,k);
+       
+       Assert.assertEquals(0,amm);
+   }
 }
