@@ -5,7 +5,9 @@ public class Account {
     private String accountName;
     private long accountBalance;
 
-    boolean adjustBalance() {
+    boolean adjustBalance(long account) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 }

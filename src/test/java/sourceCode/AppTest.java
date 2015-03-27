@@ -13,8 +13,16 @@ public class AppTest
    
    @Test
    public void testAccount1() {
-        final boolean amm = acc.adjustBalance();
+        final boolean amm = acc.adjustBalance(1000);
 
         Assert.assertEquals(true, amm);
+    }
+   
+   @Test
+   public void testAccountDatabase1() {
+       int i = 1;
+        final Account amm = accDB.getAccount(i);
+
+        Assert.assertEquals(1, amm);
     }
 }
