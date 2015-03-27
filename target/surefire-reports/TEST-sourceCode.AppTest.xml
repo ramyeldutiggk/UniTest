@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="sourceCode.AppTest" time="0.082" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="sourceCode.AppTest" time="0.123" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/home/niki/jdk1.8.0_25/jre/lib/amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="test" value="sourceCode.AppTest"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/home/niki/Documents/MalcolmGit/UniTest/Assignment1"/>
+    <property name="user.dir" value="/home/niki/Documents/MalcolmGit/UniTest"/>
     <property name="java.runtime.version" value="1.8.0_25-b17"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/home/niki/jdk1.8.0_25/jre/lib/endorsed"/>
@@ -60,7 +60,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="sourceCode.AppTest" name="t1" time="0.002"/>
+  <testcase classname="sourceCode.AppTest" name="t1" time="0.001"/>
   <testcase classname="sourceCode.AppTest" name="t2" time="0"/>
   <testcase classname="sourceCode.AppTest" name="t3" time="0"/>
 </testsuite>
