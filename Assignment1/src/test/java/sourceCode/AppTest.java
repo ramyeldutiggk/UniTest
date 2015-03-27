@@ -9,9 +9,13 @@ public class AppTest
    
    @Test
     public void t() {
-        final int str = a.joe();
+        final int t1 = a.test1();
+        final int t2 = a.test2();
+        final int t3 = a.test3();
 
-        Assert.assertEquals(0, str);
-
+        Assert.assertEquals(0, t1);
+        Assert.assertEquals(0, t2);
+        Assert.assertEquals('a', t3); 
+        Assert.assertEquals('b', t3); 
     }
 }
