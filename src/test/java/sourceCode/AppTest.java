@@ -28,7 +28,7 @@ public class AppTest
     @Test
     public void t4() {
         final int t3 = a.test3();
-        Assert.assertEquals('b', t3); 
+        Assert.assertEquals('a', t3); 
     }
     
     @Test
