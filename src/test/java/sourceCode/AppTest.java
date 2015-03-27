@@ -25,4 +25,18 @@ public class AppTest
 
         Assert.assertEquals(1, amm);
     }
+   
+   @Test
+   public void testAccountDatabase2() {
+        final int amm = accDB.getSize();
+
+        Assert.assertEquals(1, amm);
+    }
+   
+   @Test
+   public void testTransaction1() {
+        final boolean amm = trn.process();
+
+        Assert.assertEquals(true, amm);
+    }
 }
