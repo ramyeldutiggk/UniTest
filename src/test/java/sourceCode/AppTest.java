@@ -24,4 +24,16 @@ public class AppTest
         final int t3 = a.test3();
         Assert.assertEquals('a', t3); 
     }
+    
+    @Test
+    public void t4() {
+        final int t3 = a.test3();
+        Assert.assertEquals('b', t3); 
+    }
+    
+    @Test
+    public void t5() {
+        final int t3 = a.test3();
+        Assert.assertEquals('c', t3); 
+    }
 }
