@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-/home/niki/Documents/MalcolmGit/UniTest/Assignment1/src/main/java/sourceCode/App.java
-=======
-C:\Users\Malcolm\Documents\University\Second Year\Second Semester\Software Engineering\UniTest\Assignment1\src\main\java\sourceCode\App.java
->>>>>>> 5da53bf81c3018e1ba0b6e579b6ce2d236089f82
+/home/niki/Documents/MalcolmGit/UniTest/src/main/java/sourceCode/Account.java
+/home/niki/Documents/MalcolmGit/UniTest/src/main/java/sourceCode/AccountDatabase.java
+/home/niki/Documents/MalcolmGit/UniTest/src/main/java/sourceCode/Transaction.java
+/home/niki/Documents/MalcolmGit/UniTest/src/main/java/sourceCode/TransactionManager.java
+/home/niki/Documents/MalcolmGit/UniTest/src/main/java/sourceCode/App.java

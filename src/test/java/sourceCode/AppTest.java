@@ -5,35 +5,16 @@ import org.junit.Assert;
 
 public class AppTest 
 {
-   final App a = new App();
+   final App app = new App();
+   final Account acc = new Account();
+   final AccountDatabase accDB = new AccountDatabase();
+   final Transaction trn = new Transaction();
+   final TransactionManager trnMan = new TransactionManager();
    
    @Test
-    public void t1() {
-        final int t1 = a.test1();
-        Assert.assertEquals(0, t1);
-    }
-    
-    @Test
-    public void t2() {
-        final int t2 = a.test2();
-        Assert.assertEquals(1, t2);
-    }
-    
-    @Test
-    public void t3() {
-        final int t3 = a.test3();
-        Assert.assertEquals('a', t3); 
-    }
-    
-    @Test
-    public void t4() {
-        final int t3 = a.test3();
-        Assert.assertEquals('a', t3); 
-    }
-    
-    @Test
-    public void t5() {
-        final int t3 = a.test3();
-        Assert.assertEquals('c', t3); 
+   public void testAccount1() {
+        final boolean amm = acc.adjustBalance();
+
+        Assert.assertEquals(true, amm);
     }
 }
