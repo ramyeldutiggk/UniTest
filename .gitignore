@@ -42,4 +42,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-target
+.classpath
+.settings
+.project
