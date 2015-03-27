@@ -1,22 +1,23 @@
 package sourceCode;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
-    public int test1(){
+    
+    public static int test1(){
         return 0;
     }
-    public int test2(){
+    public static int test2(){
         return 1;
     }
-    public char test3(){
+    public static char test3(){
         return 'a';
     }
     public static void main( String[] args )
     {
+        System.out.println(test1());
+        System.out.println(test2());
+        System.out.println(test3());
+        
         System.out.println( "Hello World!" );
     }
 }
