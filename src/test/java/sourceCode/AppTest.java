@@ -20,7 +20,11 @@ public class AppTest {
     
     @Before
     public void setup1(){
+        temp1.setAccountNumber(1);
+        temp1.setAccountName("Niki");
         temp1.setAccountBalance(100);
+        temp2.setAccountNumber(2);
+        temp2.setAccountName("Malcolm");
         temp2.setAccountBalance(1000);
     }
 
@@ -63,6 +67,43 @@ public class AppTest {
     public void testAccount8(){
         long amm = 1000;
         Assert.assertThat(amm, not(temp1.getAccountBalance()));
+    }
+    
+    @Test
+    public void testAccount9(){
+        temp1.setAccountNumber(5);
+        Assert.assertEquals(5, temp1.getAccountNumber());
+    }
+    
+    @Test
+    public void testAccount10(){
+        temp1.setAccountNumber(5);
+        Assert.assertThat(3, not(temp1.getAccountNumber()));
+    }
+    
+    @Test
+    public void testAccount11(){
+        temp1.setAccountName("Malcolm");
+        Assert.assertEquals("Malcolm", temp1.getAccountName());
+    }
+    
+    @Test
+    public void testAccount12(){
+        temp1.setAccountName("Malcolm");
+        Assert.assertThat("Niki", not(temp1.getAccountName()));
+    }
+    
+    @Test
+    public void testAccount13(){
+        temp1.setAccountBalance(500);
+        Assert.assertEquals(500, temp1.getAccountBalance());
+    }
+    
+    @Test
+    public void testAccount14(){
+        long amm1 = 1000, amm2 = 500;
+        temp1.setAccountBalance(amm1);
+        Assert.assertThat(amm2, not(temp1.getAccountBalance()));
     }
     
     ///////////////////////////////////////////////////////////////////////////////
