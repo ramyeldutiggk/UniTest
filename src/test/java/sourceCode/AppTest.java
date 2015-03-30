@@ -14,11 +14,12 @@ public class AppTest {
     public void setup() {
         accDB = new AccountDatabase();
         temp1 = new Account(accDB.getSize()+1,"Niki",100);
+        accDB.database.add(temp1);
         temp2 = new Account(accDB.getSize()+1,"Malcolm",1000);
+        accDB.database.add(temp2);
         trnMan = new TransactionManager();
         
-        accDB.database.add(temp1);
-        accDB.database.add(temp2);
+        
     }
 
     @Test
