@@ -6,7 +6,20 @@ public class Account {
     private long accountBalance;
 
     boolean adjustBalance(long account) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        long newBalance = accountBalance-(account);
+        
+        if (newBalance >= 0){
+            accountBalance = newBalance;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public Account(int accountNumber, String accountName, long accountBalance) {
+        this.accountNumber = accountNumber;
+        this.accountName = accountName;
+        this.accountBalance = accountBalance;
     }
 
     public int getAccountNumber() {
@@ -15,12 +28,6 @@ public class Account {
 
     public void setAccountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
-    }
-    
-    public Account(int accountNumber, String accountName, long accountBalance) {
-        this.accountNumber = accountNumber;
-        this.accountName = accountName;
-        this.accountBalance = accountBalance;
     }
 
     public String getAccountName() {

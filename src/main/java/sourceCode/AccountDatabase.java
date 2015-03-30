@@ -10,7 +10,7 @@ public class AccountDatabase {
     }
 
     int getSize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return database.size();
     }
     
 }

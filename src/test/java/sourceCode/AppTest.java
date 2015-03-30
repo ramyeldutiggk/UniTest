@@ -74,11 +74,11 @@ public class AppTest {
 
     @Test
     public void testTransactionManager1() {
-        Assert.assertEquals(true, trnMan.processTransaction(1, 2, 50));
+        Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 50));
     }
     
     @Test
     public void testTransactionManager2() {
-        Assert.assertEquals(false, trnMan.processTransaction(1, 2, 1000));
+        Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 1000));
     }
 }
