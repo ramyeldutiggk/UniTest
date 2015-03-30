@@ -22,5 +22,4 @@ public class AccountDatabase {
     static int getSize() {
         return database.size();
     }
-    
 }

@@ -35,8 +35,11 @@ public class Account {
 
         System.out.println("Enter the account Name\n");
         accountName = sc.next();
-        System.out.println("Enter the account balance\n");
-        accountBalance = sc.nextLong();
+        do {
+            System.out.println("Enter the account balance\n");
+            accountBalance = sc.nextLong();
+            flag = accountBalance >= 0;
+        } while (flag == false);
 
         AccountDatabase.database.add(this);
     }
@@ -70,5 +73,4 @@ public class Account {
     public void setAccountBalance(long accountBalance) {
         this.accountBalance = accountBalance;
     }
-
 }

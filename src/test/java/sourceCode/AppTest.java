@@ -6,20 +6,16 @@ import static org.hamcrest.CoreMatchers.*;
 public class AppTest {
     
     static Account temp1, temp2;
-    //static AccountDatabase accDB;
     static Transaction trn;
     static TransactionManager trnMan;
 
     @BeforeClass
     public static void setup() {
-        //accDB = new AccountDatabase();
         temp1 = new Account(AccountDatabase.getSize()+1,"Niki",100);
         AccountDatabase.database.add(temp1);
         temp2 = new Account(AccountDatabase.getSize()+1,"Malcolm",1000);
         AccountDatabase.database.add(temp2);
         trnMan = new TransactionManager();
-        
-        
     }
     
     @Before
