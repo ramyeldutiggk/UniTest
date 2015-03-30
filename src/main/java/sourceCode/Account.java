@@ -6,7 +6,7 @@ public class Account {
     private long accountBalance;
 
     boolean adjustBalance(long ammount) {
-        long newBalance = accountBalance-(ammount);
+        long newBalance = accountBalance+ammount;
         
         if (newBalance >= 0){
             accountBalance = newBalance;
