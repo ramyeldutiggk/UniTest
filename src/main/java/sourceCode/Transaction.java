@@ -12,6 +12,11 @@ public class Transaction {
     }
 
     boolean process() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean pSource = false;
+        boolean pDestination = false;
+    	
+    	//database.getAccount()
+    	
+    	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
