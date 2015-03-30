@@ -12,19 +12,18 @@ public class AppTest {
 
     @Before
     public void setup() {
+        accDB = new AccountDatabase();
         temp1 = new Account(accDB.getSize()+1,"Niki",100);
         temp2 = new Account(accDB.getSize()+1,"Malcolm",1000);
+        trnMan = new TransactionManager();
+        
         accDB.database.add(temp1);
         accDB.database.add(temp2);
-        
-        accDB = new AccountDatabase();
-        
-        trnMan = new TransactionManager();
     }
 
     @Test
     public void testAccount1() {
-        Assert.assertEquals(true, temp1.adjustBalance(1000));
+        Assert.assertEquals(true, temp1.adjustBalance(50));
     }
     
     @Test
