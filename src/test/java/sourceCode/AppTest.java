@@ -1,5 +1,6 @@
 package sourceCode;
 
+import java.util.Date;
 import org.junit.*;
 import static org.hamcrest.CoreMatchers.*;
 
@@ -8,6 +9,7 @@ public class AppTest {
     static Account temp1, temp2, temp3;
     static Transaction trn;
     static TransactionManager trnMan;
+    static Timings tim;
 
     @BeforeClass
     public static void setup() {
@@ -27,6 +29,8 @@ public class AppTest {
         temp2.setAccountName("Malcolm");
         temp2.setAccountBalance(1000);
     }
+    
+    ///////////////////////////////////////////////////////////////////////////////
 
     @Test
     public void testAccount1() {
@@ -154,5 +158,47 @@ public class AppTest {
     @Test
     public void testTransactionManager2() {
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 1000));
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////////
+    
+    @Test
+    public void testTimings1(){
+        tim.setSourceAccountNumber(1);
+        Assert.assertEquals(1, tim.getSourceAccountNumber());
+    }
+    
+    @Test
+    public void testTimings2(){
+        tim.setSourceAccountNumber(5);
+        Assert.assertThat(1, not(tim.getSourceAccountNumber()));
+    }
+    
+    @Test
+    public void testTimings3(){
+        tim.setDestinationAccountNumber(1);
+        Assert.assertEquals(1, tim.getDestinationAccountNumber());
+    }
+    
+    @Test
+    public void testTimings4(){
+        tim.setDestinationAccountNumber(5);
+        Assert.assertThat(1, not(tim.getDestinationAccountNumber()));
+    }
+    
+    @Test
+    public void testTimings5(){
+        Date dNow = new Date();
+        long timeTemp = dNow.getTime();
+        tim.setTime(timeTemp);
+        Assert.assertEquals(timeTemp, tim.getTime());
+    }
+    
+    @Test
+    public void testTimings6(){
+        Date dNow = new Date();
+        long timeTemp = dNow.getTime(), test = 0;
+        tim.setTime(timeTemp);
+        Assert.assertThat(test, not(tim.getTime()));
     }
 }

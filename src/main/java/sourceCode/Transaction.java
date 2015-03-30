@@ -7,11 +7,11 @@ public class Transaction {
     private int sourceAccountNumber;
     private int destinationAccountNumber;
     private long amount;
-    //long[] df;
 
     ArrayList<Timings> transactionTime = new ArrayList<Timings>();
 
     public Transaction(int sourceAccountNumber, int destinationAccountNumber, long amount) {
+        //Method untestable due to the nin existing return type of the method
         this.sourceAccountNumber = sourceAccountNumber;
         this.destinationAccountNumber = destinationAccountNumber;
         this.amount = amount;

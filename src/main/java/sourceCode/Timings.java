@@ -6,6 +6,7 @@ public class Timings {
     private long time;
 
     public Timings(int sourceAccountNumber, int destinationAccountNumber, long time) {
+        //Method untestable due to the nin existing return type of the method
         this.sourceAccountNumber = sourceAccountNumber;
         this.destinationAccountNumber = destinationAccountNumber;
         this.time = time;
