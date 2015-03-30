@@ -3,9 +3,9 @@ package sourceCode;
 import java.util.*;
 
 public class AccountDatabase {
-    public ArrayList<Account> database = new ArrayList<Account>();
+    public static ArrayList<Account> database = new ArrayList<Account>();
 
-    Account getAccount(int accountNumber) {
+    static Account getAccount(int accountNumber) {
         int cnt = 0;
         
         Account a1 = null;

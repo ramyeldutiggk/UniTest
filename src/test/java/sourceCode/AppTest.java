@@ -5,13 +5,13 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class AppTest {
     
-    Account temp1, temp2;
-    AccountDatabase accDB;
-    Transaction trn;
-    TransactionManager trnMan;
+    static Account temp1, temp2;
+    static AccountDatabase accDB;
+    static Transaction trn;
+    static TransactionManager trnMan;
 
-    @Before
-    public void setup() {
+    @BeforeClass
+    public static void setup() {
         accDB = new AccountDatabase();
         temp1 = new Account(accDB.getSize()+1,"Niki",100);
         accDB.database.add(temp1);
@@ -20,6 +20,12 @@ public class AppTest {
         trnMan = new TransactionManager();
         
         
+    }
+    
+    @Before
+    public void setup1(){
+        temp1.setAccountBalance(100);
+        temp2.setAccountBalance(1000);
     }
 
     @Test

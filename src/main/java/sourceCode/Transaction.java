@@ -12,11 +12,11 @@ public class Transaction {
     }
 
     boolean process() {
-        boolean pSource = false;
-        boolean pDestination = false;
+        Account source = AccountDatabase.getAccount(sourceAccountNumber);
+        Account dest = AccountDatabase.getAccount(destinationAccountNumber);
+    	       
+        return (source != null && source.adjustBalance(-amount)) && (dest != null && dest.adjustBalance(amount));
     	
-    	//database.getAccount()
-    	
-    	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
