@@ -18,6 +18,7 @@ public class AppTest {
         temp2 = new Account(AccountDatabase.getSize()+1,"Malcolm",1000);
         AccountDatabase.database.add(temp2);
         trnMan = new TransactionManager();
+        tim = new Timings(0,0,0);
     }
     
     @Before
