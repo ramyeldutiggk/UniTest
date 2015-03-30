@@ -6,17 +6,17 @@ import static org.hamcrest.CoreMatchers.*;
 public class AppTest {
     
     static Account temp1, temp2;
-    static AccountDatabase accDB;
+    //static AccountDatabase accDB;
     static Transaction trn;
     static TransactionManager trnMan;
 
     @BeforeClass
     public static void setup() {
-        accDB = new AccountDatabase();
-        temp1 = new Account(accDB.getSize()+1,"Niki",100);
-        accDB.database.add(temp1);
-        temp2 = new Account(accDB.getSize()+1,"Malcolm",1000);
-        accDB.database.add(temp2);
+        //accDB = new AccountDatabase();
+        temp1 = new Account(AccountDatabase.getSize()+1,"Niki",100);
+        AccountDatabase.database.add(temp1);
+        temp2 = new Account(AccountDatabase.getSize()+1,"Malcolm",1000);
+        AccountDatabase.database.add(temp2);
         trnMan = new TransactionManager();
         
         
@@ -42,22 +42,22 @@ public class AppTest {
 
     @Test
     public void testAccountDatabase1() {
-        Assert.assertEquals(temp1, accDB.getAccount(1));
+        Assert.assertEquals(temp1, AccountDatabase.getAccount(1));
     }
     
     @Test
     public void testAccountDatabase2() {
-        Assert.assertThat(temp2, not(accDB.getAccount(1)));
+        Assert.assertThat(temp2, not(AccountDatabase.getAccount(1)));
     }
 
     @Test
     public void testAccountDatabase3() {
-        Assert.assertEquals(2, accDB.getSize());
+        Assert.assertEquals(2, AccountDatabase.getSize());
     }
     
     @Test
     public void testAccountDatabase4() {
-        Assert.assertThat(1, not(accDB.getSize()));
+        Assert.assertThat(1, not(AccountDatabase.getSize()));
     }
     
     ///////////////////////////////////////////////////////////////////////////////

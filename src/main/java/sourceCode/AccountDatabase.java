@@ -6,7 +6,7 @@ public class AccountDatabase {
     public static ArrayList<Account> database = new ArrayList<Account>();
 
     static Account getAccount(int accountNumber) {
-        int cnt = 0;
+        int cnt;
         
         Account a1 = null;
         
@@ -19,7 +19,7 @@ public class AccountDatabase {
         return a1;
     }
 
-    int getSize() {
+    static int getSize() {
         return database.size();
     }
     

@@ -7,7 +7,7 @@ public class TransactionManager {
         
     	Transaction t1 = new Transaction(src, dsc, amount);
         
-        boolean success = false;
+        boolean success;
         
         if (t1.process() == true){
             success = true;
@@ -17,6 +17,5 @@ public class TransactionManager {
         }
     	
     	return success;  	
-    	//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -16,7 +16,5 @@ public class Transaction {
         Account dest = AccountDatabase.getAccount(destinationAccountNumber);
     	       
         return (source != null && source.adjustBalance(-amount)) && (dest != null && dest.adjustBalance(amount));
-    	
-    	//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
