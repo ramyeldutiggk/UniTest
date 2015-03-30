@@ -5,7 +5,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class AppTest {
     
-    static Account temp1, temp2;
+    static Account temp1, temp2, temp3;
     static Transaction trn;
     static TransactionManager trnMan;
 
@@ -32,6 +32,37 @@ public class AppTest {
     @Test
     public void testAccount2() {
         Assert.assertEquals(false, temp1.adjustBalance(-1000));
+    }
+    
+    @Test
+    public void testAccount3(){
+        Assert.assertEquals(1, temp1.getAccountNumber());
+    }
+    
+    @Test
+    public void testAccount4(){
+        Assert.assertThat(3, not(temp1.getAccountNumber()));
+    }
+    
+    @Test
+    public void testAccount5(){
+        Assert.assertEquals("Niki", temp1.getAccountName());
+    }
+    
+    @Test
+    public void testAccount6(){
+        Assert.assertThat("Malcolm", not(temp1.getAccountName()));
+    }
+    
+    @Test
+    public void testAccount7(){
+        Assert.assertEquals(100, temp1.getAccountBalance());
+    }
+    
+    @Test
+    public void testAccount8(){
+        long amm = 1000;
+        Assert.assertThat(amm, not(temp1.getAccountBalance()));
     }
     
     ///////////////////////////////////////////////////////////////////////////////

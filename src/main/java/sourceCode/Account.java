@@ -22,6 +22,7 @@ public class Account {
     }
 
     void addAccount() {
+        //Method untestable du to its void return type and it requires input from the user.
         boolean flag = false;
         int counter;
 
