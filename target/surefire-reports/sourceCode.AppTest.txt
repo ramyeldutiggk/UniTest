@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: sourceCode.AppTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.116 sec <<< FAILURE!
-testTransaction1(sourceCode.AppTest)  Time elapsed: 0.022 sec  <<< ERROR!
+Tests run: 10, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 1.264 sec <<< FAILURE!
+testTransaction1(sourceCode.AppTest)  Time elapsed: 0.038 sec  <<< ERROR!
 java.lang.NullPointerException
-	at sourceCode.Transaction.process(Transaction.java:39)
+	at sourceCode.Transaction.process(Transaction.java:43)
 	at sourceCode.AppTest.testTransaction1(AppTest.java:65)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -39,7 +39,7 @@ java.lang.NullPointerException
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 testTransactionManager1(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.NullPointerException
-	at sourceCode.Transaction.process(Transaction.java:39)
+	at sourceCode.Transaction.process(Transaction.java:43)
 	at sourceCode.TransactionManager.processTransaction(TransactionManager.java:12)
 	at sourceCode.AppTest.testTransactionManager1(AppTest.java:79)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)

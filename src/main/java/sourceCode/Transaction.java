@@ -35,8 +35,13 @@ public class Transaction {
         
         boolean ans = (source != null && source.adjustBalance(-amount)) && (dest != null && dest.adjustBalance(amount));
         
+        
         if (ans == true){
-            long [] tba = new long[] {sourceAccountNumber, destinationAccountNumber, dNow.getTime()};
+            long [] tba = new long[3];
+            tba[1] = sourceAccountNumber;
+            tba[2] = destinationAccountNumber;
+            tba[3] = dNow.getTime();
+            //{sourceAccountNumber, destinationAccountNumber, dNow.getTime()};
             transactionTime.add(tba);
         }
     	       
