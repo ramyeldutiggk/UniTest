@@ -11,12 +11,6 @@ public class Transaction {
         this.amount = amount;
     }
 
-    
-
-    Transaction(int accountNumber, int accountNumber0, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     boolean process() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

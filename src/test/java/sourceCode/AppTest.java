@@ -7,20 +7,19 @@ public class AppTest {
     
     Account temp1, temp2;
     AccountDatabase accDB;
-    Transaction trn1, trn2;
+    Transaction trn;
     TransactionManager trnMan;
 
     @Before
     public void setup() {
         temp1 = new Account(accDB.getSize()+1,"Niki",100);
         temp2 = new Account(accDB.getSize()+1,"Malcolm",1000);
-        accDB = new AccountDatabase();
-        trn1 = new Transaction(temp1.getAccountNumber(),temp2.getAccountNumber(),50);
-        trn2 = new Transaction(temp1.getAccountNumber(),temp2.getAccountNumber(),1000);
-        trnMan = new TransactionManager();
-        
         accDB.database.add(temp1);
         accDB.database.add(temp2);
+        
+        accDB = new AccountDatabase();
+        
+        trnMan = new TransactionManager();
     }
 
     @Test
@@ -59,21 +58,27 @@ public class AppTest {
 
     @Test
     public void testTransaction1() {
-        Assert.assertEquals(true, trn1.process());
+        trn = new Transaction(temp1.getAccountNumber(),temp2.getAccountNumber(),50);
+        
+        Assert.assertEquals(true, trn.process());
     }
     
     @Test
     public void testTransaction2() {
-        Assert.assertEquals(false, trn2.process());
+        trn = new Transaction(temp1.getAccountNumber(),temp2.getAccountNumber(),1000);
+        
+        Assert.assertEquals(false, trn.process());
     }
     
     ///////////////////////////////////////////////////////////////////////////////
 
     @Test
     public void testTransactionManager1() {
-        int i = 0, j = 0, k = 0;
-        final boolean amm = trnMan.processTransaction(i, j, k);
-
-        Assert.assertEquals(0, amm);
+        Assert.assertEquals(true, trnMan.processTransaction(1, 2, 50));
+    }
+    
+    @Test
+    public void testTransactionManager2() {
+        Assert.assertEquals(false, trnMan.processTransaction(1, 2, 1000));
     }
 }
