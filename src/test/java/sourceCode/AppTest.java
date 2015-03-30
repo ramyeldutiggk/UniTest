@@ -1,52 +1,60 @@
 package sourceCode;
 
-import org.junit.Test;
-import org.junit.Assert;
-import org.junit.Before;
+import org.junit.*;
+import static org.hamcrest.CoreMatchers.*;
 
 public class AppTest {
     
-    Account temp;
+    Account temp1, temp2;
     AccountDatabase accDB;
     Transaction trn;
     TransactionManager trnMan;
 
     @Before
     public void setup() {
-        temp = new Account(accDB.getSize()+1,"Niki",100);
+        temp1 = new Account(accDB.getSize()+1,"Niki",100);
+        temp2 = new Account(accDB.getSize()+1,"Malcolm",1000);
         accDB = new AccountDatabase();
         trn = new Transaction();
         trnMan = new TransactionManager();
         
-        temp = new Account(accDB.getSize()+1,"Niki",100);
-        
-        accDB.database.add(temp);
+        accDB.database.add(temp1);
+        accDB.database.add(temp2);
     }
 
     @Test
     public void testAccount1() {
-        Assert.assertEquals(true, temp.adjustBalance(1000));
+        Assert.assertEquals(true, temp1.adjustBalance(1000));
     }
     
     @Test
     public void testAccount2() {
-        Assert.assertEquals(false, temp.adjustBalance(-1000));
+        Assert.assertEquals(false, temp1.adjustBalance(-1000));
     }
+    
+    ///////////////////////////////////////////////////////////////////////////////
 
     @Test
     public void testAccountDatabase1() {
-        int i = 1;
-        final Account amm = accDB.getAccount(i);
-
-        Assert.assertEquals(1, amm);
+        Assert.assertEquals(temp1, accDB.getAccount(1));
+    }
+    
+    @Test
+    public void testAccountDatabase2() {
+        Assert.assertThat(temp2, not(accDB.getAccount(1)));
     }
 
     @Test
-    public void testAccountDatabase2() {
-        final int amm = accDB.getSize();
-
-        Assert.assertEquals(1, amm);
+    public void testAccountDatabase3() {
+        Assert.assertEquals(2, accDB.getSize());
     }
+    
+    @Test
+    public void testAccountDatabase4() {
+        Assert.assertThat(1, not(accDB.getSize()));
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////////
 
     @Test
     public void testTransaction1() {
