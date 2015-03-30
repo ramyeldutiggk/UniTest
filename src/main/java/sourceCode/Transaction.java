@@ -3,12 +3,13 @@ package sourceCode;
 import java.util.*;
 
 public class Transaction {
+
     private int sourceAccountNumber;
     private int destinationAccountNumber;
     private long amount;
     //long[] df;
-    
-    ArrayList<long[]> transactionTime = new ArrayList<long[]>();
+
+    ArrayList<Timings> transactionTime = new ArrayList<Timings>();
 
     public Transaction(int sourceAccountNumber, int destinationAccountNumber, long amount) {
         this.sourceAccountNumber = sourceAccountNumber;
@@ -17,34 +18,31 @@ public class Transaction {
     }
 
     boolean process() {
+
         Account source = AccountDatabase.getAccount(sourceAccountNumber);
         Account dest = AccountDatabase.getAccount(destinationAccountNumber);
         int counter;
-        Date dNow = null;
-        
-        for(counter = transactionTime.size()-1; counter >=0; counter--){
-            if(transactionTime.get(counter)[0] == sourceAccountNumber || transactionTime.get(counter)[0] == destinationAccountNumber || transactionTime.get(counter)[1] == destinationAccountNumber || transactionTime.get(counter)[1] == sourceAccountNumber){
-                dNow = new Date();
-                if((dNow.getTime() - transactionTime.get(counter)[2]) < 15000){
+        Date dNow = new Date();
+        long timeTemp = dNow.getTime();
+        Timings t = new Timings(sourceAccountNumber, destinationAccountNumber, timeTemp);
+
+        for (counter = transactionTime.size() - 1; counter >= 0; counter--) {
+            if (transactionTime.get(counter).getSourceAccountNumber() == sourceAccountNumber || transactionTime.get(counter).getSourceAccountNumber() == destinationAccountNumber || transactionTime.get(counter).getDestinationAccountNumber() == destinationAccountNumber || transactionTime.get(counter).getDestinationAccountNumber() == sourceAccountNumber) {
+
+                if ((timeTemp - transactionTime.get(counter).getTime()) < 15000) {
                     return false;
                 } else {
                     break;
                 }
             }
         }
-        
+
         boolean ans = (source != null && source.adjustBalance(-amount)) && (dest != null && dest.adjustBalance(amount));
-        
-        
-        if (ans == true){
-            long [] tba = new long[3];
-            tba[1] = sourceAccountNumber;
-            tba[2] = destinationAccountNumber;
-            tba[3] = dNow.getTime();
-            //{sourceAccountNumber, destinationAccountNumber, dNow.getTime()};
-            transactionTime.add(tba);
+
+        if (ans == true) {
+            transactionTime.add(t);
         }
-    	       
+
         return ans;
     }
 }
