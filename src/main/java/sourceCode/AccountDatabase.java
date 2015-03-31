@@ -25,28 +25,28 @@ public class AccountDatabase {
     
     void addAccount() {
         //Method untestable due to its void return type and it requires input from the user.
-        boolean flag = false;
+        boolean flag = true;
         int counter, accountNumber;
         long accountBalance;
         String accountName;
         
         do {
-            System.out.println("Enter the account number\n");
+            System.out.print("Enter the account number: ");
             accountNumber = sc.nextInt();
             
             for (counter = 0; counter < getSize(); counter++) {
                 flag = accountNumber != database.get(counter).getAccountNumber();
             }
             
-            if(flag == true)
+            if(flag == false)
             	System.out.println("Account already exists!\n");
-        } while (flag == true);
+        } while (flag == false);
 
-        System.out.println("Enter the account Name\n");
+        System.out.print("Enter the account Name: ");
         accountName = sc.next();
         
         do {
-            System.out.println("Enter the account balance\n");
+            System.out.print("Enter the account balance: ");
             accountBalance = sc.nextLong();
             flag = accountBalance >= 0;
             
@@ -57,6 +57,16 @@ public class AccountDatabase {
         Account newAcc = new Account(accountNumber, accountName, accountBalance);
 
         database.add(newAcc);
+    }
+    
+    void returnAll()
+    {
+    	for(int i = 0; i < getSize(); i++)
+    	{
+    		System.out.println(database.get(i).getAccountNumber());
+    		System.out.println(database.get(i).getAccountName());
+    		System.out.println(database.get(i).getAccountBalance());
+    	}
     }
 
     static int getSize() {
