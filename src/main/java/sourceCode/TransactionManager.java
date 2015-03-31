@@ -16,7 +16,12 @@ public class TransactionManager {
         Timings t = new Timings(src, dsc, timeTemp);
 
         for (counter = transactionTime.size() - 1; counter >= 0; counter--) {
-            
+        	if(timeTemp - transactionTime.get(counter).getTime() > 15000)
+        	{
+        		transactionTime.remove(counter);
+        		continue;
+        	}
+        		            
         	if (transactionTime.get(counter).getSourceAccountNumber() == src || transactionTime.get(counter).getSourceAccountNumber() == dsc || transactionTime.get(counter).getDestinationAccountNumber() == dsc || transactionTime.get(counter).getDestinationAccountNumber() == src) {
             	if ((timeTemp - transactionTime.get(counter).getTime()) < 15000) {
                     System.out.println("One of the accounts being used in this transaction was already used in another transaction less than 15 seconds ago!\n");
