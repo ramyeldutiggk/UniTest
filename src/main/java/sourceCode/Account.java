@@ -17,6 +17,7 @@ public class Account {
             accountBalance = newBalance;
             return true;
         } else {
+        	System.out.println("Insufficient funds!");
             return false;
         }
     }
@@ -29,24 +30,32 @@ public class Account {
         do {
             System.out.println("Enter the account number\n");
             accountNumber = sc.nextInt();
+            
             for (counter = 0; counter < AccountDatabase.getSize(); counter++) {
                 flag = accountNumber != AccountDatabase.database.get(counter).getAccountNumber();
             }
+            
+            if(flag == false)
+            	System.out.println("Account already exists!\n");
         } while (flag == false);
 
         System.out.println("Enter the account Name\n");
         accountName = sc.next();
+        
         do {
             System.out.println("Enter the account balance\n");
             accountBalance = sc.nextLong();
             flag = accountBalance >= 0;
+            
+            if(flag == false)
+            	System.out.println("Invalid balance!\n");
         } while (flag == false);
 
         AccountDatabase.database.add(this);
     }
 
     public Account(int accountNumber, String accountName, long accountBalance) {
-        //Method untestable due to the nin existing return type of the method
+        //Method untestable due to the non-existing return type of the method
         this.accountNumber = accountNumber;
         this.accountName = accountName;
         this.accountBalance = accountBalance;

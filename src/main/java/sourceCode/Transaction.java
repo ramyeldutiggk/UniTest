@@ -11,7 +11,7 @@ public class Transaction {
     ArrayList<Timings> transactionTime = new ArrayList<Timings>();
 
     public Transaction(int sourceAccountNumber, int destinationAccountNumber, long amount) {
-        //Method untestable due to the nin existing return type of the method
+        //Method untestable due to the non-existing return type of the method
         this.sourceAccountNumber = sourceAccountNumber;
         this.destinationAccountNumber = destinationAccountNumber;
         this.amount = amount;
@@ -30,7 +30,8 @@ public class Transaction {
             if (transactionTime.get(counter).getSourceAccountNumber() == sourceAccountNumber || transactionTime.get(counter).getSourceAccountNumber() == destinationAccountNumber || transactionTime.get(counter).getDestinationAccountNumber() == destinationAccountNumber || transactionTime.get(counter).getDestinationAccountNumber() == sourceAccountNumber) {
 
                 if ((timeTemp - transactionTime.get(counter).getTime()) < 15000) {
-                    return false;
+                    System.out.println("One of the accounts being used in this transaction was already used in another transaction less than 15 seconds ago!\n");
+                	return false;
                 } else {
                     break;
                 }

@@ -16,6 +16,7 @@ public class AccountDatabase {
             }
         }
         
+        System.out.println("Account not found!\n");
         return a1;
     }
 

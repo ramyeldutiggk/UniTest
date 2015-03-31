@@ -13,6 +13,7 @@ public class TransactionManager {
             success = true;
             numTransactionsProcessed++;
         } else {
+        	System.out.println("Transaction failed!\n");
             success = false;
         }
     	
