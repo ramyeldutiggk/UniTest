@@ -136,25 +136,35 @@ public class AppTest {
     public void testAccountDatabase2() {
         Assert.assertThat(temp2, not(AccountDatabase.getAccount(1)));
     }
-
+    
     @Test
     public void testAccountDatabase3() {
-        Assert.assertEquals(4, AccountDatabase.getSize());
+        Assert.assertEquals(null, AccountDatabase.getAccount(50));
     }
 
     @Test
     public void testAccountDatabase4() {
+        Assert.assertEquals(4, AccountDatabase.getSize());
+    }
+
+    @Test
+    public void testAccountDatabase5() {
         Assert.assertThat(1, not(AccountDatabase.getSize()));
     }
     
     @Test
-    public void testAccountDatabase5() {
+    public void testAccountDatabase6() {
         Assert.assertEquals(true, AccountDatabase.addAccount(99,"TestUser",100));
     }
     
     @Test
-    public void testAccountDatabase6() {
+    public void testAccountDatabase7() {
         Assert.assertEquals(false, AccountDatabase.addAccount(99,"TestUser1",100));
+    }
+    
+    @Test
+    public void testAccountDatabase8() {
+        Assert.assertEquals(false, AccountDatabase.addAccount(100,"TestUser2",-100));
     }
 
     /**************************************************************************************************
