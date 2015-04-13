@@ -40,7 +40,7 @@ public class AccountDatabase {
             
             if(flag == false){
             	System.out.println("Invalid balance!\n");
-                return true;
+                return false;
             }
 
         Account newAcc = new Account(accountNumber, accountName, accountBalance);
