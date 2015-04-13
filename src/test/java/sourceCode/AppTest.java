@@ -6,7 +6,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class AppTest {
 
-    static Account temp1, temp2, temp3, temp4;
+    static Account temp1, temp2, temp3, temp4, testingAccount;
     static Transaction trn;
     static TransactionManager trnMan;
     static Timings tim;
@@ -143,6 +143,13 @@ public class AppTest {
     @Test
     public void testAccountDatabase4() {
         Assert.assertThat(1, not(AccountDatabase.getSize()));
+    }
+    
+    @Test
+    public void testAccountDatabase5() {
+        testingAccount = new Account(100, "TestAcc", 100);
+        AccountDatabase.database.add(testingAccount);
+        Assert.assertEquals(5, AccountDatabase.getSize());
     }
 
     /**************************************************************************************************
