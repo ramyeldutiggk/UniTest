@@ -6,7 +6,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class AppTest {
 
-    static Account temp1, temp2, temp3, temp4, testingAccount;
+    static Account temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, testingAccount;
     static AccountDatabase adb;
     static Transaction trn;
     static TransactionManager trnMan;
@@ -18,10 +18,6 @@ public class AppTest {
         AccountDatabase.database.add(temp1);
         temp2 = new Account(AccountDatabase.getSize() + 1, "Malcolm", 1000);
         AccountDatabase.database.add(temp2);
-        temp3 = new Account(AccountDatabase.getSize() + 1, "Niki1", 100);
-        AccountDatabase.database.add(temp3);
-        temp4 = new Account(AccountDatabase.getSize() + 1, "Malcolm1", 1000);
-        AccountDatabase.database.add(temp4);
         adb = new AccountDatabase();
         trnMan = new TransactionManager();
         tim = new Timings(0, 0, 0);
@@ -35,12 +31,6 @@ public class AppTest {
         temp2.setAccountNumber(2);
         temp2.setAccountName("Malcolm");
         temp2.setAccountBalance(1000);
-        temp3.setAccountNumber(3);
-        temp3.setAccountName("Niki1");
-        temp3.setAccountBalance(100);
-        temp4.setAccountNumber(4);
-        temp4.setAccountName("Malcolm1");
-        temp4.setAccountBalance(1000);
     }
 
     /**************************************************************************************************
@@ -144,7 +134,7 @@ public class AppTest {
 
     @Test
     public void testAccountDatabase4() {
-        Assert.assertEquals(4, AccountDatabase.getSize());
+        Assert.assertEquals(8, AccountDatabase.getSize());
     }
 
     @Test
@@ -199,24 +189,42 @@ public class AppTest {
 
     @Test
     public void testTransactionManager3() {
+        temp3 = new Account(AccountDatabase.getSize() + 1, "Niki1", 100);
+        AccountDatabase.database.add(temp3);
+        temp4 = new Account(AccountDatabase.getSize() + 1, "Malcolm1", 1000);
+        AccountDatabase.database.add(temp4);
         Assert.assertEquals(true, trnMan.processTransaction(temp3.getAccountNumber(), temp4.getAccountNumber(), 10));
         Assert.assertEquals(false, trnMan.processTransaction(temp3.getAccountNumber(), temp4.getAccountNumber(), 10));
     }
 
     @Test
     public void testTransactionManager4() {
-        try {
-            Thread.sleep(15000);                 
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-        Assert.assertEquals(true, trnMan.processTransaction(temp3.getAccountNumber(), temp4.getAccountNumber(), 10));
+        temp5 = new Account(AccountDatabase.getSize() + 1, "Niki2", 100);
+        AccountDatabase.database.add(temp5);
+        temp6 = new Account(AccountDatabase.getSize() + 1, "Malcolm2", 1000);
+        AccountDatabase.database.add(temp6);
+        Assert.assertEquals(true, trnMan.processTransaction(temp5.getAccountNumber(), temp6.getAccountNumber(), 10));
         try {
             Thread.sleep(15000);                
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        Assert.assertEquals(true, trnMan.processTransaction(temp3.getAccountNumber(), temp4.getAccountNumber(), 10));
+        Assert.assertEquals(true, trnMan.processTransaction(temp5.getAccountNumber(), temp6.getAccountNumber(), 10));
+    }
+    
+    @Test
+    public void testTransactionManager5() {
+        temp7 = new Account(AccountDatabase.getSize() + 1, "Niki3", 100);
+        AccountDatabase.database.add(temp7);
+        temp8= new Account(AccountDatabase.getSize() + 1, "Malcolm3", 1000);
+        AccountDatabase.database.add(temp8);
+        Assert.assertEquals(true, trnMan.processTransaction(temp7.getAccountNumber(), temp8.getAccountNumber(), 10));
+        try {
+            Thread.sleep(15000);                
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        Assert.assertEquals(false, trnMan.processTransaction(temp7.getAccountNumber(), temp8.getAccountNumber(), 10000));
     }
 
     /**************************************************************************************************
@@ -261,9 +269,4 @@ public class AppTest {
         tim.setTime(timeTemp);
         Assert.assertThat(test, not(tim.getTime()));
     }
-    
-    /**************************************************************************************************
-     * 
-     **************************************************************************************************/
-
 }
