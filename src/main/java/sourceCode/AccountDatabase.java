@@ -23,8 +23,7 @@ public class AccountDatabase {
         return a1;
     }
     
-    void addAccount() {
-        //Method untestable due to its void return type and it requires input from the user.
+    boolean addAccount() {
         boolean flag = true;
         int counter, accountNumber;
         long accountBalance;
@@ -38,8 +37,9 @@ public class AccountDatabase {
                 flag = accountNumber != database.get(counter).getAccountNumber();
             }
             
-            if(flag == false)
+            if(flag == false){
             	System.out.println("Account already exists!\n");
+            }
         } while (flag == false);
 
         System.out.print("Enter the account Name: ");
@@ -57,6 +57,8 @@ public class AccountDatabase {
         Account newAcc = new Account(accountNumber, accountName, accountBalance);
 
         database.add(newAcc);
+        
+        return true;
     }
     
     void returnAll()
