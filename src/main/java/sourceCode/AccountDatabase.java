@@ -23,7 +23,7 @@ public class AccountDatabase {
         return a1;
     }
     
-    boolean addAccount() {
+    void addAccount() {
         boolean flag = true;
         int counter, accountNumber;
         long accountBalance;
@@ -57,11 +57,9 @@ public class AccountDatabase {
         Account newAcc = new Account(accountNumber, accountName, accountBalance);
 
         database.add(newAcc);
-        
-        return true;
     }
     
-    void returnAll()
+    /*void returnAll()
     {
     	for(int i = 0; i < getSize(); i++)
     	{
@@ -69,7 +67,7 @@ public class AccountDatabase {
     		System.out.println(database.get(i).getAccountName());
     		System.out.println(database.get(i).getAccountBalance());
     	}
-    }
+    }*/
 
     static int getSize() {
         return database.size();
