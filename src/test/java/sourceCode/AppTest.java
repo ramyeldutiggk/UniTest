@@ -170,7 +170,7 @@ public class AppTest {
     @Test
     public void testTransactionManager3() {
         Assert.assertEquals(true, trnMan.processTransaction(temp3.getAccountNumber(), temp4.getAccountNumber(), 10));
-        Assert.assertEquals(true, trnMan.processTransaction(temp3.getAccountNumber(), temp4.getAccountNumber(), 10));
+        Assert.assertEquals(false, trnMan.processTransaction(temp3.getAccountNumber(), temp4.getAccountNumber(), 10));
     }
 
     @Test
@@ -186,7 +186,7 @@ public class AppTest {
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        Assert.assertEquals(false, trnMan.processTransaction(temp3.getAccountNumber(), temp4.getAccountNumber(), 10));
+        Assert.assertEquals(true, trnMan.processTransaction(temp3.getAccountNumber(), temp4.getAccountNumber(), 10));
     }
 
     ///////////////////////////////////////////////////////////////////////////////
