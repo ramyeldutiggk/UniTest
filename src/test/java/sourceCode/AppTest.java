@@ -149,7 +149,7 @@ public class AppTest {
     public void testAccountDatabase5() {
         testingAccount = new Account(100, "TestAcc", 100);
         AccountDatabase.database.add(testingAccount);
-        Assert.assertEquals(5, AccountDatabase.getSize());
+        Assert.assertEquals(testingAccount, AccountDatabase.getAccount(100));
     }
 
     /**************************************************************************************************
