@@ -4,7 +4,7 @@ import java.util.*;
 
 public class AccountDatabase {
 	
-	Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
 	
     public static ArrayList<Account> database = new ArrayList<Account>();
 
@@ -23,7 +23,7 @@ public class AccountDatabase {
         return a1;
     }
     
-    void addAccount() {
+    boolean addAccount() {
         boolean flag = true;
         int counter, accountNumber;
         long accountBalance;
@@ -57,6 +57,8 @@ public class AccountDatabase {
         Account newAcc = new Account(accountNumber, accountName, accountBalance);
 
         database.add(newAcc);
+        
+        return true;
     }
     
     /*void returnAll()
