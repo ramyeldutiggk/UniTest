@@ -36,12 +36,14 @@ public class AppTest {
         temp3.setAccountNumber(3);
         temp3.setAccountName("Niki1");
         temp3.setAccountBalance(100);
-        temp3.setAccountNumber(4);
-        temp3.setAccountName("Malcolm1");
-        temp3.setAccountBalance(1000);
+        temp4.setAccountNumber(4);
+        temp4.setAccountName("Malcolm1");
+        temp4.setAccountBalance(1000);
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
+    /**************************************************************************************************
+     * 
+     **************************************************************************************************/
     @Test
     public void testAccount1() {
         Assert.assertEquals(true, temp1.adjustBalance(-50));
@@ -120,7 +122,9 @@ public class AppTest {
         Assert.assertThat(amm2, not(temp1.getAccountBalance()));
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
+    /**************************************************************************************************
+     * 
+     **************************************************************************************************/
     @Test
     public void testAccountDatabase1() {
         Assert.assertEquals(temp1, AccountDatabase.getAccount(1));
@@ -141,7 +145,9 @@ public class AppTest {
         Assert.assertThat(1, not(AccountDatabase.getSize()));
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
+    /**************************************************************************************************
+     * 
+     **************************************************************************************************/
     @Test
     public void testTransaction1() {
         trn = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 50);
@@ -156,7 +162,9 @@ public class AppTest {
         Assert.assertEquals(false, trn.process());
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
+    /**************************************************************************************************
+     * 
+     **************************************************************************************************/
     @Test
     public void testTransactionManager1() {
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 50));
@@ -189,7 +197,9 @@ public class AppTest {
         Assert.assertEquals(true, trnMan.processTransaction(temp3.getAccountNumber(), temp4.getAccountNumber(), 10));
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
+    /**************************************************************************************************
+     * 
+     **************************************************************************************************/
     @Test
     public void testTimings1() {
         tim.setSourceAccountNumber(1);
@@ -229,4 +239,9 @@ public class AppTest {
         tim.setTime(timeTemp);
         Assert.assertThat(test, not(tim.getTime()));
     }
+    
+    /**************************************************************************************************
+     * 
+     **************************************************************************************************/
+
 }
