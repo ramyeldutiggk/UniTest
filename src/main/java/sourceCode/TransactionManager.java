@@ -38,7 +38,8 @@ public class TransactionManager {
             numTransactionsProcessed++;
             return true;
         }
-        else
+        else {
         	return false;  	
+        }
     }
 }
