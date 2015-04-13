@@ -147,10 +147,15 @@ public class AppTest {
         Assert.assertThat(1, not(AccountDatabase.getSize()));
     }
     
-    /*@Test
+    @Test
     public void testAccountDatabase5() {
-        Assert.assertEquals(true, AccountDatabase.addAccount());
-    }*/
+        Assert.assertEquals(true, AccountDatabase.addAccount(99,"TestUser",100));
+    }
+    
+    @Test
+    public void testAccountDatabase6() {
+        Assert.assertEquals(false, AccountDatabase.addAccount(99,"TestUser1",100));
+    }
 
     /**************************************************************************************************
      * 

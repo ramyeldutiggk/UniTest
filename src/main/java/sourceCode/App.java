@@ -1,6 +1,6 @@
 package sourceCode;
-
-/*import java.util.*;
+/*
+import java.util.*;
 
 public class App {
 
@@ -20,17 +20,24 @@ public class App {
             System.out.println("2. Add transaction");
             System.out.println("3. Return all");
             System.out.println("4. Search Item\n");
-             System.out.println("5. Clear Array\n");
-             System.out.println("6. Enumerate Array\n");
-             System.out.println("7. Cardinality of Array\n");
-             System.out.println("8. Subset of Array\n");
+            System.out.println("5. Clear Array\n");
+            System.out.println("6. Enumerate Array\n");
+            System.out.println("7. Cardinality of Array\n");
+            System.out.println("8. Subset of Array\n");
             System.out.println("9. Quit\n\n");
             System.out.print("Enter an option: ");
             input = sc.nextInt();
 
             switch (input) {
                 case 1:
-                    db.addAccount();
+                    System.out.println("Enter the ID of the new ccount.\n");
+                    int ID = sc.nextInt();
+                    System.out.println("Enter the Name of the new ccount.\n");
+                    String name = sc.next();
+                    System.out.println("Enter the balance of the new ccount.\n");
+                    long balance = sc.nextLong();
+
+                    db.addAccount(ID, name, balance);
                     break;
 
                 case 2:

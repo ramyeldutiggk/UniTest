@@ -23,36 +23,25 @@ public class AccountDatabase {
         return a1;
     }
     
-    boolean addAccount() {
+    static boolean addAccount(int accountNumber, String accountName, long accountBalance) {
         boolean flag = true;
-        int counter, accountNumber;
-        long accountBalance;
-        String accountName;
+        int counter;
         
-        do {
-            System.out.print("Enter the account number: ");
-            accountNumber = sc.nextInt();
-            
             for (counter = 0; counter < getSize(); counter++) {
                 flag = accountNumber != database.get(counter).getAccountNumber();
             }
             
             if(flag == false){
             	System.out.println("Account already exists!\n");
+                return false;
             }
-        } while (flag == false);
-
-        System.out.print("Enter the account Name: ");
-        accountName = sc.next();
-        
-        do {
-            System.out.print("Enter the account balance: ");
-            accountBalance = sc.nextLong();
+            
             flag = accountBalance >= 0;
             
-            if(flag == false)
+            if(flag == false){
             	System.out.println("Invalid balance!\n");
-        } while (flag == false);
+                return true;
+            }
 
         Account newAcc = new Account(accountNumber, accountName, accountBalance);
 
