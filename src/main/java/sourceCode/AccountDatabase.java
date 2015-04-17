@@ -3,10 +3,6 @@ package sourceCode;
 import java.util.*;
 
 public class AccountDatabase {
-
-    public static void setDatabase(ArrayList<Account> aDatabase) {
-        database = aDatabase;
-    }
 	
     Scanner sc = new Scanner(System.in);
 	
@@ -73,5 +69,9 @@ public class AccountDatabase {
 
     public ArrayList<Account> getDatabase() {
         return database;
+    }
+    
+    public static void setDatabase(ArrayList<Account> aDatabase) {
+        database = aDatabase;
     }
 }

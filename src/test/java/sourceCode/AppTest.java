@@ -22,7 +22,7 @@ public class AppTest {
         adb = new AccountDatabase();
         trnMan = new TransactionManager();
         tim = new Timings(0, 0, 0);
-        adb.setDatabase(new ArrayList<Account>());
+        adb.setDatabase(new ArrayList<Account>()); //This is due to static implementation of the AccountDatabase ArrayList
         temp1 = new Account(adb.getSize() + 1, "Niki", 100);
         adb.getDatabase().add(temp1);
         temp2 = new Account(adb.getSize() + 1, "Malcolm", 1000);
@@ -209,6 +209,7 @@ public class AppTest {
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10000));
     }
     
+    @Test
     public void TestTransectionManager6(){
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp1.getAccountNumber(), 10));
     }
