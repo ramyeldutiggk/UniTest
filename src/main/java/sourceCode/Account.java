@@ -23,7 +23,6 @@ public class Account {
     }
 
     public Account(int accountNumber, String accountName, long accountBalance) {
-        //Method untestable due to the non-existing return type of the method
         this.accountNumber = accountNumber;
         this.accountName = accountName;
         this.accountBalance = accountBalance;

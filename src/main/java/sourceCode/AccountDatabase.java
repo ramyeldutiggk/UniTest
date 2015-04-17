@@ -3,12 +3,16 @@ package sourceCode;
 import java.util.*;
 
 public class AccountDatabase {
+
+    public static void setDatabase(ArrayList<Account> aDatabase) {
+        database = aDatabase;
+    }
 	
     Scanner sc = new Scanner(System.in);
 	
-    public ArrayList<Account> database = new ArrayList<Account>();
+   private static ArrayList<Account> database = new ArrayList<Account>();
 
-    Account getAccount(int accountNumber) {
+    public static Account getAccount(int accountNumber) {
         int cnt;
         
         Account a1 = null;
@@ -65,5 +69,9 @@ public class AccountDatabase {
 
     int getSize() {
         return database.size();
+    }
+
+    public ArrayList<Account> getDatabase() {
+        return database;
     }
 }

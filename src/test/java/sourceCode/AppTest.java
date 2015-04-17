@@ -1,6 +1,6 @@
 package sourceCode;
 
-import java.util.Date;
+import java.util.*;
 import org.junit.*;
 import static org.hamcrest.CoreMatchers.*;
 
@@ -22,10 +22,11 @@ public class AppTest {
         adb = new AccountDatabase();
         trnMan = new TransactionManager();
         tim = new Timings(0, 0, 0);
+        adb.setDatabase(new ArrayList<Account>());
         temp1 = new Account(adb.getSize() + 1, "Niki", 100);
-        adb.database.add(temp1);
+        adb.getDatabase().add(temp1);
         temp2 = new Account(adb.getSize() + 1, "Malcolm", 1000);
-        adb.database.add(temp2);
+        adb.getDatabase().add(temp2);
     }
 
     /**************************************************************************************************
@@ -158,7 +159,6 @@ public class AppTest {
     @Test
     public void testTransaction1() {
         trn = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 50);
-        System.out.println("here");
         Assert.assertEquals(true, trn.process());
     }
 
@@ -173,7 +173,6 @@ public class AppTest {
      **************************************************************************************************/
     @Test
     public void testTransactionManager1() {
-        System.out.println("here");
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 50));
     }
 
@@ -184,20 +183,12 @@ public class AppTest {
 
     @Test
     public void testTransactionManager3() {
-        /*temp3 = new Account(AccountDatabase.getSize() + 1, "Niki1", 100);
-        AccountDatabase.database.add(temp3);
-        temp4 = new Account(AccountDatabase.getSize() + 1, "Malcolm1", 1000);
-        AccountDatabase.database.add(temp4);*/
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
     }
 
     @Test
     public void testTransactionManager4() {
-        /*temp5 = new Account(AccountDatabase.getSize() + 1, "Niki2", 100);
-        AccountDatabase.database.add(temp5);
-        temp6 = new Account(AccountDatabase.getSize() + 1, "Malcolm2", 1000);
-        AccountDatabase.database.add(temp6);*/
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
         try {
             Thread.sleep(15000);                
@@ -209,10 +200,6 @@ public class AppTest {
     
     @Test
     public void testTransactionManager5() {
-        /*temp7 = new Account(AccountDatabase.getSize() + 1, "Niki3", 100);
-        AccountDatabase.database.add(temp7);
-        temp8= new Account(AccountDatabase.getSize() + 1, "Malcolm3", 1000);
-        AccountDatabase.database.add(temp8);*/
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
         try {
             Thread.sleep(15000);                
