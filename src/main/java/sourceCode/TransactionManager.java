@@ -10,9 +10,9 @@ public class TransactionManager {
 
     boolean processTransaction(int src, int dsc, long amount) {
         
-        if(src == dsc){
+        /*if(src == dsc){
             System.out.println("The source and destination accounts can't be the same.\n");
-            return false;} 
+            return false;} */
 
         Transaction t1 = new Transaction(src, dsc, amount);
 
