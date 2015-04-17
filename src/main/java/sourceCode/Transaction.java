@@ -17,7 +17,7 @@ public class Transaction {
         Account source = AccountDatabase.getAccount(this.sourceAccountNumber);
         Account dest = AccountDatabase.getAccount(this.destinationAccountNumber);
         
-        boolean ans = (source != null && source.adjustBalance(-amount)) && (dest != null && dest.adjustBalance(amount));
+        boolean ans = (source != null && source.adjustBalance(-amount)) && (dest != null && dest.adjustBalance(amount)) && (source != dest);
 
         return ans;
     }
