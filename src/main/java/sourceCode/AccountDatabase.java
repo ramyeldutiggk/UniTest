@@ -6,9 +6,9 @@ public class AccountDatabase {
 	
     Scanner sc = new Scanner(System.in);
 	
-    public static ArrayList<Account> database = new ArrayList<Account>();
+    public ArrayList<Account> database = new ArrayList<Account>();
 
-    static Account getAccount(int accountNumber) {
+    Account getAccount(int accountNumber) {
         int cnt;
         
         Account a1 = null;
@@ -23,12 +23,15 @@ public class AccountDatabase {
         return a1;
     }
     
-    static boolean addAccount(int accountNumber, String accountName, long accountBalance) {
+    boolean addAccount(int accountNumber, String accountName, long accountBalance) {
         boolean flag = true;
         int counter;
         
             for (counter = 0; counter < getSize(); counter++) {
                 flag = accountNumber != database.get(counter).getAccountNumber();
+                if(flag == false){
+                    break;
+                }
             }
             
             if(flag == false){
@@ -60,7 +63,7 @@ public class AccountDatabase {
     	}
     }*/
 
-    static int getSize() {
+    int getSize() {
         return database.size();
     }
 }

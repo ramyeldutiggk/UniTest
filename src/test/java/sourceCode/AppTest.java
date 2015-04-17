@@ -6,31 +6,26 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class AppTest {
 
-    static Account temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, testingAccount;
+    static Account temp1, temp2;
     static AccountDatabase adb;
     static Transaction trn;
     static TransactionManager trnMan;
     static Timings tim;
 
-    @BeforeClass
+    /*@BeforeClass
     public static void setup() {
-        temp1 = new Account(AccountDatabase.getSize() + 1, "Niki", 100);
-        AccountDatabase.database.add(temp1);
-        temp2 = new Account(AccountDatabase.getSize() + 1, "Malcolm", 1000);
-        AccountDatabase.database.add(temp2);
-        adb = new AccountDatabase();
-        trnMan = new TransactionManager();
-        tim = new Timings(0, 0, 0);
-    }
+        
+    }*/
 
     @Before
     public void setup1() {
-        temp1.setAccountNumber(1);
-        temp1.setAccountName("Niki");
-        temp1.setAccountBalance(100);
-        temp2.setAccountNumber(2);
-        temp2.setAccountName("Malcolm");
-        temp2.setAccountBalance(1000);
+        adb = new AccountDatabase();
+        trnMan = new TransactionManager();
+        tim = new Timings(0, 0, 0);
+        temp1 = new Account(adb.getSize() + 1, "Niki", 100);
+        adb.database.add(temp1);
+        temp2 = new Account(adb.getSize() + 1, "Malcolm", 1000);
+        adb.database.add(temp2);
     }
 
     /**************************************************************************************************
@@ -119,42 +114,42 @@ public class AppTest {
      **************************************************************************************************/
     @Test
     public void testAccountDatabase1() {
-        Assert.assertEquals(temp1, AccountDatabase.getAccount(1));
+        Assert.assertEquals(temp1, adb.getAccount(1));
     }
 
     @Test
     public void testAccountDatabase2() {
-        Assert.assertThat(temp2, not(AccountDatabase.getAccount(1)));
+        Assert.assertThat(temp2, not(adb.getAccount(1)));
     }
     
     @Test
     public void testAccountDatabase3() {
-        Assert.assertEquals(null, AccountDatabase.getAccount(50));
+        Assert.assertEquals(null, adb.getAccount(50));
     }
 
     @Test
     public void testAccountDatabase4() {
-        Assert.assertEquals(8, AccountDatabase.getSize());
+        Assert.assertEquals(2, adb.getSize());
     }
 
     @Test
     public void testAccountDatabase5() {
-        Assert.assertThat(1, not(AccountDatabase.getSize()));
+        Assert.assertThat(1, not(adb.getSize()));
     }
     
     @Test
     public void testAccountDatabase6() {
-        Assert.assertEquals(true, AccountDatabase.addAccount(99,"TestUser",100));
+        Assert.assertEquals(true, adb.addAccount(99,"TestUser",100));
     }
     
     @Test
     public void testAccountDatabase7() {
-        Assert.assertEquals(false, AccountDatabase.addAccount(99,"TestUser1",100));
+        Assert.assertEquals(false, adb.addAccount(1,"TestUser1",100));
     }
     
     @Test
     public void testAccountDatabase8() {
-        Assert.assertEquals(false, AccountDatabase.addAccount(100,"TestUser2",-100));
+        Assert.assertEquals(false, adb.addAccount(100,"TestUser2",-100));
     }
 
     /**************************************************************************************************
@@ -163,15 +158,14 @@ public class AppTest {
     @Test
     public void testTransaction1() {
         trn = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 50);
-
+        System.out.println("here");
         Assert.assertEquals(true, trn.process());
     }
 
     @Test
     public void testTransaction2() {
         trn = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 1000);
-
-        Assert.assertEquals(false, trn.process());
+      Assert.assertEquals(false, trn.process());
     }
 
     /**************************************************************************************************
@@ -179,6 +173,7 @@ public class AppTest {
      **************************************************************************************************/
     @Test
     public void testTransactionManager1() {
+        System.out.println("here");
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 50));
     }
 
@@ -189,42 +184,46 @@ public class AppTest {
 
     @Test
     public void testTransactionManager3() {
-        temp3 = new Account(AccountDatabase.getSize() + 1, "Niki1", 100);
+        /*temp3 = new Account(AccountDatabase.getSize() + 1, "Niki1", 100);
         AccountDatabase.database.add(temp3);
         temp4 = new Account(AccountDatabase.getSize() + 1, "Malcolm1", 1000);
-        AccountDatabase.database.add(temp4);
-        Assert.assertEquals(true, trnMan.processTransaction(temp3.getAccountNumber(), temp4.getAccountNumber(), 10));
-        Assert.assertEquals(false, trnMan.processTransaction(temp3.getAccountNumber(), temp4.getAccountNumber(), 10));
+        AccountDatabase.database.add(temp4);*/
+        Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
+        Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
     }
 
     @Test
     public void testTransactionManager4() {
-        temp5 = new Account(AccountDatabase.getSize() + 1, "Niki2", 100);
+        /*temp5 = new Account(AccountDatabase.getSize() + 1, "Niki2", 100);
         AccountDatabase.database.add(temp5);
         temp6 = new Account(AccountDatabase.getSize() + 1, "Malcolm2", 1000);
-        AccountDatabase.database.add(temp6);
-        Assert.assertEquals(true, trnMan.processTransaction(temp5.getAccountNumber(), temp6.getAccountNumber(), 10));
+        AccountDatabase.database.add(temp6);*/
+        Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
         try {
             Thread.sleep(15000);                
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        Assert.assertEquals(true, trnMan.processTransaction(temp5.getAccountNumber(), temp6.getAccountNumber(), 10));
+        Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
     }
     
     @Test
     public void testTransactionManager5() {
-        temp7 = new Account(AccountDatabase.getSize() + 1, "Niki3", 100);
+        /*temp7 = new Account(AccountDatabase.getSize() + 1, "Niki3", 100);
         AccountDatabase.database.add(temp7);
         temp8= new Account(AccountDatabase.getSize() + 1, "Malcolm3", 1000);
-        AccountDatabase.database.add(temp8);
-        Assert.assertEquals(true, trnMan.processTransaction(temp7.getAccountNumber(), temp8.getAccountNumber(), 10));
+        AccountDatabase.database.add(temp8);*/
+        Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
         try {
             Thread.sleep(15000);                
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        Assert.assertEquals(false, trnMan.processTransaction(temp7.getAccountNumber(), temp8.getAccountNumber(), 10000));
+        Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10000));
+    }
+    
+    public void TestTransectionManager6(){
+        Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp1.getAccountNumber(), 10));
     }
 
     /**************************************************************************************************

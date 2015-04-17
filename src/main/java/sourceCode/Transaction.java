@@ -5,6 +5,7 @@ public class Transaction {
     private int sourceAccountNumber;
     private int destinationAccountNumber;
     private long amount;
+    AccountDatabase acdb = new AccountDatabase();
 
     public Transaction(int sourceAccountNumber, int destinationAccountNumber, long amount) {
         this.sourceAccountNumber = sourceAccountNumber;
@@ -13,8 +14,8 @@ public class Transaction {
     }
 
     boolean process() {
-        Account source = AccountDatabase.getAccount(this.sourceAccountNumber);
-        Account dest = AccountDatabase.getAccount(this.destinationAccountNumber);
+        Account source = acdb.getAccount(this.sourceAccountNumber);
+        Account dest = acdb.getAccount(this.destinationAccountNumber);
         
         boolean ans = (source != null && source.adjustBalance(-amount)) && (dest != null && dest.adjustBalance(amount));
 
