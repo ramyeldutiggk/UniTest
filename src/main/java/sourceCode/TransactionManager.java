@@ -16,10 +16,10 @@ public class TransactionManager {
         long timeTemp = System.currentTimeMillis();
         Timings t = new Timings(src, dsc, timeTemp);
         
-        /*if(src == dsc){
+        if(src == dsc){
             System.out.println("The source and destination accounts can't be the same.\n");
             return false;
-        }*/
+        }
 
         for (counter = transactionTime.size() - 1; counter >= 0; counter--) {
             if (timeTemp - transactionTime.get(counter).getTime() > 15000) {
