@@ -178,6 +178,7 @@ public class AppTest {
 
     @Test
     public void testTransactionManager2() {
+        System.out.println("This fucker though...");
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 1000));
     }
 
