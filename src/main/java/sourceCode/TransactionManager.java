@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TransactionManager {
 
-    //private int numTransactionsProcessed = 0;
+    private int numTransactionsProcessed = 0;
 
     ArrayList<Timings> transactionTime = new ArrayList<Timings>();
 
@@ -45,7 +45,7 @@ public class TransactionManager {
             System.out.println("HEREEEEEEEEEEEEEEEE6");
             transactionTime.add(t);
             System.out.println("Transaction complete!\n");
-            //numTransactionsProcessed++;
+            numTransactionsProcessed++;
             return true;
         } else {
             System.out.println("HEREEEEEEEEEEEEEEEE7");

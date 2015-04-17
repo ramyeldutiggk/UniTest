@@ -217,7 +217,7 @@ public class AppTest {
     
     @Test
     public void TestTransectionManager7(){
-        Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp1.getAccountNumber(), 10));
+        Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp1.getAccountNumber(), 10000));
     }
 
     /**************************************************************************************************
