@@ -9,6 +9,10 @@ public class TransactionManager {
     ArrayList<Timings> transactionTime = new ArrayList<Timings>();
 
     boolean processTransaction(int src, int dsc, long amount) {
+        
+        if(src == dsc){
+            System.out.println("The source and destination accounts can't be the same.\n");
+            return false;} 
 
         Transaction t1 = new Transaction(src, dsc, amount);
 
@@ -16,9 +20,7 @@ public class TransactionManager {
         long timeTemp = System.currentTimeMillis();
         Timings t = new Timings(src, dsc, timeTemp);
         
-        if(src == dsc){
-            System.out.println("The source and destination accounts can't be the same.\n");
-            return false;} 
+        
 
         for (counter = transactionTime.size() - 1; counter >= 0; counter--) {
             if (timeTemp - transactionTime.get(counter).getTime() > 15000) {
