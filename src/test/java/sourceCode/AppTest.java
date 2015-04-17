@@ -171,10 +171,10 @@ public class AppTest {
     /**************************************************************************************************
      * 
      **************************************************************************************************/
-    /*@Test
+    @Test
     public void testTransactionManager1() {
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 50));
-    }*/
+    }
 
     @Test
     public void testTransactionManager2() {
@@ -191,7 +191,7 @@ public class AppTest {
     public void testTransactionManager4() {
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
         try {
-            Thread.sleep(15000);                
+            Thread.sleep(15001);                
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
@@ -202,7 +202,7 @@ public class AppTest {
     public void testTransactionManager5() {
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
         try {
-            Thread.sleep(15000);                
+            Thread.sleep(15001);                
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
@@ -216,12 +216,7 @@ public class AppTest {
     
     @Test
     public void TestTransectionManager7(){
-        Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp1.getAccountNumber(), 100000));
-    }
-    
-    @Test
-    public void testTransactionManager1() {
-        Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 50));
+        Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp1.getAccountNumber(), 10));
     }
 
     /**************************************************************************************************
