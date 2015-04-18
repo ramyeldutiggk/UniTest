@@ -12,7 +12,7 @@ public class TransactionManager {
 
         Transaction t1 = new Transaction(src, dsc, amount);
 
-        int counter;
+        //int counter;
         long timeTemp = System.currentTimeMillis();
         Timings t = new Timings(src, dsc, timeTemp);
         
@@ -22,7 +22,7 @@ public class TransactionManager {
             return false;
         }
 
-        for (counter = transactionTime.size() - 1; counter >= 0; counter--) {
+        for (int counter = transactionTime.size() - 1; counter >= 0; counter--) {
             System.out.println("2");
             if (timeTemp - transactionTime.get(counter).getTime() > 15000) {
                 System.out.println("3");
