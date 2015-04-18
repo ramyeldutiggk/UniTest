@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="37" failures="0" name="sourceCode.AppTest" time="30.244" errors="0" skipped="0">
+<testsuite tests="37" failures="0" name="sourceCode.AppTest" time="255.062" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/home/niki/jdk1.8.0_25/jre/lib/amd64"/>
@@ -33,6 +33,8 @@
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="3.13.0-49-generic"/>
+    <property name="jpda.listen" value="true"/>
+    <property name="jpda.address" value="45034"/>
     <property name="user.home" value="/home/niki"/>
     <property name="user.timezone" value="Europe/Malta"/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
@@ -40,10 +42,11 @@
     <property name="file.encoding" value="UTF-8"/>
     <property name="user.name" value="niki"/>
     <property name="java.class.path" value="/home/niki/netbeans-8.0.1/java/maven/boot/plexus-classworlds-2.4.jar"/>
+    <property name="maven.surefire.debug" value="-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=45034"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/home/niki/jdk1.8.0_25/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=sourceCode.AppTest -Dmaven.ext.class.path=/home/niki/netbeans-8.0.1/java/maven-nblib/netbeans-eventspy.jar surefire:test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=sourceCode.AppTest -DforkMode=once -Dmaven.surefire.debug=-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=45034 -Djpda.listen=true -Djpda.address=45034 -Dmaven.ext.class.path=/home/niki/netbeans-8.0.1/java/maven-nblib/netbeans-eventspy.jar surefire:test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -56,45 +59,46 @@
     <property name="maven.home" value="/home/niki/netbeans-8.0.1/java/maven"/>
     <property name="file.separator" value="/"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="forkMode" value="once"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="sourceCode.AppTest" name="testAccount1" time="0.023"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount2" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount1" time="0.064"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount2" time="0.015"/>
   <testcase classname="sourceCode.AppTest" name="testAccount3" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount4" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount5" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount6" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount7" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount8" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount9" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTimings1" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTimings2" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTimings3" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTimings4" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTimings5" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTimings6" time="0.007"/>
-  <testcase classname="sourceCode.AppTest" name="testTransaction1" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount4" time="0.003"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount5" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount6" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount7" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount8" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount9" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testTimings1" time="0.007"/>
+  <testcase classname="sourceCode.AppTest" name="testTimings2" time="0.002"/>
+  <testcase classname="sourceCode.AppTest" name="testTimings3" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testTimings4" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testTimings5" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testTimings6" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testTransaction1" time="0.004"/>
   <testcase classname="sourceCode.AppTest" name="testTransaction2" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount10" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount11" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount12" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount13" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount10" time="0.003"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount11" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount12" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount13" time="0.001"/>
   <testcase classname="sourceCode.AppTest" name="testAccount14" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTransactionManager1" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTransactionManager2" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTransactionManager3" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTransactionManager4" time="14.997"/>
-  <testcase classname="sourceCode.AppTest" name="testTransactionManager5" time="15.012"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase1" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase2" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase3" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase4" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase5" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase6" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase7" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase8" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="TestTransectionManager6" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="TestTransectionManager7" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="testTransactionManager1" time="60.807"/>
+  <testcase classname="sourceCode.AppTest" name="testTransactionManager2" time="17.847"/>
+  <testcase classname="sourceCode.AppTest" name="testTransactionManager3" time="25.194"/>
+  <testcase classname="sourceCode.AppTest" name="testTransactionManager4" time="55.723"/>
+  <testcase classname="sourceCode.AppTest" name="testTransactionManager5" time="58.861"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase1" time="0.002"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase2" time="0.005"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase3" time="0.003"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase4" time="0.002"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase5" time="0.002"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase6" time="0.003"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase7" time="0.002"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase8" time="0.002"/>
+  <testcase classname="sourceCode.AppTest" name="TestTransectionManager6" time="16.211"/>
+  <testcase classname="sourceCode.AppTest" name="TestTransectionManager7" time="20.019"/>
 </testsuite>
