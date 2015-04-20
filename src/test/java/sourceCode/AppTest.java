@@ -12,11 +12,6 @@ public class AppTest {
     static TransactionManager trnMan;
     static Timings tim;
 
-    /*@BeforeClass
-    public static void setup() {
-        
-    }*/
-
     @Before
     public void setup1() {
         adb = new AccountDatabase();
@@ -178,13 +173,13 @@ public class AppTest {
 
     @Test
     public void testTransactionManager2() {
-        System.out.println("This fucker though...");
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 1000));
     }
 
     @Test
     public void testTransactionManager3() {
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
+
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
     }
 

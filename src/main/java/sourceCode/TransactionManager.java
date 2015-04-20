@@ -22,7 +22,7 @@ public class TransactionManager {
             for (int counter = transactionTime.size() - 1; counter >= 0; counter--) {
                 if (timeTemp - transactionTime.get(counter).getTime() > 15000) {
                     transactionTime.remove(counter);
-                    continue;
+                    //continue;
                 } else {
 
                     if (transactionTime.get(counter).getSourceAccountNumber() == src || transactionTime.get(counter).getSourceAccountNumber() == dsc || transactionTime.get(counter).getDestinationAccountNumber() == src || transactionTime.get(counter).getDestinationAccountNumber() == dsc) {
