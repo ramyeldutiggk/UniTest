@@ -17,31 +17,33 @@ public class TransactionManager {
         if (src == dsc) {
             System.out.println("Source and destionation accounts in a tarnsection can't be equal.");
             return false;
-        }
+        } else {
 
-        for (int counter = transactionTime.size() - 1; counter >= 0; counter--) {
-            if (timeTemp - transactionTime.get(counter).getTime() > 15000) {
-                transactionTime.remove(counter);
-                continue;
-            }
+            for (int counter = transactionTime.size() - 1; counter >= 0; counter--) {
+                if (timeTemp - transactionTime.get(counter).getTime() > 15000) {
+                    transactionTime.remove(counter);
+                    continue;
+                } else {
 
-            if (transactionTime.get(counter).getSourceAccountNumber() == src || transactionTime.get(counter).getSourceAccountNumber() == dsc || transactionTime.get(counter).getDestinationAccountNumber() == src || transactionTime.get(counter).getDestinationAccountNumber() == dsc) {
-                if ((timeTemp - transactionTime.get(counter).getTime()) < 1500) {
-                    System.out.println("\"One of the accounts being used in this transaction was already used in another transaction less than 15 seconds ago!\n");
-                    System.out.println("Transaction failed!\n");
-                    return false;
+                    if (transactionTime.get(counter).getSourceAccountNumber() == src || transactionTime.get(counter).getSourceAccountNumber() == dsc || transactionTime.get(counter).getDestinationAccountNumber() == src || transactionTime.get(counter).getDestinationAccountNumber() == dsc) {
+                        if ((timeTemp - transactionTime.get(counter).getTime()) < 1500) {
+                            System.out.println("\"One of the accounts being used in this transaction was already used in another transaction less than 15 seconds ago!\n");
+                            System.out.println("Transaction failed!\n");
+                            return false;
+                        }
+                    }
                 }
             }
-        }
-        
-        if(t1.process()){
-            transactionTime.add(t);
-            System.out.println("Transaction complete.\n");
-            numTransectionsProcessed++;
-            return true;
-        } else{
-            System.out.println("Transaction failed!\n");
-            return false;
+
+            if (t1.process()) {
+                transactionTime.add(t);
+                System.out.println("Transaction complete.\n");
+                numTransectionsProcessed++;
+                return true;
+            } else {
+                System.out.println("Transaction failed!\n");
+                return false;
+            }
         }
     }
 }
