@@ -22,17 +22,17 @@ public class TransactionManager {
             for (int counter = transactionTime.size() - 1; counter >= 0; counter--) {
                 if (timeTemp - transactionTime.get(counter).getTime() > 15000) {
                     transactionTime.remove(counter);
-                    //continue;
-                } else {
+                    continue;
+                }
 
-                    if (transactionTime.get(counter).getSourceAccountNumber() == src || transactionTime.get(counter).getSourceAccountNumber() == dsc || transactionTime.get(counter).getDestinationAccountNumber() == src || transactionTime.get(counter).getDestinationAccountNumber() == dsc) {
-                        if ((timeTemp - transactionTime.get(counter).getTime()) < 1500) {
-                            System.out.println("\"One of the accounts being used in this transaction was already used in another transaction less than 15 seconds ago!\n");
-                            System.out.println("Transaction failed!\n");
-                            return false;
-                        }
+                if (transactionTime.get(counter).getSourceAccountNumber() == src || transactionTime.get(counter).getSourceAccountNumber() == dsc || transactionTime.get(counter).getDestinationAccountNumber() == src || transactionTime.get(counter).getDestinationAccountNumber() == dsc) {
+                    if ((timeTemp - transactionTime.get(counter).getTime()) < 1500) {
+                        System.out.println("\"One of the accounts being used in this transaction was already used in another transaction less than 15 seconds ago!\n");
+                        System.out.println("Transaction failed!\n");
+                        return false;
                     }
                 }
+
             }
 
             if (t1.process()) {
