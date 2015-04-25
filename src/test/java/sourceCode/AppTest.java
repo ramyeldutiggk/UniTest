@@ -26,9 +26,26 @@ public class AppTest {
         adb.getDatabase().add(temp1);
         temp2 = new Account(adb.getSize() + 1, "Malcolm", 1000);
         adb.getDatabase().add(temp2);
+        
         insertTr1 = new Transaction(0,1,10);
         atmTran = new AtomicTransaction("Test Trn", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
+        
+        insertTr1 = new Transaction(0,1,10);
+        atmTran = new AtomicTransaction("Test Trn1", insertTr1);
+        trnMan.a_TransactionsDB.add(atmTran);
+        
+        ArrayList<String> chil1 = new ArrayList<String>();
+        chil1.add("Test Trn");
+        chil1.add("Test Trn1");
+        cmpTran = new CompoundTransaction("CmpTran1", chil1);
+        trnMan.c_TransactionsDB.add(cmpTran);
+        
+        ArrayList<String> chil2 = new ArrayList<String>();
+        chil2.add("Test Trn");
+        chil2.add("CmpTran1");
+        cmpTran = new CompoundTransaction("CmpTran2", chil2);
+        trnMan.c_TransactionsDB.add(cmpTran);
     }
 
     /**************************************************************************************************
@@ -276,7 +293,7 @@ public class AppTest {
     
     @Test
     public void TestAtomicTransaction2(){
-        Assert.assertEquals(1, trnMan.a_TransactionsDB.size());
+        Assert.assertEquals(2, trnMan.a_TransactionsDB.size());
     }
     
     @Test
@@ -327,7 +344,7 @@ public class AppTest {
     public void TestAtomicTransaction10(){
         trnMan.atomicRemove("Test Trn");
         
-        Assert.assertEquals(0, trnMan.a_TransactionsDB.size());
+        Assert.assertEquals(1, trnMan.a_TransactionsDB.size());
     }
     
     @Test
@@ -335,5 +352,98 @@ public class AppTest {
         trnMan.atomicRemove("Test Trn");
         
         Assert.assertEquals(-1, trnMan.atomicSearch("Test Trn"));
+    }
+    
+    /**************************************************************************************************
+     * 
+     **************************************************************************************************/
+    
+    @Test
+    public void TestCompoundTransaction1(){
+        Assert.assertEquals(2, trnMan.c_TransactionsDB.size());
+    }
+    
+    @Test
+    public void TestCompoundTransaction2(){
+        ArrayList<String> al = new ArrayList<String>();
+        al.add("Test Trn");
+        al.add("Test Trn1");
+        
+        Assert.assertEquals(true, trnMan.addCompoundTransaction("Testing", al));
+    }
+    
+    @Test
+    public void TestCompoundTransaction3(){
+        ArrayList<String> al = new ArrayList<String>();
+        al.add("CmpTrn1");
+        al.add("CmpTrn2");
+        
+        Assert.assertEquals(true, trnMan.addCompoundTransaction("Testing", al));
+    }
+    
+    @Test
+    public void TestCompoundTransaction4(){
+        ArrayList<String> al = new ArrayList<String>();
+        al.add("CmpTrn1");
+        al.add("CmpTrn2");
+        
+        Assert.assertEquals(false, trnMan.addCompoundTransaction("CmpTran2", al));
+    }
+    
+    @Test
+    public void TestCompoundTransaction5(){
+        ArrayList<String> al = new ArrayList<String>();
+        
+        Assert.assertEquals(false, trnMan.addCompoundTransaction("tst", al));
+    }
+    
+    @Test
+    public void TestCompoundTransaction6(){
+        ArrayList<String> al = new ArrayList<String>();
+        al.add("cmp");
+        al.add("CmpTrn2");
+        
+        Assert.assertEquals(false, trnMan.addCompoundTransaction("tst", al));
+    }
+    
+    @Test
+    public void TestCompoundTransaction7(){
+        ArrayList<String> al = new ArrayList<String>();
+        al.add("CmpTrn1");
+        al.add("cmp");
+        
+        Assert.assertEquals(false, trnMan.addCompoundTransaction("tst", al));
+    }
+    
+    @Test
+    public void TestCompoundTransaction8(){
+        ArrayList<String> al = new ArrayList<String>();
+        al.add("CmpTrn1");
+        al.add("CmpTrn2");
+        al.add("Test Trn1");
+        
+        Assert.assertEquals(true, trnMan.addCompoundTransaction("tst", al));
+    }
+    
+    @Test
+    public void TestCompoundTransaction9(){
+        Assert.assertEquals(0,trnMan.compoundSearch("CmpTran1"));
+    }
+    
+    @Test
+    public void TestCompoundTransaction10(){
+        Assert.assertEquals(-1,trnMan.compoundSearch("tst"));
+    }
+    
+    @Test
+    public void TestCompoundTransaction11(){
+        trnMan.compoundRemove("CmpTran1");
+        Assert.assertEquals(1,trnMan.c_TransactionsDB.size());
+    }
+    
+    @Test
+    public void TestCompoundTransaction12(){
+        trnMan.compoundRemove("CmpTran1");
+        Assert.assertEquals(-1,trnMan.compoundSearch("CmpTran1"));
     }
 }
