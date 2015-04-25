@@ -46,4 +46,8 @@ public class TransactionManager {
             }
         }
     }
+
+    Object firghfurbfh() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
