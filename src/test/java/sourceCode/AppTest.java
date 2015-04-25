@@ -354,6 +354,11 @@ public class AppTest {
         Assert.assertEquals(-1, trnMan.atomicSearch("Test Trn"));
     }
     
+    @Test
+    public void TestAtomicTransaction12(){
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("CmpTran1", 0, 1, 5));
+    }
+    
     /**************************************************************************************************
      * 
      **************************************************************************************************/
@@ -445,5 +450,13 @@ public class AppTest {
     public void TestCompoundTransaction12(){
         trnMan.compoundRemove("CmpTran1");
         Assert.assertEquals(-1,trnMan.compoundSearch("CmpTran1"));
+    }
+    
+    @Test
+    public void TestCompoundTransaction13(){
+        ArrayList<String> al = new ArrayList<String>();
+        al.add("Test Trn");
+        al.add("Test Trn1");
+        Assert.assertEquals(false, trnMan.addCompoundTransaction("Test Trn", al));
     }
 }
