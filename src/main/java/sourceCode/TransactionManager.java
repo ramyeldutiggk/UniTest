@@ -112,8 +112,32 @@ public class TransactionManager {
     		System.out.println("Atomic transaction not found!");
     }
 
-    public boolean addCompoundTransaction(String inputName, ArrayList<String> children) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean addCompoundTransaction(String inputName, ArrayList<String> children)
+    {
+    	if((compoundSearch(inputName) != -1) || (atomicSearch(inputName) != -1)){
+    		System.out.println("Account with that name already exists.");
+    		return false;
+    	}
+    	else if(children.size() <= 1)
+    	{
+    		System.out.println("Compound transaction must have more than 1 child.");
+    		return false;
+    	}
+    	else
+    	{
+    		for(int counter = 0; counter < children.size(); counter++)
+    		{
+    			if((this.compoundSearch(children.get(counter)) == -1) || (this.atomicSearch(children.get(counter)) == -1))
+    			{
+	    			System.out.println("Transaction with title " + children.get(counter) + " does not exist!");
+    				return false;
+    			}
+    		}
+    		
+    		CompoundTransaction ct = new CompoundTransaction(inputName, children);
+    		this.c_TransactionsDB.add(ct);
+    		return true;
+    	}	
     }
 
     public int compoundSearch(String name)
