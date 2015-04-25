@@ -88,8 +88,15 @@ public class TransactionManager {
     	}
     }
 
-    public int atomicSearch(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int atomicSearch(String name)
+    {
+    	for(int counter = 0; counter < this.a_TransactionsDB.size(); counter++)
+    	{
+    		if(this.a_TransactionsDB.get(counter).getName().equalsIgnoreCase(name))
+    			return counter;
+    	}
+    	
+    	return -1;
     }
     
     public void atomicRemove(String name) {
@@ -100,8 +107,15 @@ public class TransactionManager {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public int compoundSearch(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int compoundSearch(String name)
+    {
+    	for(int counter = 0; counter < this.c_TransactionsDB.size(); counter++)
+    	{
+    		if(this.c_TransactionsDB.get(counter).getName().equalsIgnoreCase(name))
+    			return counter;
+    	}
+    	
+    	return -1;
     }
 
     public void compoundRemove(String name) {
