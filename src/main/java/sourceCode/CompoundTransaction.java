@@ -7,14 +7,12 @@ public class CompoundTransaction {
     private ArrayList<String> children = new ArrayList<String>();
 
     public CompoundTransaction() {
-    
     }
 
     public CompoundTransaction(String Name, ArrayList<String> children) {
         this.Name = Name;
         this.children = children;
     }
-
     
     public String getName() {
         return Name;
@@ -31,6 +29,4 @@ public class CompoundTransaction {
     public void setChildren(ArrayList<String> children) {
         this.children = children;
     }
-    
-    
 }

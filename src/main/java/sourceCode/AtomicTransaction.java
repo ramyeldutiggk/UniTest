@@ -24,8 +24,4 @@ public class AtomicTransaction {
 	public void setTrn(Transaction trn) {
 		this.trn = trn;
 	}	
-
-    
-    
-    
 }

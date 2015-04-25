@@ -5,7 +5,6 @@ public class Transaction {
     private int sourceAccountNumber;
     private int destinationAccountNumber;
     private long amount;
-    //AccountDatabase acdb = new AccountDatabase();
 
     public Transaction(int sourceAccountNumber, int destinationAccountNumber, long amount) {
         this.sourceAccountNumber = sourceAccountNumber;
@@ -45,6 +44,4 @@ public class Transaction {
     public void setAmount(long amount) {
         this.amount = amount;
     }
-    
-    
 }
