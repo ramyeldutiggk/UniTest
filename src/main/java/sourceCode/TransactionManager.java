@@ -99,8 +99,17 @@ public class TransactionManager {
     	return -1;
     }
     
-    public void atomicRemove(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void atomicRemove(String name)
+    {
+    	int index = this.atomicSearch(name);
+    	
+    	if(index != -1)
+    	{
+    		a_TransactionsDB.remove(index);
+    		System.out.println("Atomic transaction deleted.");
+    	}
+    	else
+    		System.out.println("Atomic transaction not found!");
     }
 
     public boolean addCompoundTransaction(String inputName, ArrayList<String> children) {
@@ -118,8 +127,17 @@ public class TransactionManager {
     	return -1;
     }
 
-    public void compoundRemove(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void compoundRemove(String name)
+    {
+    	int index = this.compoundSearch(name);
+    	
+    	if(index != -1)
+    	{
+    		c_TransactionsDB.remove(index);
+    		System.out.println("Compound transaction deleted.");
+    	}
+    	else
+    		System.out.println("Compound transaction not found!");
     }
 
     public boolean processCompoundTransaction(String name) {
