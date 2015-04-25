@@ -1,7 +1,9 @@
 package sourceCode;
 
 import java.util.*;
+
 import org.junit.*;
+
 import static org.hamcrest.CoreMatchers.*;
 
 public class AppTest {
@@ -11,6 +13,7 @@ public class AppTest {
     static Transaction trn;
     static TransactionManager trnMan;
     static Timings tim;
+    static CompoundTransaction cmpTran;
 
     @Before
     public void setup1() {
@@ -22,7 +25,6 @@ public class AppTest {
         adb.getDatabase().add(temp1);
         temp2 = new Account(adb.getSize() + 1, "Malcolm", 1000);
         adb.getDatabase().add(temp2);
-        
     }
 
     /**************************************************************************************************
