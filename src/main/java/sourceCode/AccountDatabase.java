@@ -53,16 +53,6 @@ public class AccountDatabase {
         return true;
     }
     
-    /*void returnAll()
-    {
-    	for(int i = 0; i < getSize(); i++)
-    	{
-    		System.out.println(database.get(i).getAccountNumber());
-    		System.out.println(database.get(i).getAccountName());
-    		System.out.println(database.get(i).getAccountBalance());
-    	}
-    }*/
-
     int getSize() {
         return database.size();
     }
