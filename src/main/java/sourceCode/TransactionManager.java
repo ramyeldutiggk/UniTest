@@ -7,6 +7,7 @@ public class TransactionManager {
     private int numTransectionsProcessed = 0;
 
     ArrayList<Timings> transactionTime = new ArrayList<Timings>();
+    ArrayList<AtomicTransaction> a_TransactionsDB = new ArrayList<AtomicTransaction>();
 
     boolean processTransaction(int src, int dsc, long amount) {
         Transaction t1 = new Transaction(src, dsc, amount);
@@ -47,7 +48,17 @@ public class TransactionManager {
         }
     }
 
-    Object firghfurbfh() {
+    public boolean addAtomicTransaction(String inputName, int acc1, int acc2, long amount) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public int atomicSearch(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void atomicRemove(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 }

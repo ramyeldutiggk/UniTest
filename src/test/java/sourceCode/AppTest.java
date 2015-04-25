@@ -10,9 +10,10 @@ public class AppTest {
 
     static Account temp1, temp2;
     static AccountDatabase adb;
-    static Transaction trn;
+    static Transaction trn, insertTr1;
     static TransactionManager trnMan;
     static Timings tim;
+    static AtomicTransaction atmTran;
     static CompoundTransaction cmpTran;
 
     @Before
@@ -25,6 +26,9 @@ public class AppTest {
         adb.getDatabase().add(temp1);
         temp2 = new Account(adb.getSize() + 1, "Malcolm", 1000);
         adb.getDatabase().add(temp2);
+        insertTr1 = new Transaction(0,1,10);
+        atmTran = new AtomicTransaction("Test Trn", insertTr1);
+        trnMan.a_TransactionsDB.add(atmTran);
     }
 
     /**************************************************************************************************
@@ -259,5 +263,77 @@ public class AppTest {
         long timeTemp = dNow.getTime(), test = 0;
         tim.setTime(timeTemp);
         Assert.assertThat(test, not(tim.getTime()));
+    }
+    
+    /**************************************************************************************************
+     * 
+     **************************************************************************************************/
+    
+    @Test
+    public void TestAtomicTransaction1(){
+        Assert.assertEquals(true, trnMan.addAtomicTransaction("Test", 0, 1, 5));
+    }
+    
+    @Test
+    public void TestAtomicTransaction2(){
+        Assert.assertEquals(1, trnMan.a_TransactionsDB.size());
+    }
+    
+    @Test
+    public void TestAtomicTransaction3(){
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test Trn", 0, 1, 10));
+    }
+    
+    @Test
+    public void TestAtomicTransaction4(){
+        insertTr1 = new Transaction(5,1,10);
+        atmTran = new AtomicTransaction("Test1", insertTr1);
+        
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", 5,1,10));
+    }
+    
+    @Test
+    public void TestAtomicTransaction5(){
+        insertTr1 = new Transaction(0,5,10);
+        atmTran = new AtomicTransaction("Test1", insertTr1);
+        
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", 0,5,10));
+    }
+    
+    @Test
+    public void TestAtomicTransaction6(){
+        insertTr1 = new Transaction(0,1,-10);
+        atmTran = new AtomicTransaction("Test1", insertTr1);
+        
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1",0,1,-10));
+    }
+    
+    @Test
+    public void TestAtomicTransaction7(){
+        Assert.assertEquals(0, trnMan.atomicSearch("Test Trn"));
+    }
+    
+    @Test
+    public void TestAtomicTransaction8(){
+        Assert.assertEquals(0, trnMan.atomicSearch("test trn"));
+    }
+    
+    @Test
+    public void TestAtomicTransaction9(){
+        Assert.assertEquals(-1, trnMan.atomicSearch("tst"));
+    }
+    
+    @Test
+    public void TestAtomicTransaction10(){
+        trnMan.atomicRemove("Test Trn");
+        
+        Assert.assertEquals(0, trnMan.a_TransactionsDB.size());
+    }
+    
+    @Test
+    public void TestAtomicTransaction11(){
+        trnMan.atomicRemove("Test Trn");
+        
+        Assert.assertEquals(-1, trnMan.atomicSearch("Test Trn"));
     }
 }
