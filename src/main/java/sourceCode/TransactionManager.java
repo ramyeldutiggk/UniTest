@@ -19,7 +19,8 @@ public class TransactionManager {
         if (src == dsc) {
             System.out.println("Source and destionation accounts in a tarnsection can't be equal.");
             return false;
-        } else {
+        } 
+        else {
 
             for (int counter = transactionTime.size() - 1; counter >= 0; counter--) {
                 timeTemp = System.currentTimeMillis();
@@ -31,11 +32,9 @@ public class TransactionManager {
                 if (transactionTime.get(counter).getSourceAccountNumber() == src || transactionTime.get(counter).getSourceAccountNumber() == dsc || transactionTime.get(counter).getDestinationAccountNumber() == src || transactionTime.get(counter).getDestinationAccountNumber() == dsc) {
                     if ((timeTemp - transactionTime.get(counter).getTime()) < 15000) {
                         counter++;
-                        //System.out.println(counter);
-                        //continue;
+                        continue;
                     }
                 }
-
             }
 
             if (t1.process()) {
@@ -50,8 +49,43 @@ public class TransactionManager {
         }
     }
 
-    public boolean addAtomicTransaction(String inputName, int acc1, int acc2, long amount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean addAtomicTransaction(String inputName, int acc1, int acc2, long amount)
+    {	
+    	if((compoundSearch(inputName) != -1) || (atomicSearch(inputName) != -1))
+    	{
+    		System.out.println("Atomic transaction with that name already exists.");
+    		return false;
+    	} 
+    	else if(AccountDatabase.getAccount(acc1) == null)
+    	{
+    		System.out.println("Account " + acc1 + " does not exist.");
+    		return false;
+    	} 
+    	else if(AccountDatabase.getAccount(acc2) == null)
+    	{
+    		System.out.println("Account " + acc2 + " does not exist.");
+    		return false;
+    	} 
+    	else if(acc1 == acc2)
+    	{
+    		System.out.println("Account " + acc2 + " does not exist.");
+    		return false;
+    	}
+    	else if(amount <= 0)
+    	{
+    		System.out.println("The amount has to be positive");
+    		return false;
+    	} 
+    	else 
+    	{
+    		Transaction temp = new Transaction(acc1, acc2, amount);
+            AtomicTransaction at = new AtomicTransaction(inputName, temp);
+        	
+            this.a_TransactionsDB.add(at);
+            
+            System.out.println("Atomic transaction added");
+            return true;
+    	}
     }
 
     public int atomicSearch(String name) {
