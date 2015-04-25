@@ -164,8 +164,31 @@ public class TransactionManager {
     		System.out.println("Compound transaction not found!");
     }
 
-    public boolean processCompoundTransaction(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean processCompoundTransaction(String name)
+    {
+    	int index;
+    	
+    	if((index = atomicSearch(name)) != -1)
+    	{
+    		AtomicTransaction at = this.a_TransactionsDB.get(index);
+    		Transaction trn = at.getTrn();
+    		
+    		return this.processTransaction(trn.getSourceAccountNumber(), trn.getDestinationAccountNumber(), trn.getAmount());
+    	}
+    	else if((index = compoundSearch(name)) != -1)
+    	{
+    		for(int counter = 0; counter < this.c_TransactionsDB.get(index).getChildren().size(); counter++)
+    		{
+    			if(!this.processCompoundTransaction(this.c_TransactionsDB.get(index).getChildren().get(counter)))
+				{
+    				System.out.println("Transaction having name " + this.c_TransactionsDB.get(index).getChildren().get(counter) + " failed!");
+    				return false;
+				}
+    		}
+    		return true;
+    	}
+    	else
+    		return false;
     }
 
   
