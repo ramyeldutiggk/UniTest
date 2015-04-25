@@ -10,8 +10,8 @@ public class Account {
     private String accountName;
     private long accountBalance;
 
-    boolean adjustBalance(long ammount) {
-        long newBalance = accountBalance + ammount;
+    boolean adjustBalance(long amount) {
+        long newBalance = accountBalance + amount;
 
         if (newBalance >= 0) {
             accountBalance = newBalance;
