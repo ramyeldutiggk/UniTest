@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: sourceCode.AppTest
 -------------------------------------------------------------------------------
-Tests run: 60, Failures: 0, Errors: 21, Skipped: 0, Time elapsed: 30.212 sec <<< FAILURE!
-TestCompoundTransaction10(sourceCode.AppTest)  Time elapsed: 0.042 sec  <<< ERROR!
+Tests run: 64, Failures: 0, Errors: 26, Skipped: 0, Time elapsed: 30.282 sec <<< FAILURE!
+TestCompoundTransaction10(sourceCode.AppTest)  Time elapsed: 0.028 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.compoundSearch(TransactionManager.java:69)
+	at sourceCode.TransactionManager.compoundSearch(TransactionManager.java:70)
 	at sourceCode.AppTest.TestCompoundTransaction10(AppTest.java:435)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -36,9 +36,9 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-TestCompoundTransaction11(sourceCode.AppTest)  Time elapsed: 0.013 sec  <<< ERROR!
+TestCompoundTransaction11(sourceCode.AppTest)  Time elapsed: 0.02 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.compoundRemove(TransactionManager.java:73)
+	at sourceCode.TransactionManager.compoundRemove(TransactionManager.java:74)
 	at sourceCode.AppTest.TestCompoundTransaction11(AppTest.java:440)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -72,8 +72,42 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 TestCompoundTransaction12(sourceCode.AppTest)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.compoundRemove(TransactionManager.java:73)
+	at sourceCode.TransactionManager.compoundRemove(TransactionManager.java:74)
 	at sourceCode.AppTest.TestCompoundTransaction12(AppTest.java:446)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+TestCompoundTransaction13(sourceCode.AppTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.UnsupportedOperationException: Not supported yet.
+	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:66)
+	at sourceCode.AppTest.TestCompoundTransaction13(AppTest.java:455)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -106,8 +140,8 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 TestAtomicTransaction10(sourceCode.AppTest)  Time elapsed: 0.002 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.atomicRemove(TransactionManager.java:61)
-	at sourceCode.AppTest.TestAtomicTransaction10(AppTest.java:345)
+	at sourceCode.TransactionManager.atomicRemove(TransactionManager.java:62)
+	at sourceCode.AppTest.TestAtomicTransaction10(AppTest.java:335)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -138,10 +172,10 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-TestAtomicTransaction11(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
+TestAtomicTransaction11(sourceCode.AppTest)  Time elapsed: 0.002 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.atomicRemove(TransactionManager.java:61)
-	at sourceCode.AppTest.TestAtomicTransaction11(AppTest.java:352)
+	at sourceCode.TransactionManager.atomicRemove(TransactionManager.java:62)
+	at sourceCode.AppTest.TestAtomicTransaction11(AppTest.java:342)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -172,10 +206,10 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-TestAtomicTransaction1(sourceCode.AppTest)  Time elapsed: 0 sec  <<< ERROR!
+TestAtomicTransaction12(sourceCode.AppTest)  Time elapsed: 0.002 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.addAtomicTransaction(TransactionManager.java:53)
-	at sourceCode.AppTest.TestAtomicTransaction1(AppTest.java:291)
+	at sourceCode.TransactionManager.addAtomicTransaction(TransactionManager.java:54)
+	at sourceCode.AppTest.TestAtomicTransaction12(AppTest.java:349)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -206,10 +240,10 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-TestAtomicTransaction3(sourceCode.AppTest)  Time elapsed: 0.005 sec  <<< ERROR!
+TestAtomicTransaction13(sourceCode.AppTest)  Time elapsed: 0.006 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.addAtomicTransaction(TransactionManager.java:53)
-	at sourceCode.AppTest.TestAtomicTransaction3(AppTest.java:301)
+	at sourceCode.TransactionManager.addAtomicTransaction(TransactionManager.java:54)
+	at sourceCode.AppTest.TestAtomicTransaction13(AppTest.java:354)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -240,10 +274,10 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-TestAtomicTransaction4(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
+TestAtomicTransaction1(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.addAtomicTransaction(TransactionManager.java:53)
-	at sourceCode.AppTest.TestAtomicTransaction4(AppTest.java:309)
+	at sourceCode.TransactionManager.addAtomicTransaction(TransactionManager.java:54)
+	at sourceCode.AppTest.TestAtomicTransaction1(AppTest.java:281)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -274,10 +308,10 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-TestAtomicTransaction5(sourceCode.AppTest)  Time elapsed: 0.002 sec  <<< ERROR!
+TestAtomicTransaction3(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.addAtomicTransaction(TransactionManager.java:53)
-	at sourceCode.AppTest.TestAtomicTransaction5(AppTest.java:317)
+	at sourceCode.TransactionManager.addAtomicTransaction(TransactionManager.java:54)
+	at sourceCode.AppTest.TestAtomicTransaction3(AppTest.java:291)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -308,10 +342,10 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-TestAtomicTransaction6(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
+TestAtomicTransaction4(sourceCode.AppTest)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.addAtomicTransaction(TransactionManager.java:53)
-	at sourceCode.AppTest.TestAtomicTransaction6(AppTest.java:325)
+	at sourceCode.TransactionManager.addAtomicTransaction(TransactionManager.java:54)
+	at sourceCode.AppTest.TestAtomicTransaction4(AppTest.java:299)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -342,10 +376,10 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-TestAtomicTransaction7(sourceCode.AppTest)  Time elapsed: 0.008 sec  <<< ERROR!
+TestAtomicTransaction5(sourceCode.AppTest)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.atomicSearch(TransactionManager.java:57)
-	at sourceCode.AppTest.TestAtomicTransaction7(AppTest.java:330)
+	at sourceCode.TransactionManager.addAtomicTransaction(TransactionManager.java:54)
+	at sourceCode.AppTest.TestAtomicTransaction5(AppTest.java:307)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -376,10 +410,10 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-TestAtomicTransaction8(sourceCode.AppTest)  Time elapsed: 0 sec  <<< ERROR!
+TestAtomicTransaction6(sourceCode.AppTest)  Time elapsed: 0.018 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.atomicSearch(TransactionManager.java:57)
-	at sourceCode.AppTest.TestAtomicTransaction8(AppTest.java:335)
+	at sourceCode.TransactionManager.addAtomicTransaction(TransactionManager.java:54)
+	at sourceCode.AppTest.TestAtomicTransaction6(AppTest.java:315)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -410,10 +444,146 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-TestAtomicTransaction9(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
+TestAtomicTransaction7(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.atomicSearch(TransactionManager.java:57)
-	at sourceCode.AppTest.TestAtomicTransaction9(AppTest.java:340)
+	at sourceCode.TransactionManager.atomicSearch(TransactionManager.java:58)
+	at sourceCode.AppTest.TestAtomicTransaction7(AppTest.java:320)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+TestAtomicTransaction8(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.UnsupportedOperationException: Not supported yet.
+	at sourceCode.TransactionManager.atomicSearch(TransactionManager.java:58)
+	at sourceCode.AppTest.TestAtomicTransaction8(AppTest.java:325)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+TestAtomicTransaction9(sourceCode.AppTest)  Time elapsed: 0.01 sec  <<< ERROR!
+java.lang.UnsupportedOperationException: Not supported yet.
+	at sourceCode.TransactionManager.atomicSearch(TransactionManager.java:58)
+	at sourceCode.AppTest.TestAtomicTransaction9(AppTest.java:330)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+TestProcessCompTran1(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.UnsupportedOperationException: Not supported yet.
+	at sourceCode.TransactionManager.processCompoundTransaction(TransactionManager.java:78)
+	at sourceCode.AppTest.TestProcessCompTran1(AppTest.java:464)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+TestProcessCompTran2(sourceCode.AppTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.UnsupportedOperationException: Not supported yet.
+	at sourceCode.TransactionManager.processCompoundTransaction(TransactionManager.java:78)
+	at sourceCode.AppTest.TestProcessCompTran2(AppTest.java:469)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -446,7 +616,7 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 TestCompoundTransaction2(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:65)
+	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:66)
 	at sourceCode.AppTest.TestCompoundTransaction2(AppTest.java:372)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -480,7 +650,7 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 TestCompoundTransaction3(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:65)
+	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:66)
 	at sourceCode.AppTest.TestCompoundTransaction3(AppTest.java:381)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -514,7 +684,7 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 TestCompoundTransaction4(sourceCode.AppTest)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:65)
+	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:66)
 	at sourceCode.AppTest.TestCompoundTransaction4(AppTest.java:390)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -546,9 +716,9 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-TestCompoundTransaction5(sourceCode.AppTest)  Time elapsed: 0 sec  <<< ERROR!
+TestCompoundTransaction5(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:65)
+	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:66)
 	at sourceCode.AppTest.TestCompoundTransaction5(AppTest.java:397)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -580,9 +750,9 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-TestCompoundTransaction6(sourceCode.AppTest)  Time elapsed: 0 sec  <<< ERROR!
+TestCompoundTransaction6(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:65)
+	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:66)
 	at sourceCode.AppTest.TestCompoundTransaction6(AppTest.java:406)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -616,7 +786,7 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 TestCompoundTransaction7(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:65)
+	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:66)
 	at sourceCode.AppTest.TestCompoundTransaction7(AppTest.java:415)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -650,7 +820,7 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 TestCompoundTransaction8(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:65)
+	at sourceCode.TransactionManager.addCompoundTransaction(TransactionManager.java:66)
 	at sourceCode.AppTest.TestCompoundTransaction8(AppTest.java:425)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -684,7 +854,7 @@ java.lang.UnsupportedOperationException: Not supported yet.
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 TestCompoundTransaction9(sourceCode.AppTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.UnsupportedOperationException: Not supported yet.
-	at sourceCode.TransactionManager.compoundSearch(TransactionManager.java:69)
+	at sourceCode.TransactionManager.compoundSearch(TransactionManager.java:70)
 	at sourceCode.AppTest.TestCompoundTransaction9(AppTest.java:430)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)

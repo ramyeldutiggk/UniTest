@@ -21,4 +21,30 @@ public class Transaction {
 
         return ans;
     }
+
+    public int getSourceAccountNumber() {
+        return sourceAccountNumber;
+    }
+
+    public void setSourceAccountNumber(int sourceAccountNumber) {
+        this.sourceAccountNumber = sourceAccountNumber;
+    }
+
+    public int getDestinationAccountNumber() {
+        return destinationAccountNumber;
+    }
+
+    public void setDestinationAccountNumber(int destinationAccountNumber) {
+        this.destinationAccountNumber = destinationAccountNumber;
+    }
+
+    public long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(long amount) {
+        this.amount = amount;
+    }
+    
+    
 }

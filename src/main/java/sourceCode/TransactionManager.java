@@ -22,16 +22,17 @@ public class TransactionManager {
         } else {
 
             for (int counter = transactionTime.size() - 1; counter >= 0; counter--) {
+                timeTemp = System.currentTimeMillis();
                 if (timeTemp - transactionTime.get(counter).getTime() > 15000) {
                     transactionTime.remove(counter);
                     continue;
                 }
 
                 if (transactionTime.get(counter).getSourceAccountNumber() == src || transactionTime.get(counter).getSourceAccountNumber() == dsc || transactionTime.get(counter).getDestinationAccountNumber() == src || transactionTime.get(counter).getDestinationAccountNumber() == dsc) {
-                    if ((timeTemp - transactionTime.get(counter).getTime()) < 1500) {
-                        System.out.println("\"One of the accounts being used in this transaction was already used in another transaction less than 15 seconds ago!\n");
-                        System.out.println("Transaction failed!\n");
-                        return false;
+                    if ((timeTemp - transactionTime.get(counter).getTime()) < 15000) {
+                        counter++;
+                        //System.out.println(counter);
+                        //continue;
                     }
                 }
 
@@ -73,5 +74,9 @@ public class TransactionManager {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    public boolean processCompoundTransaction(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+  
 }

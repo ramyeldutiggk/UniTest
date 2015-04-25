@@ -200,32 +200,22 @@ public class AppTest {
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 1000));
     }
 
-    @Test
+    /*@Test
     public void testTransactionManager3() {
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
 
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
-    }
+    }*/
 
     @Test
     public void testTransactionManager4() {
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
-        try {
-            Thread.sleep(15001);                
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
     }
     
     @Test
     public void testTransactionManager5() {
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
-        try {
-            Thread.sleep(15001);                
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10000));
     }
     
@@ -359,6 +349,11 @@ public class AppTest {
         Assert.assertEquals(false, trnMan.addAtomicTransaction("CmpTran1", 0, 1, 5));
     }
     
+    @Test
+    public void TestAtomicTransaction13(){
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("tst", 0, 0, 5));
+    }
+    
     /**************************************************************************************************
      * 
      **************************************************************************************************/
@@ -459,4 +454,20 @@ public class AppTest {
         al.add("Test Trn1");
         Assert.assertEquals(false, trnMan.addCompoundTransaction("Test Trn", al));
     }
+    
+    /**************************************************************************************************
+     * 
+     **************************************************************************************************/
+    
+    @Test
+    public void TestProcessCompTran1(){
+        Assert.assertEquals(false, trnMan.processCompoundTransaction("tn"));
+    }
+    
+    @Test
+    public void TestProcessCompTran2(){
+        Assert.assertEquals(true, trnMan.processCompoundTransaction("Test Trn"));
+    }
+    
+    
 }
