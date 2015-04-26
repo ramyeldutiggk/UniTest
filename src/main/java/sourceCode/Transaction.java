@@ -41,7 +41,7 @@ public class Transaction {
         return amount;
     }
 
-    public void setAmount(long amount) {
+    /*public void setAmount(long amount) {
         this.amount = amount;
-    }
+    }*/
 }
