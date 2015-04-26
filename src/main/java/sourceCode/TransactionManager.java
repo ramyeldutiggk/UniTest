@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TransactionManager {
 
-    private int numTransectionsProcessed = 0;
+    private int numTransactionsProcessed = 0;
 
     ArrayList<Timings> transactionTime = new ArrayList<Timings>();
     ArrayList<AtomicTransaction> a_TransactionsDB = new ArrayList<AtomicTransaction>();
@@ -17,7 +17,7 @@ public class TransactionManager {
         Timings t = new Timings(src, dsc, timeTemp);
 
         if (src == dsc) {
-            System.out.println("Source and destionation accounts in a tarnsection can't be equal.");
+            System.out.println("Source and destination accounts in a transaction can't be equal.");
             return false;
         } else {
 
@@ -39,7 +39,7 @@ public class TransactionManager {
             if (t1.process()) {
                 transactionTime.add(t);
                 System.out.println("Transaction complete.\n");
-                numTransectionsProcessed++;
+                numTransactionsProcessed++;
                 return true;
             } else {
                 System.out.println("Transaction failed!\n");
@@ -105,7 +105,7 @@ public class TransactionManager {
             return false;
         } else {
             for (int counter = 0; counter < children.size(); counter++) {
-                if ((this.compoundSearch(children.get(counter)) == -1) || (this.atomicSearch(children.get(counter)) == -1)) {
+                if ((this.compoundSearch(children.get(counter)) == -1) && (this.atomicSearch(children.get(counter)) == -1)) {
                     System.out.println("Transaction with title " + children.get(counter) + " does not exist!");
                     return false;
                 }

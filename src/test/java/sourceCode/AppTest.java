@@ -30,11 +30,11 @@ public class AppTest {
         trnMan.setA_TransactionsDB(new ArrayList<AtomicTransaction>());
         trnMan.setC_TransactionsDB(new ArrayList<CompoundTransaction>());
         
-        insertTr1 = new Transaction(0,1,10);
+        insertTr1 = new Transaction(temp1.getAccountNumber(),temp2.getAccountNumber(),10);
         atmTran = new AtomicTransaction("Test Trn", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
         
-        insertTr1 = new Transaction(0,1,10);
+        insertTr1 = new Transaction(temp1.getAccountNumber(),temp2.getAccountNumber(),10);
         atmTran = new AtomicTransaction("Test Trn1", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
         
@@ -378,8 +378,8 @@ public class AppTest {
     @Test
     public void TestCompoundTransaction3(){
         ArrayList<String> al = new ArrayList<String>();
-        al.add("CmpTrn1");
-        al.add("CmpTrn2");
+        al.add("CmpTran1");
+        al.add("CmpTran2");
         
         Assert.assertEquals(true, trnMan.addCompoundTransaction("Testing", al));
     }
@@ -421,8 +421,8 @@ public class AppTest {
     @Test
     public void TestCompoundTransaction8(){
         ArrayList<String> al = new ArrayList<String>();
-        al.add("CmpTrn1");
-        al.add("CmpTrn2");
+        al.add("CmpTran1");
+        al.add("CmpTran2");
         al.add("Test Trn1");
         
         Assert.assertEquals(true, trnMan.addCompoundTransaction("tst", al));
