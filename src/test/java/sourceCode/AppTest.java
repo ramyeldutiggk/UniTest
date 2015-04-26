@@ -27,6 +27,9 @@ public class AppTest {
         temp2 = new Account(adb.getSize() + 1, "Malcolm", 1000);
         adb.getDatabase().add(temp2);
         
+        trnMan.setA_TransactionsDB(new ArrayList<AtomicTransaction>());
+        trnMan.setC_TransactionsDB(new ArrayList<CompoundTransaction>());
+        
         insertTr1 = new Transaction(0,1,10);
         atmTran = new AtomicTransaction("Test Trn", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
@@ -278,7 +281,7 @@ public class AppTest {
     
     @Test
     public void TestAtomicTransaction1(){
-        Assert.assertEquals(true, trnMan.addAtomicTransaction("Test", 0, 1, 5));
+        Assert.assertEquals(true, trnMan.addAtomicTransaction("Test", temp1.getAccountNumber(), temp2.getAccountNumber(), 5));
     }
     
     @Test
@@ -288,7 +291,7 @@ public class AppTest {
     
     @Test
     public void TestAtomicTransaction3(){
-        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test Trn", 0, 1, 10));
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test Trn", temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
     }
     
     @Test
@@ -296,7 +299,7 @@ public class AppTest {
         insertTr1 = new Transaction(5,1,10);
         atmTran = new AtomicTransaction("Test1", insertTr1);
         
-        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", 5,1,10));
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", 5,temp2.getAccountNumber(),10));
     }
     
     @Test
@@ -304,7 +307,7 @@ public class AppTest {
         insertTr1 = new Transaction(0,5,10);
         atmTran = new AtomicTransaction("Test1", insertTr1);
         
-        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", 0,5,10));
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", temp1.getAccountNumber(),5,10));
     }
     
     @Test
@@ -312,7 +315,7 @@ public class AppTest {
         insertTr1 = new Transaction(0,1,-10);
         atmTran = new AtomicTransaction("Test1", insertTr1);
         
-        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1",0,1,-10));
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1",temp1.getAccountNumber(),temp2.getAccountNumber(),-10));
     }
     
     @Test
@@ -346,12 +349,12 @@ public class AppTest {
     
     @Test
     public void TestAtomicTransaction12(){
-        Assert.assertEquals(false, trnMan.addAtomicTransaction("CmpTran1", 0, 1, 5));
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("CmpTran1", temp1.getAccountNumber(), temp2.getAccountNumber(), 5));
     }
     
     @Test
     public void TestAtomicTransaction13(){
-        Assert.assertEquals(false, trnMan.addAtomicTransaction("tst", 0, 0, 5));
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("tst", temp1.getAccountNumber(), temp1.getAccountNumber(), 5));
     }
     
     /**************************************************************************************************
@@ -469,5 +472,8 @@ public class AppTest {
         Assert.assertEquals(true, trnMan.processCompoundTransaction("Test Trn"));
     }
     
-    
+    @Test
+    public void TestProcessCompTran3(){
+        Assert.assertEquals(true, trnMan.processCompoundTransaction("CmpTran1"));
+    }
 }
