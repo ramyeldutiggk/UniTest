@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="65" failures="0" name="sourceCode.AppTest" time="45.207" errors="0" skipped="0">
+<testsuite tests="67" failures="0" name="sourceCode.AppTest" time="90.577" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/home/niki/jdk1.8.0_25/jre/lib/amd64"/>
@@ -60,69 +60,71 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction10" time="0.024"/>
-  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction11" time="0.007"/>
-  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction12" time="0.006"/>
+  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction10" time="0.039"/>
+  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction11" time="0.005"/>
+  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction12" time="0"/>
   <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction13" time="0"/>
   <testcase classname="sourceCode.AppTest" name="testAccount1" time="0"/>
   <testcase classname="sourceCode.AppTest" name="testAccount2" time="0"/>
   <testcase classname="sourceCode.AppTest" name="testAccount3" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount4" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount5" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount6" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount4" time="0.023"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount5" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount6" time="0.001"/>
   <testcase classname="sourceCode.AppTest" name="testAccount7" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount8" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount9" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTimings1" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTimings2" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTimings3" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTimings4" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount8" time="0.002"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount9" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testTimings1" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testTimings2" time="0.005"/>
+  <testcase classname="sourceCode.AppTest" name="testTimings3" time="0.002"/>
+  <testcase classname="sourceCode.AppTest" name="testTimings4" time="0.001"/>
   <testcase classname="sourceCode.AppTest" name="testTimings5" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTimings6" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testTimings6" time="0"/>
   <testcase classname="sourceCode.AppTest" name="testTransaction1" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTransaction2" time="0.002"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount10" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount11" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount12" time="0.001"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount13" time="0.001"/>
-  <testcase classname="sourceCode.AppTest" name="testAccount14" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction10" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction11" time="0.002"/>
-  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction12" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="testTransaction2" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount10" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount11" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount12" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount13" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="testAccount14" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction10" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction11" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction12" time="0.001"/>
   <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction13" time="0"/>
   <testcase classname="sourceCode.AppTest" name="testTransactionManager1" time="0.001"/>
   <testcase classname="sourceCode.AppTest" name="testTransactionManager2" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testTransactionManager4" time="15"/>
-  <testcase classname="sourceCode.AppTest" name="testTransactionManager5" time="15.001"/>
-  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction1" time="0.006"/>
-  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction2" time="0.005"/>
-  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction3" time="0.001"/>
-  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction4" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="testTransactionManager4" time="15.002"/>
+  <testcase classname="sourceCode.AppTest" name="testTransactionManager5" time="15"/>
+  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction1" time="0.01"/>
+  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction2" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction3" time="0.007"/>
+  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction4" time="0.001"/>
   <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction5" time="0.001"/>
-  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction6" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction6" time="0.002"/>
   <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction7" time="0.001"/>
-  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction8" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction8" time="0.001"/>
   <testcase classname="sourceCode.AppTest" name="TestAtomicTransaction9" time="0"/>
   <testcase classname="sourceCode.AppTest" name="testAccountDatabase1" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase2" time="0.001"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase3" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase2" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase3" time="0.009"/>
   <testcase classname="sourceCode.AppTest" name="testAccountDatabase4" time="0.001"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase5" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase6" time="0.002"/>
-  <testcase classname="sourceCode.AppTest" name="testAccountDatabase7" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase5" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase6" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="testAccountDatabase7" time="0.006"/>
   <testcase classname="sourceCode.AppTest" name="testAccountDatabase8" time="0.001"/>
-  <testcase classname="sourceCode.AppTest" name="TestProcessCompTran1" time="0.001"/>
-  <testcase classname="sourceCode.AppTest" name="TestProcessCompTran2" time="0.002"/>
+  <testcase classname="sourceCode.AppTest" name="TestProcessCompTran1" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="TestProcessCompTran2" time="0"/>
   <testcase classname="sourceCode.AppTest" name="TestProcessCompTran3" time="15"/>
-  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction1" time="0.003"/>
-  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction2" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="TestProcessCompTran4" time="15.001"/>
+  <testcase classname="sourceCode.AppTest" name="TestProcessCompTran5" time="30"/>
+  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction1" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction2" time="0.001"/>
   <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction3" time="0"/>
   <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction4" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction5" time="0"/>
+  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction5" time="0.001"/>
   <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction6" time="0.001"/>
   <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction7" time="0.001"/>
   <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction8" time="0.001"/>
-  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction9" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="TestTransectionManager6" time="0"/>
-  <testcase classname="sourceCode.AppTest" name="TestTransectionManager7" time="0.001"/>
+  <testcase classname="sourceCode.AppTest" name="TestCompoundTransaction9" time="0.008"/>
+  <testcase classname="sourceCode.AppTest" name="TestTransectionManager6" time="0.005"/>
+  <testcase classname="sourceCode.AppTest" name="TestTransectionManager7" time="0.002"/>
 </testsuite>

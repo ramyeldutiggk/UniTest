@@ -476,4 +476,19 @@ public class AppTest {
     public void TestProcessCompTran3(){
         Assert.assertEquals(true, trnMan.processCompoundTransaction("CmpTran1"));
     }
+    
+    @Test
+    public void TestProcessCompTran4(){
+        Assert.assertEquals(true, trnMan.processCompoundTransaction("CmpTran2"));
+    }
+    
+    @Test
+    public void TestProcessCompTran5(){
+        ArrayList<String> al = new ArrayList<String>();
+        al.add("CmpTran1");
+        al.add("CmpTran2");
+        trnMan.addCompoundTransaction("tst", al);
+        
+        Assert.assertEquals(true, trnMan.processCompoundTransaction("tst"));
+    }
 }

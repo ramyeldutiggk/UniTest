@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: sourceCode.AppTest
 -------------------------------------------------------------------------------
-Tests run: 65, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 45.206 sec
+Tests run: 67, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 90.532 sec
