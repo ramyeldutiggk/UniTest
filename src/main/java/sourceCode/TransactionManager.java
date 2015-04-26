@@ -85,7 +85,7 @@ public class TransactionManager {
         return -1;
     }
 
-    public void atomicRemove(String name) {
+    /*public void atomicRemove(String name) {
         int index = this.atomicSearch(name);
 
         if (index != -1) {
@@ -94,7 +94,7 @@ public class TransactionManager {
         } else {
             System.out.println("Atomic transaction not found!");
         }
-    }
+    }*/
 
     public boolean addCompoundTransaction(String inputName, ArrayList<String> children) {
         if ((compoundSearch(inputName) != -1) || (atomicSearch(inputName) != -1)) {
@@ -127,7 +127,7 @@ public class TransactionManager {
         return -1;
     }
 
-    public void compoundRemove(String name) {
+    /*public void compoundRemove(String name) {
         int index = this.compoundSearch(name);
 
         if (index != -1) {
@@ -136,7 +136,7 @@ public class TransactionManager {
         } else {
             System.out.println("Compound transaction not found!");
         }
-    }
+    }*/
 
     public boolean processCompoundTransaction(String name) {
         int index;

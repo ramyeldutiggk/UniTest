@@ -333,7 +333,7 @@ public class AppTest {
         Assert.assertEquals(-1, trnMan.atomicSearch("tst"));
     }
     
-    @Test
+    /*@Test
     public void TestAtomicTransaction10(){
         trnMan.atomicRemove("Test Trn");
         
@@ -345,7 +345,7 @@ public class AppTest {
         trnMan.atomicRemove("Test Trn");
         
         Assert.assertEquals(-1, trnMan.atomicSearch("Test Trn"));
-    }
+    }*/
     
     @Test
     public void TestAtomicTransaction12(){
@@ -356,6 +356,8 @@ public class AppTest {
     public void TestAtomicTransaction13(){
         Assert.assertEquals(false, trnMan.addAtomicTransaction("tst", temp1.getAccountNumber(), temp1.getAccountNumber(), 5));
     }
+    
+    
     
     /**************************************************************************************************
      * 
@@ -438,7 +440,7 @@ public class AppTest {
         Assert.assertEquals(-1,trnMan.compoundSearch("tst"));
     }
     
-    @Test
+    /*@Test
     public void TestCompoundTransaction11(){
         trnMan.compoundRemove("CmpTran1");
         Assert.assertEquals(1,trnMan.c_TransactionsDB.size());
@@ -448,7 +450,7 @@ public class AppTest {
     public void TestCompoundTransaction12(){
         trnMan.compoundRemove("CmpTran1");
         Assert.assertEquals(-1,trnMan.compoundSearch("CmpTran1"));
-    }
+    }*/
     
     @Test
     public void TestCompoundTransaction13(){
@@ -487,6 +489,36 @@ public class AppTest {
         ArrayList<String> al = new ArrayList<String>();
         al.add("CmpTran1");
         al.add("CmpTran2");
+        trnMan.addCompoundTransaction("tst", al);
+        
+        Assert.assertEquals(true, trnMan.processCompoundTransaction("tst"));
+    }
+    
+    @Test
+    public void TestProcessCompTran6(){
+        insertTr1 = new Transaction(temp1.getAccountNumber(),temp2.getAccountNumber(),5);
+        atmTran = new AtomicTransaction("tempTrnsaction0", insertTr1);
+        trnMan.a_TransactionsDB.add(atmTran);
+        
+        insertTr1 = new Transaction(temp1.getAccountNumber(),temp2.getAccountNumber(),10000);
+        atmTran = new AtomicTransaction("tempTrnsaction1", insertTr1);
+        trnMan.a_TransactionsDB.add(atmTran);
+        
+        ArrayList<String> al = new ArrayList<String>();
+        al.add("tempTrnsaction0");
+        al.add("tempTrnsaction1");
+        
+        trnMan.addCompoundTransaction("tempCompTransaction1", al);
+        
+        Assert.assertEquals(false, trnMan.processCompoundTransaction("tempCompTransaction1"));
+    }
+    
+    @Test
+    public void TestProcessCompTran7(){
+        ArrayList<String> al = new ArrayList<String>();
+        al.add("CmpTran1");
+        al.add("CmpTran2");
+        al.add("Test Trn");
         trnMan.addCompoundTransaction("tst", al);
         
         Assert.assertEquals(true, trnMan.processCompoundTransaction("tst"));
