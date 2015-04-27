@@ -633,4 +633,10 @@ public class AppTest {
     public void TestPresets9(){
         Assert.assertEquals(false, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, 999999));
     }
+    
+    @Test
+    public void TestPresets10(){
+        Assert.assertEquals(true, trnMan.executePreset("High", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+        Assert.assertEquals(true, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+    }
 }

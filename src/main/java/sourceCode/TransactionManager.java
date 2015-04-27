@@ -222,7 +222,6 @@ public class TransactionManager {
             
             return processCompoundTransaction("Preset Low Risk Transaction");
         }
-        //return false;
     }
 
 }
