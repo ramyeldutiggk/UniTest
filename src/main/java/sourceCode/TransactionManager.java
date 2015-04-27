@@ -209,7 +209,38 @@ public class TransactionManager {
     
 
     public boolean executePreset(String hl, int acc1, int acc2, long amm1, long amm2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        if (!hl.equalsIgnoreCase("high") && !hl.equalsIgnoreCase("low")) {
+            System.out.println("Risk should be only of type high or low. Please enter strictly 'high' or 'low'. ");
+            return false;
+        } else if (AccountDatabase.getAccount(acc1) == null) {
+            System.out.println("Deposit destination account doesn't exist.");
+            return false;
+        } else if (AccountDatabase.getAccount(acc2) == null) {
+            System.out.println("Main destination account doesn't exist.");
+            return false;
+        } else if (amm1 <= 0) {
+            System.out.println("Deposit ammount must be greater than 0");
+            return false;
+        } else if (amm2 <= 0) {
+            System.out.println("Main ammount must be greater than 0");
+            return false;
+        }
+
+        if (hl.equalsIgnoreCase("high")){
+            this.editPresetAtomicTransaction("Preset High Risk Deposit", acc1, amm1);
+            this.editPresetAtomicTransaction("Preset High Risk Main", acc2, amm2);
+            this.editPresetAtomicTransaction("Preset High Risk Commision", 4444, (long) (amm1*0.1));
+            
+            return processCompoundTransaction("Preset High Risk Transaction");
+        } else {
+            this.editPresetAtomicTransaction("Preset Low Risk Deposit", acc1, amm1);
+            this.editPresetAtomicTransaction("Preset Low Risk Main", acc2, amm2);
+            this.editPresetAtomicTransaction("Preset Low Risk Commision", 4444, (long) (amm1*0.05));
+            
+            return processCompoundTransaction("Preset Low Risk Transaction");
+        }
+        //return false;
     }
 
 }

@@ -56,7 +56,7 @@ public class AppTest {
         adb.getDatabase().add(tempAcc);
         tempAcc = new Account(3143, "High Risk Main Account", 99999);
         adb.getDatabase().add(tempAcc);
-        tempAcc = new Account(3143, "Low Risk Main Account", 99999);
+        tempAcc = new Account(3133, "Low Risk Main Account", 99999);
         adb.getDatabase().add(tempAcc);
         tempAcc = new Account(6565, "High Risk Commision Source Account", 99999);
         adb.getDatabase().add(tempAcc);
@@ -77,7 +77,7 @@ public class AppTest {
         atmTran = new AtomicTransaction("Preset High Risk Main", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
         insertTr1 = new Transaction(3133,-1,0);
-        atmTran = new AtomicTransaction("Preset Low Risk Commision", insertTr1);
+        atmTran = new AtomicTransaction("Preset Low Risk Main", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
         
         ArrayList<String> presetCmp1 = new ArrayList<String>();
@@ -606,12 +606,12 @@ public class AppTest {
     
     @Test
     public void TestPresets4(){
-        Assert.assertEquals(true, trnMan.executePreset("Low", 20, temp2.getAccountNumber(), 100,100));
+        Assert.assertEquals(false, trnMan.executePreset("Low", 20, temp2.getAccountNumber(), 100,100));
     }
     
     @Test
     public void TestPresets5(){
-        Assert.assertEquals(true, trnMan.executePreset("Low", temp1.getAccountNumber(), 20, 100,100));
+        Assert.assertEquals(false, trnMan.executePreset("Low", temp1.getAccountNumber(), 20, 100,100));
     }
     
     @Test
