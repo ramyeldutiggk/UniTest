@@ -116,15 +116,6 @@ public class TransactionManager {
         return -1;
     }
 
-    public AtomicTransaction getAT(String name) {
-        int tmp = atomicSearch(name);
-        if (tmp == -1) {
-            return null;
-        } else {
-            return this.a_TransactionsDB.get(tmp);
-        }
-    }
-
     /*public void atomicRemove(String name) {
      int index = this.atomicSearch(name);
      tomicTransaction
@@ -164,15 +155,6 @@ public class TransactionManager {
         }
 
         return -1;
-    }
-
-    public CompoundTransaction getCT(String name) {
-        int tmp = compoundSearch(name);
-        if (tmp == -1) {
-            return null;
-        } else {
-            return this.c_TransactionsDB.get(tmp);
-        }
     }
 
     /*public void compoundRemove(String name) {
