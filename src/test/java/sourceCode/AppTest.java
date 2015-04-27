@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class AppTest {
 
-    static Account temp1, temp2;
+    static Account temp1, temp2, tempAcc;
     static AccountDatabase adb;
     static Transaction trn, insertTr1;
     static TransactionManager trnMan;
@@ -26,7 +26,7 @@ public class AppTest {
         adb.getDatabase().add(temp1);
         temp2 = new Account(adb.getSize() + 1, "Malcolm", 1000);
         adb.getDatabase().add(temp2);
-        
+        ///////////////////////////////////////////////
         trnMan.setA_TransactionsDB(new ArrayList<AtomicTransaction>());
         trnMan.setC_TransactionsDB(new ArrayList<CompoundTransaction>());
         
@@ -48,6 +48,67 @@ public class AppTest {
         chil2.add("Test Trn");
         chil2.add("CmpTran1");
         cmpTran = new CompoundTransaction("CmpTran2", chil2);
+        trnMan.c_TransactionsDB.add(cmpTran);
+        /////////////////////////////////////////////////////////////////
+        tempAcc = new Account(3123, "High Risk Deposit Account", 99999);
+        adb.getDatabase().add(tempAcc);
+        tempAcc = new Account(8665, "Low Risk Deposit Account", 99999);
+        adb.getDatabase().add(tempAcc);
+        tempAcc = new Account(3143, "High Risk Main Account", 99999);
+        adb.getDatabase().add(tempAcc);
+        tempAcc = new Account(3143, "Low Risk Main Account", 99999);
+        adb.getDatabase().add(tempAcc);
+        tempAcc = new Account(6565, "High Risk Commision Source Account", 99999);
+        adb.getDatabase().add(tempAcc);
+        tempAcc = new Account(4444, "High Risk Commision Dest. Account", 99999);
+        adb.getDatabase().add(tempAcc);
+        tempAcc = new Account(6588, "Low Risk Commision Source Account", 99999);
+        adb.getDatabase().add(tempAcc);
+        tempAcc = new Account(4445, "Low Risk Commision Dest. Account", 99999);
+        adb.getDatabase().add(tempAcc);
+        
+        insertTr1 = new Transaction(6565,4444,0);
+        atmTran = new AtomicTransaction("Preset High Risk Commision", insertTr1);
+        trnMan.a_TransactionsDB.add(atmTran);
+        insertTr1 = new Transaction(6588,4445,0);
+        atmTran = new AtomicTransaction("Preset Low Risk Commision", insertTr1);
+        trnMan.a_TransactionsDB.add(atmTran);
+        insertTr1 = new Transaction(3143,-1,0);
+        atmTran = new AtomicTransaction("Preset High Risk Main", insertTr1);
+        trnMan.a_TransactionsDB.add(atmTran);
+        insertTr1 = new Transaction(3133,-1,0);
+        atmTran = new AtomicTransaction("Preset Low Risk Commision", insertTr1);
+        trnMan.a_TransactionsDB.add(atmTran);
+        
+        ArrayList<String> presetCmp1 = new ArrayList<String>();
+        presetCmp1.add("Preset High Risk Commision");
+        presetCmp1.add("Preset High Risk Main");
+        cmpTran = new CompoundTransaction("Preset High Risk Sub Transaction", presetCmp1);
+        trnMan.c_TransactionsDB.add(cmpTran);
+        
+        ArrayList<String> presetCmp2 = new ArrayList<String>();
+        presetCmp2.add("Preset Low Risk Commision");
+        presetCmp2.add("Preset Low Risk Main");
+        cmpTran = new CompoundTransaction("Preset Low Risk Sub Transaction", presetCmp2);
+        trnMan.c_TransactionsDB.add(cmpTran);
+        
+        insertTr1 = new Transaction(3123,-1,0);
+        atmTran = new AtomicTransaction("Preset High Risk Deposit", insertTr1);
+        trnMan.a_TransactionsDB.add(atmTran);
+        insertTr1 = new Transaction(8665,-1,0);
+        atmTran = new AtomicTransaction("Preset Low Risk Deposit", insertTr1);
+        trnMan.a_TransactionsDB.add(atmTran);
+        
+        ArrayList<String> presetCmp3 = new ArrayList<String>();
+        presetCmp3.add("Preset High Risk Deposit");
+        presetCmp3.add("Preset High Risk Sub Transaction");
+        cmpTran = new CompoundTransaction("Preset High Risk Transaction", presetCmp3);
+        trnMan.c_TransactionsDB.add(cmpTran);
+        
+        ArrayList<String> presetCmp4 = new ArrayList<String>();
+        presetCmp4.add("Preset Low Risk Deposit");
+        presetCmp4.add("Preset Low Risk Sub Transaction");
+        cmpTran = new CompoundTransaction("Preset Low Risk Transaction", presetCmp4);
         trnMan.c_TransactionsDB.add(cmpTran);
     }
 
@@ -152,7 +213,7 @@ public class AppTest {
 
     @Test
     public void testAccountDatabase4() {
-        Assert.assertEquals(2, adb.getSize());
+        Assert.assertEquals(10, adb.getSize());
     }
 
     @Test
@@ -286,7 +347,7 @@ public class AppTest {
     
     @Test
     public void TestAtomicTransaction2(){
-        Assert.assertEquals(2, trnMan.a_TransactionsDB.size());
+        Assert.assertEquals(8, trnMan.a_TransactionsDB.size());
     }
     
     @Test
@@ -365,7 +426,7 @@ public class AppTest {
     
     @Test
     public void TestCompoundTransaction1(){
-        Assert.assertEquals(2, trnMan.c_TransactionsDB.size());
+        Assert.assertEquals(6, trnMan.c_TransactionsDB.size());
     }
     
     @Test
@@ -522,5 +583,54 @@ public class AppTest {
         trnMan.addCompoundTransaction("tst", al);
         
         Assert.assertEquals(true, trnMan.processCompoundTransaction("tst"));
+    }
+    
+    /**************************************************************************************************
+     * 
+     **************************************************************************************************/
+    
+    @Test
+    public void TestPresets1(){
+        Assert.assertEquals(true, trnMan.executePreset("High", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+    }
+    
+    @Test
+    public void TestPresets2(){
+        Assert.assertEquals(true, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+    }
+    
+    @Test
+    public void TestPresets3(){
+        Assert.assertEquals(false, trnMan.executePreset("something", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+    }
+    
+    @Test
+    public void TestPresets4(){
+        Assert.assertEquals(true, trnMan.executePreset("Low", 20, temp2.getAccountNumber(), 100,100));
+    }
+    
+    @Test
+    public void TestPresets5(){
+        Assert.assertEquals(true, trnMan.executePreset("Low", temp1.getAccountNumber(), 20, 100,100));
+    }
+    
+    @Test
+    public void TestPresets6(){
+        Assert.assertEquals(false, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), -100,100));
+    }
+    
+    @Test
+    public void TestPresets7(){
+        Assert.assertEquals(false, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, -100));
+    }
+    
+    @Test
+    public void TestPresets8(){
+        Assert.assertEquals(false, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), 999999, 100));
+    }
+    
+    @Test
+    public void TestPresets9(){
+        Assert.assertEquals(false, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, 999999));
     }
 }

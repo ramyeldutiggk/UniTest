@@ -33,15 +33,15 @@ public class Transaction {
         return destinationAccountNumber;
     }
 
-    /*public void setDestinationAccountNumber(int destinationAccountNumber) {
+    public void setDestinationAccountNumber(int destinationAccountNumber) {
         this.destinationAccountNumber = destinationAccountNumber;
-    }*/
+    }
 
     public long getAmount() {
         return amount;
     }
 
-    /*public void setAmount(long amount) {
+    public void setAmount(long amount) {
         this.amount = amount;
-    }*/
+    }
 }
