@@ -57,7 +57,7 @@ public class AccountDatabase {
         return database.size();
     }
 
-    public ArrayList<Account> getDatabase() {
+    public static ArrayList<Account> getDatabase() {
         return database;
     }
     

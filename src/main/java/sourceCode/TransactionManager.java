@@ -9,6 +9,7 @@ public class TransactionManager {
     ArrayList<Timings> transactionTime = new ArrayList<Timings>();
     ArrayList<AtomicTransaction> a_TransactionsDB = new ArrayList<AtomicTransaction>();
     ArrayList<CompoundTransaction> c_TransactionsDB = new ArrayList<CompoundTransaction>();
+    ArrayList<Commision> commArray = new ArrayList<Commision>();
 
     public void setA_TransactionsDB(ArrayList<AtomicTransaction> a_TransactionsDB) {
         this.a_TransactionsDB = a_TransactionsDB;
@@ -85,23 +86,22 @@ public class TransactionManager {
 
     /*public boolean addPresetAtomicTransaction(String inputName, int acc1, int acc2, long amount) {
 
-        Transaction temp = new Transaction(acc1, acc2, amount);
-        AtomicTransaction at = new AtomicTransaction(inputName, temp);
+     Transaction temp = new Transaction(acc1, acc2, amount);
+     AtomicTransaction at = new AtomicTransaction(inputName, temp);
 
-        this.a_TransactionsDB.add(at);
+     this.a_TransactionsDB.add(at);
 
-        System.out.println("Atomic transaction added");
-        return true;
+     System.out.println("Atomic transaction added");
+     return true;
 
-    }*/
-
+     }*/
     public void editPresetAtomicTransaction(String inputName, int dest, long amount) {
 
         for (int counter = 0; counter < this.a_TransactionsDB.size(); counter++) {
-                if(this.a_TransactionsDB.get(counter).getName().equalsIgnoreCase(inputName)){
-                    this.a_TransactionsDB.get(counter).getTrn().setDestinationAccountNumber(dest);
-                    this.a_TransactionsDB.get(counter).getTrn().setAmount(amount);
-                }
+            if (this.a_TransactionsDB.get(counter).getName().equalsIgnoreCase(inputName)) {
+                this.a_TransactionsDB.get(counter).getTrn().setDestinationAccountNumber(dest);
+                this.a_TransactionsDB.get(counter).getTrn().setAmount(amount);
+            }
         }
 
     }
@@ -188,12 +188,9 @@ public class TransactionManager {
         }
     }
 
-    
-
-    public boolean executePreset(String hl, int acc1, int acc2, long amm1, long amm2) {
-
-        if (!hl.equalsIgnoreCase("high") && !hl.equalsIgnoreCase("low")) {
-            System.out.println("Risk should be only of type high or low. Please enter strictly 'high' or 'low'. ");
+    public boolean executePreset(String presetName, int acc1, int acc2, long amm1, long amm2) {
+        if (this.compoundSearch(presetName)==-1) {
+            System.out.println("This preset doesn't exist.");
             return false;
         } else if (AccountDatabase.getAccount(acc1) == null) {
             System.out.println("Deposit destination account doesn't exist.");
@@ -208,20 +205,54 @@ public class TransactionManager {
             System.out.println("Main ammount must be greater than 0");
             return false;
         }
+        
+        double percent = 0;
 
-        if (hl.equalsIgnoreCase("high")){
+        for (int counter = 0; counter < this.commArray.size(); counter++) {
+            if (this.commArray.get(counter).getPresetName().equalsIgnoreCase(presetName)) {
+                percent = this.commArray.get(counter).getPercentage();
+                break;
+            }
+        }
+        int dest = 0;
+        for(int counter = 0; counter < this.c_TransactionsDB.size(); counter++){
+            if(this.c_TransactionsDB.get(counter).getName().equalsIgnoreCase(presetName)){
+                this.editPresetAtomicTransaction(presetName + " Deposit", acc1, amm1);
+                this.editPresetAtomicTransaction(presetName + " Main", acc2, amm2);
+                for(int cnt = 0; cnt < this.a_TransactionsDB.size(); cnt++){
+                    if(this.a_TransactionsDB.get(cnt).getName().equalsIgnoreCase(presetName + " Commision")){
+                        dest = this.a_TransactionsDB.get(cnt).getTrn().getDestinationAccountNumber();
+                    }
+                }
+                this.editPresetAtomicTransaction(presetName + " Commision", dest, (long) (amm2 * percent));
+                return processCompoundTransaction(this.c_TransactionsDB.get(counter).getName());
+            }
+        }
+
+        
+        /*if (hl.equalsIgnoreCase("high")) {
+
+            percent = percent / 100;
             this.editPresetAtomicTransaction("Preset High Risk Deposit", acc1, amm1);
             this.editPresetAtomicTransaction("Preset High Risk Main", acc2, amm2);
-            this.editPresetAtomicTransaction("Preset High Risk Commision", 4444, (long) (amm1*0.1));
-            
-            return processCompoundTransaction("Preset High Risk Transaction");
+            this.editPresetAtomicTransaction("Preset High Risk Commision", 4444, (long) (amm2 * percent));
+
+            return processCompoundTransaction("Preset High Risk");
         } else {
+
             this.editPresetAtomicTransaction("Preset Low Risk Deposit", acc1, amm1);
             this.editPresetAtomicTransaction("Preset Low Risk Main", acc2, amm2);
-            this.editPresetAtomicTransaction("Preset Low Risk Commision", 4444, (long) (amm1*0.05));
-            
-            return processCompoundTransaction("Preset Low Risk Transaction");
-        }
+            this.editPresetAtomicTransaction("Preset Low Risk Commision", 4445, (long) (amm2 * percent));
+Preset High Risk
+            return processCompoundTransaction("Preset Low Risk");
+        }*/
+        return false;
     }
+
+    public boolean createPreset(String presetName, int source1, int source2, int source3, int commissionDestination, double commisionPercent) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 
 }

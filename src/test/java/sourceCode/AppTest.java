@@ -67,7 +67,7 @@ public class AppTest {
         tempAcc = new Account(4445, "Low Risk Commision Dest. Account", 99999);
         adb.getDatabase().add(tempAcc);
         
-        insertTr1 = new Transaction(6565,4444,0);
+        /*insertTr1 = new Transaction(6565,4444,0);
         atmTran = new AtomicTransaction("Preset High Risk Commision", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
         insertTr1 = new Transaction(6588,4445,0);
@@ -109,7 +109,10 @@ public class AppTest {
         presetCmp4.add("Preset Low Risk Deposit");
         presetCmp4.add("Preset Low Risk Sub Transaction");
         cmpTran = new CompoundTransaction("Preset Low Risk Transaction", presetCmp4);
-        trnMan.c_TransactionsDB.add(cmpTran);
+        trnMan.c_TransactionsDB.add(cmpTran);*/
+        
+        trnMan.createPreset("Preset High Risk", 3123, 3143, 6565, 4444, 10);
+        trnMan.createPreset("Preset Low Risk", 8665, 3133, 6588, 4445, 5);
     }
 
     /**************************************************************************************************
@@ -591,12 +594,12 @@ public class AppTest {
     
     @Test
     public void TestPresets1(){
-        Assert.assertEquals(true, trnMan.executePreset("High", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+        Assert.assertEquals(true, trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
     }
     
     @Test
     public void TestPresets2(){
-        Assert.assertEquals(true, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+        Assert.assertEquals(true, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
     }
     
     @Test
@@ -606,37 +609,77 @@ public class AppTest {
     
     @Test
     public void TestPresets4(){
-        Assert.assertEquals(false, trnMan.executePreset("Low", 20, temp2.getAccountNumber(), 100,100));
+        Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", 20, temp2.getAccountNumber(), 100,100));
     }
     
     @Test
     public void TestPresets5(){
-        Assert.assertEquals(false, trnMan.executePreset("Low", temp1.getAccountNumber(), 20, 100,100));
+        Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), 20, 100,100));
     }
     
     @Test
     public void TestPresets6(){
-        Assert.assertEquals(false, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), -100,100));
+        Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), -100,100));
     }
     
     @Test
     public void TestPresets7(){
-        Assert.assertEquals(false, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, -100));
+        Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, -100));
     }
     
     @Test
     public void TestPresets8(){
-        Assert.assertEquals(false, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), 999999, 100));
+        Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 999999, 100));
     }
     
     @Test
     public void TestPresets9(){
-        Assert.assertEquals(false, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, 999999));
+        Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, 999999));
     }
     
     @Test
     public void TestPresets10(){
-        Assert.assertEquals(true, trnMan.executePreset("High", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
-        Assert.assertEquals(true, trnMan.executePreset("Low", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+        Assert.assertEquals(true, trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+        Assert.assertEquals(true, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+    }
+    
+    /**************************************************************************************************
+     * 
+     **************************************************************************************************/
+    
+    @Test
+    public void testNewPreset1(){
+        Assert.assertEquals(false, trnMan.createPreset("Preset High Risk", 3123, 3143, 6565, 4444, 10));
+    }
+    
+    @Test
+    public void testNewPreset2(){
+        Assert.assertEquals(false, trnMan.createPreset("new preset", 9999, 3143, 6565, 4444, 10));
+    }
+    
+    @Test
+    public void testNewPreset3(){
+        Assert.assertEquals(false, trnMan.createPreset("new preset", 3123, 9999, 6565, 4444, 10));
+    }
+    
+    @Test
+    public void testNewPreset4(){
+        Assert.assertEquals(false, trnMan.createPreset("new preset", 3123, 3143, 9999, 4444, 10));
+    }
+    
+    
+    @Test
+    public void testNewPreset5(){
+        Assert.assertEquals(false, trnMan.createPreset("new preset", 3123, 3143, 6565, 9999, 10));
+    }
+    
+    @Test
+    public void testNewPreset6(){
+        Assert.assertEquals(false, trnMan.createPreset("new preset", 3123, 3143, 6565, 4444, 120));
+    }
+    
+    @Test
+    public void testNewPreset7(){
+        Assert.assertEquals(false, trnMan.createPreset("new preset", 3123, 3143, 6565, 4444, -10));
     }
 }
