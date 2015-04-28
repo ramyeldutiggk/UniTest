@@ -250,7 +250,64 @@ Preset High Risk
     }
 
     public boolean createPreset(String presetName, int source1, int source2, int source3, int commissionDestination, double commisionPercent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //It is assumed that the custom preset keeps the same format of the High and Low risk transaction preset
+        //This means that the preset will be one compound transaction made out of an atomic (deposit) and compound transaction
+        //In turn this compound transaction will have two atomic transactions; main transaction and commision transaction
+        //It is also assumed that just like the high/low risk transaction, the source is known for each transaction
+        //The only destination account known is the one for commision
+
+        Transaction insertTr1;
+        AtomicTransaction atmTran;
+        CompoundTransaction cmpTran;
+
+        if (this.atomicSearch(presetName) != -1 || this.compoundSearch(presetName) != -1) {
+            System.out.println("Preset name invalid. A transaction with that name already exists");
+            return false;
+        } else if (AccountDatabase.getAccount(source1) == null) {
+            System.out.println("Deposit source account unavailable");
+            return false;
+        } else if (AccountDatabase.getAccount(source2) == null) {
+            System.out.println("Main source account unavailable");
+            return false;
+        } else if (AccountDatabase.getAccount(source3) == null) {
+            System.out.println("Commision source account unavailable");
+            return false;
+        } else if (AccountDatabase.getAccount(commissionDestination) == null) {
+            System.out.println("Commision destination account unavailable");
+            return false;
+        } else if (commisionPercent < 0 || commisionPercent > 100) {
+            System.out.println("Commision % must be greater than 0 and smaller or equal to 100");
+            return false;
+        }
+
+        this.commArray.add(new Commision(presetName, commisionPercent));
+
+        insertTr1 = new Transaction(source2, -1, 0);
+        atmTran = new AtomicTransaction(presetName + " Main", insertTr1);
+        a_TransactionsDB.add(atmTran);
+
+        insertTr1 = new Transaction(source3, commissionDestination, 0);
+        atmTran = new AtomicTransaction(presetName + " Commision", insertTr1);
+        a_TransactionsDB.add(atmTran);
+
+        ArrayList<String> presetCmp1 = new ArrayList<String>();
+        presetCmp1.add(presetName + " Commision");
+        presetCmp1.add(presetName + " Main");
+        cmpTran = new CompoundTransaction(presetName + " Sub Transaction", presetCmp1);
+        c_TransactionsDB.add(cmpTran);
+
+        insertTr1 = new Transaction(source1, -1, 0);
+        atmTran = new AtomicTransaction(presetName + " Deposit", insertTr1);
+        a_TransactionsDB.add(atmTran);
+
+        ArrayList<String> presetCmp3 = new ArrayList<String>();
+        presetCmp3.add(presetName + " Sub Transaction");
+        presetCmp3.add(presetName + " Deposit");
+        cmpTran = new CompoundTransaction(presetName, presetCmp3);
+        c_TransactionsDB.add(cmpTran);
+
+        System.out.println("Preset added.");
+        return true;
     }
 
     
