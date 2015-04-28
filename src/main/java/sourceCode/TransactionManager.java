@@ -187,6 +187,7 @@ public class TransactionManager {
             return false;
         }
     }
+    
 
     public boolean executePreset(String presetName, int acc1, int acc2, long amm1, long amm2) {
         if (this.compoundSearch(presetName)==-1) {
@@ -214,7 +215,10 @@ public class TransactionManager {
                 break;
             }
         }
+        
         int dest = 0;
+        boolean result = false;
+        
         for(int counter = 0; counter < this.c_TransactionsDB.size(); counter++){
             if(this.c_TransactionsDB.get(counter).getName().equalsIgnoreCase(presetName)){
                 this.editPresetAtomicTransaction(presetName + " Deposit", acc1, amm1);
@@ -225,11 +229,12 @@ public class TransactionManager {
                     }
                 }
                 this.editPresetAtomicTransaction(presetName + " Commision", dest, (long) (amm2 * percent));
-                return processCompoundTransaction(this.c_TransactionsDB.get(counter).getName());
+                result = processCompoundTransaction(this.c_TransactionsDB.get(counter).getName());
+                break;
             }
         }
 
-        
+        return result;
         /*if (hl.equalsIgnoreCase("high")) {
 
             percent = percent / 100;
@@ -246,7 +251,7 @@ public class TransactionManager {
 Preset High Risk
             return processCompoundTransaction("Preset Low Risk");
         }*/
-        return false;
+        //return true;
     }
 
     public boolean createPreset(String presetName, int source1, int source2, int source3, int commissionDestination, double commisionPercent) {
