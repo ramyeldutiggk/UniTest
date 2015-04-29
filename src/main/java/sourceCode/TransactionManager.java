@@ -270,10 +270,107 @@ public class TransactionManager {
         return true;
     }
     
-     public ArrayList<AtomicTransaction> traverseCompoundTransaction(String transactionName, int criteria, int account) {
-     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-     }
+     public ArrayList<AtomicTransaction> returnAtomic(String inputName, ArrayList<AtomicTransaction> result) {
+        int index;
 
-    
+        if ((index = this.atomicSearch(inputName)) != -1) {
+            result.add(this.a_TransactionsDB.get(index));
+            return result;
+        } else {
+            index = this.compoundSearch(inputName);
 
+            for (int counter = 0; counter < this.c_TransactionsDB.get(index).getChildren().size(); counter++) {
+                result = returnAtomic(this.c_TransactionsDB.get(index).getChildren().get(counter), result);
+            }
+            return result;
+        }
+
+    }
+
+    public ArrayList<AtomicTransaction> traverseCompoundTransaction(String transactionName, int criteria, int account) {
+        if (criteria < 1 || criteria > 3) {
+            System.out.println("Enter a valid criteria between 1 and 3.");
+            return null;
+        } else if (this.compoundSearch(transactionName) == -1) {
+            System.out.println("Transaction not found.");
+            return null;
+        } else {
+            boolean found = false;
+
+            for (int counter = 0; counter < this.processedTransactions.size(); counter++) {
+                if (this.processedTransactions.get(counter).getName().equalsIgnoreCase(transactionName)) {
+                    found = true;
+                }
+            }
+
+            if (found) {
+                ArrayList<AtomicTransaction> atList = this.returnAtomic(transactionName, new ArrayList<AtomicTransaction>());
+                ArrayList<AtomicTransaction> result = new ArrayList<AtomicTransaction>();
+
+                switch (criteria) {
+                    case 1:
+                        int ind = -1;
+                        long min = Long.MAX_VALUE;
+                        System.out.println(Long.MAX_VALUE);
+
+                        while (!atList.isEmpty()) {
+                            ind = -1;
+                            min = Long.MAX_VALUE;
+
+                            for (int count2 = 0; count2 < atList.size(); count2++) {
+                                if (atList.get(count2).getTrn().getAmount() <= min) {
+                                    ind = count2;
+                                    min = atList.get(count2).getTrn().getAmount();
+                                }
+                            }
+
+                            result.add(atList.get(ind));
+                            System.out.println(atList.get(ind).getName() + " with ammount " + atList.get(ind).getTrn().getAmount());
+                            atList.remove(ind);
+                        }
+                        break;
+
+                    case 2:
+                        int ind2 = -1;
+                        long max = Long.MIN_VALUE;
+
+                        while (!atList.isEmpty()) {
+                            ind2 = -1;
+                            max = Long.MIN_VALUE;
+
+                            for (int count2 = 0; count2 < atList.size(); count2++) {
+                                if (atList.get(count2).getTrn().getAmount() >= max) {
+                                    ind2 = count2;
+                                    max = atList.get(count2).getTrn().getAmount();
+                                }
+                            }
+                            result.add(atList.get(ind2));
+                            System.out.println(atList.get(ind2).getName() + " with ammount " + atList.get(ind2).getTrn().getAmount());
+                            atList.remove(ind2);
+                        }
+                        break;
+
+                    case 3:
+                        if (AccountDatabase.getAccount(account) == null) {
+                            System.out.println("An account with account number " + account + " doesn't exist");
+                            return null;
+                        }
+                        for (int counter = 0; counter < atList.size(); counter++) {
+                            if (atList.get(counter).getTrn().getSourceAccountNumber() == account) {
+                                System.out.println(atList.get(counter).getName());
+                                result.add(atList.get(counter));
+                            }
+                        }
+                        if (result.isEmpty()) {
+                            System.out.println("There are no transactions with source account number " + account);
+                            return null;
+                        }
+                        break;
+                }
+                return result;
+            } else {
+                return null;
+            }
+        }
+    }
 }
