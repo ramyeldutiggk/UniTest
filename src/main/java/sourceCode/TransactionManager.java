@@ -10,6 +10,7 @@ public class TransactionManager {
     ArrayList<AtomicTransaction> a_TransactionsDB = new ArrayList<AtomicTransaction>();
     ArrayList<CompoundTransaction> c_TransactionsDB = new ArrayList<CompoundTransaction>();
     ArrayList<Commision> commArray = new ArrayList<Commision>();
+    ArrayList<CompoundTransaction> processedTransactions = new ArrayList<CompoundTransaction>();
 
     public void setA_TransactionsDB(ArrayList<AtomicTransaction> a_TransactionsDB) {
         this.a_TransactionsDB = a_TransactionsDB;
@@ -84,17 +85,6 @@ public class TransactionManager {
         }
     }
 
-    /*public boolean addPresetAtomicTransaction(String inputName, int acc1, int acc2, long amount) {
-
-     Transaction temp = new Transaction(acc1, acc2, amount);
-     AtomicTransaction at = new AtomicTransaction(inputName, temp);
-
-     this.a_TransactionsDB.add(at);
-
-     System.out.println("Atomic transaction added");
-     return true;
-
-     }*/
     public void editPresetAtomicTransaction(String inputName, int dest, long amount) {
 
         for (int counter = 0; counter < this.a_TransactionsDB.size(); counter++) {
@@ -116,16 +106,6 @@ public class TransactionManager {
         return -1;
     }
 
-    /*public void atomicRemove(String name) {
-     int index = this.atomicSearch(name);
-     tomicTransaction
-     if (index != -1) {
-     a_TransactionsDB.remove(index);
-     System.out.println("Atomic transaction deleted.");
-     } else {
-     System.out.println("Atomic transaction not found!");
-     }
-     }*/
     public boolean addCompoundTransaction(String inputName, ArrayList<String> children) {
         if ((compoundSearch(inputName) != -1) || (atomicSearch(inputName) != -1)) {
             System.out.println("Account with that name already exists.");
@@ -157,16 +137,6 @@ public class TransactionManager {
         return -1;
     }
 
-    /*public void compoundRemove(String name) {
-     int index = this.compoundSearch(name);
-
-     if (index != -1) {
-     c_TransactionsDB.remove(index);
-     System.out.println("Compound transaction deleted.");
-     } else {
-     System.out.println("Compound transaction not found!");
-     }
-     }*/
     public boolean processCompoundTransaction(String name) {
         int index;
 
@@ -187,10 +157,9 @@ public class TransactionManager {
             return false;
         }
     }
-    
 
     public boolean executePreset(String presetName, int acc1, int acc2, long amm1, long amm2) {
-        if (this.compoundSearch(presetName)==-1) {
+        if (this.compoundSearch(presetName) == -1) {
             System.out.println("This preset doesn't exist.");
             return false;
         } else if (AccountDatabase.getAccount(acc1) == null) {
@@ -206,7 +175,7 @@ public class TransactionManager {
             System.out.println("Main ammount must be greater than 0");
             return false;
         }
-        
+
         double percent = 0;
 
         for (int counter = 0; counter < this.commArray.size(); counter++) {
@@ -215,43 +184,29 @@ public class TransactionManager {
                 break;
             }
         }
-        
+
         int dest = 0;
         boolean result = false;
-        
-        for(int counter = 0; counter < this.c_TransactionsDB.size(); counter++){
-            if(this.c_TransactionsDB.get(counter).getName().equalsIgnoreCase(presetName)){
+
+        for (int counter = 0; counter < this.c_TransactionsDB.size(); counter++) {
+            if (this.c_TransactionsDB.get(counter).getName().equalsIgnoreCase(presetName)) {
                 this.editPresetAtomicTransaction(presetName + " Deposit", acc1, amm1);
                 this.editPresetAtomicTransaction(presetName + " Main", acc2, amm2);
-                for(int cnt = 0; cnt < this.a_TransactionsDB.size(); cnt++){
-                    if(this.a_TransactionsDB.get(cnt).getName().equalsIgnoreCase(presetName + " Commision")){
+                for (int cnt = 0; cnt < this.a_TransactionsDB.size(); cnt++) {
+                    if (this.a_TransactionsDB.get(cnt).getName().equalsIgnoreCase(presetName + " Commision")) {
                         dest = this.a_TransactionsDB.get(cnt).getTrn().getDestinationAccountNumber();
                     }
                 }
-                this.editPresetAtomicTransaction(presetName + " Commision", dest, (long) (amm2 * percent));
+                this.editPresetAtomicTransaction(presetName + " Commision", dest, (long) (amm2 * (percent / 100)));
                 result = processCompoundTransaction(this.c_TransactionsDB.get(counter).getName());
+                if (result) {
+                    this.processedTransactions.add(this.c_TransactionsDB.get(counter));
+                }
                 break;
             }
         }
 
         return result;
-        /*if (hl.equalsIgnoreCase("high")) {
-
-            percent = percent / 100;
-            this.editPresetAtomicTransaction("Preset High Risk Deposit", acc1, amm1);
-            this.editPresetAtomicTransaction("Preset High Risk Main", acc2, amm2);
-            this.editPresetAtomicTransaction("Preset High Risk Commision", 4444, (long) (amm2 * percent));
-
-            return processCompoundTransaction("Preset High Risk");
-        } else {
-
-            this.editPresetAtomicTransaction("Preset Low Risk Deposit", acc1, amm1);
-            this.editPresetAtomicTransaction("Preset Low Risk Main", acc2, amm2);
-            this.editPresetAtomicTransaction("Preset Low Risk Commision", 4445, (long) (amm2 * percent));
-Preset High Risk
-            return processCompoundTransaction("Preset Low Risk");
-        }*/
-        //return true;
     }
 
     public boolean createPreset(String presetName, int source1, int source2, int source3, int commissionDestination, double commisionPercent) {
@@ -314,6 +269,10 @@ Preset High Risk
         System.out.println("Preset added.");
         return true;
     }
+    
+     public ArrayList<AtomicTransaction> traverseCompoundTransaction(String transactionName, int criteria, int account) {
+     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     }
 
     
 

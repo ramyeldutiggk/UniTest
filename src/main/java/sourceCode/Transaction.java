@@ -25,10 +25,6 @@ public class Transaction {
         return sourceAccountNumber;
     }
 
-    /*public void setSourceAccountNumber(int sourceAccountNumber) {
-        this.sourceAccountNumber = sourceAccountNumber;
-    }*/
-
     public int getDestinationAccountNumber() {
         return destinationAccountNumber;
     }

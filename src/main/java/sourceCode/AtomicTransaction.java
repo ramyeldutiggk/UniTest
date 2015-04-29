@@ -13,15 +13,8 @@ public class AtomicTransaction {
 		return name;
 	}
 
-	/*public void setName(String name) {
-		this.name = name;
-	}
-*/
 	public Transaction getTrn() {
 		return trn;
 	}
 
-	/*public void setTrn(Transaction trn) {
-		this.trn = trn;
-	}*/	
 }

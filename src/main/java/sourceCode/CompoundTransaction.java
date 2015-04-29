@@ -18,15 +18,7 @@ public class CompoundTransaction {
         return Name;
     }
 
-    /*public void setName(String Name) {
-        this.Name = Name;
-    }*/
-
     public ArrayList<String> getChildren() {
         return children;
     }
-
-    /*public void setChildren(ArrayList<String> children) {
-        this.children = children;
-    }*/
 }

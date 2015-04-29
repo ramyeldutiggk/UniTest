@@ -26,30 +26,30 @@ public class AppTest {
         adb.getDatabase().add(temp1);
         temp2 = new Account(adb.getSize() + 1, "Malcolm", 1000);
         adb.getDatabase().add(temp2);
-        ///////////////////////////////////////////////
+
         trnMan.setA_TransactionsDB(new ArrayList<AtomicTransaction>());
         trnMan.setC_TransactionsDB(new ArrayList<CompoundTransaction>());
-        
-        insertTr1 = new Transaction(temp1.getAccountNumber(),temp2.getAccountNumber(),10);
+
+        insertTr1 = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10);
         atmTran = new AtomicTransaction("Test Trn", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
-        
-        insertTr1 = new Transaction(temp1.getAccountNumber(),temp2.getAccountNumber(),10);
+
+        insertTr1 = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10);
         atmTran = new AtomicTransaction("Test Trn1", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
-        
+
         ArrayList<String> chil1 = new ArrayList<String>();
         chil1.add("Test Trn");
         chil1.add("Test Trn1");
         cmpTran = new CompoundTransaction("CmpTran1", chil1);
         trnMan.c_TransactionsDB.add(cmpTran);
-        
+
         ArrayList<String> chil2 = new ArrayList<String>();
         chil2.add("Test Trn");
         chil2.add("CmpTran1");
         cmpTran = new CompoundTransaction("CmpTran2", chil2);
         trnMan.c_TransactionsDB.add(cmpTran);
-        /////////////////////////////////////////////////////////////////
+
         tempAcc = new Account(3123, "High Risk Deposit Account", 99999);
         adb.getDatabase().add(tempAcc);
         tempAcc = new Account(8665, "Low Risk Deposit Account", 99999);
@@ -66,58 +66,16 @@ public class AppTest {
         adb.getDatabase().add(tempAcc);
         tempAcc = new Account(4445, "Low Risk Commision Dest. Account", 99999);
         adb.getDatabase().add(tempAcc);
-        
-        /*insertTr1 = new Transaction(6565,4444,0);
-        atmTran = new AtomicTransaction("Preset High Risk Commision", insertTr1);
-        trnMan.a_TransactionsDB.add(atmTran);
-        insertTr1 = new Transaction(6588,4445,0);
-        atmTran = new AtomicTransaction("Preset Low Risk Commision", insertTr1);
-        trnMan.a_TransactionsDB.add(atmTran);
-        insertTr1 = new Transaction(3143,-1,0);
-        atmTran = new AtomicTransaction("Preset High Risk Main", insertTr1);
-        trnMan.a_TransactionsDB.add(atmTran);
-        insertTr1 = new Transaction(3133,-1,0);
-        atmTran = new AtomicTransaction("Preset Low Risk Main", insertTr1);
-        trnMan.a_TransactionsDB.add(atmTran);
-        
-        ArrayList<String> presetCmp1 = new ArrayList<String>();
-        presetCmp1.add("Preset High Risk Commision");
-        presetCmp1.add("Preset High Risk Main");
-        cmpTran = new CompoundTransaction("Preset High Risk Sub Transaction", presetCmp1);
-        trnMan.c_TransactionsDB.add(cmpTran);
-        
-        ArrayList<String> presetCmp2 = new ArrayList<String>();
-        presetCmp2.add("Preset Low Risk Commision");
-        presetCmp2.add("Preset Low Risk Main");
-        cmpTran = new CompoundTransaction("Preset Low Risk Sub Transaction", presetCmp2);
-        trnMan.c_TransactionsDB.add(cmpTran);
-        
-        insertTr1 = new Transaction(3123,-1,0);
-        atmTran = new AtomicTransaction("Preset High Risk Deposit", insertTr1);
-        trnMan.a_TransactionsDB.add(atmTran);
-        insertTr1 = new Transaction(8665,-1,0);
-        atmTran = new AtomicTransaction("Preset Low Risk Deposit", insertTr1);
-        trnMan.a_TransactionsDB.add(atmTran);
-        
-        ArrayList<String> presetCmp3 = new ArrayList<String>();
-        presetCmp3.add("Preset High Risk Deposit");
-        presetCmp3.add("Preset High Risk Sub Transaction");
-        cmpTran = new CompoundTransaction("Preset High Risk Transaction", presetCmp3);
-        trnMan.c_TransactionsDB.add(cmpTran);
-        
-        ArrayList<String> presetCmp4 = new ArrayList<String>();
-        presetCmp4.add("Preset Low Risk Deposit");
-        presetCmp4.add("Preset Low Risk Sub Transaction");
-        cmpTran = new CompoundTransaction("Preset Low Risk Transaction", presetCmp4);
-        trnMan.c_TransactionsDB.add(cmpTran);*/
-        
+
         trnMan.createPreset("Preset High Risk", 3123, 3143, 6565, 4444, 10);
         trnMan.createPreset("Preset Low Risk", 8665, 3133, 6588, 4445, 5);
     }
 
-    /**************************************************************************************************
-     * 
-     **************************************************************************************************/
+    /**
+     * ************************************************************************************************
+     *
+     *************************************************************************************************
+     */
     @Test
     public void testAccount1() {
         Assert.assertEquals(true, temp1.adjustBalance(-50));
@@ -196,9 +154,11 @@ public class AppTest {
         Assert.assertThat(amm2, not(temp1.getAccountBalance()));
     }
 
-    /**************************************************************************************************
-     * 
-     **************************************************************************************************/
+    /**
+     * ************************************************************************************************
+     *
+     *************************************************************************************************
+     */
     @Test
     public void testAccountDatabase1() {
         Assert.assertEquals(temp1, adb.getAccount(1));
@@ -208,7 +168,7 @@ public class AppTest {
     public void testAccountDatabase2() {
         Assert.assertThat(temp2, not(adb.getAccount(1)));
     }
-    
+
     @Test
     public void testAccountDatabase3() {
         Assert.assertEquals(null, adb.getAccount(50));
@@ -223,25 +183,27 @@ public class AppTest {
     public void testAccountDatabase5() {
         Assert.assertThat(1, not(adb.getSize()));
     }
-    
+
     @Test
     public void testAccountDatabase6() {
-        Assert.assertEquals(true, adb.addAccount(99,"TestUser",100));
-    }
-    
-    @Test
-    public void testAccountDatabase7() {
-        Assert.assertEquals(false, adb.addAccount(1,"TestUser1",100));
-    }
-    
-    @Test
-    public void testAccountDatabase8() {
-        Assert.assertEquals(false, adb.addAccount(100,"TestUser2",-100));
+        Assert.assertEquals(true, adb.addAccount(99, "TestUser", 100));
     }
 
-    /**************************************************************************************************
-     * 
-     **************************************************************************************************/
+    @Test
+    public void testAccountDatabase7() {
+        Assert.assertEquals(false, adb.addAccount(1, "TestUser1", 100));
+    }
+
+    @Test
+    public void testAccountDatabase8() {
+        Assert.assertEquals(false, adb.addAccount(100, "TestUser2", -100));
+    }
+
+    /**
+     * ************************************************************************************************
+     *
+     *************************************************************************************************
+     */
     @Test
     public void testTransaction1() {
         trn = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 50);
@@ -251,12 +213,14 @@ public class AppTest {
     @Test
     public void testTransaction2() {
         trn = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 1000);
-      Assert.assertEquals(false, trn.process());
+        Assert.assertEquals(false, trn.process());
     }
 
-    /**************************************************************************************************
-     * 
-     **************************************************************************************************/
+    /**
+     * ************************************************************************************************
+     *
+     *************************************************************************************************
+     */
     @Test
     public void testTransactionManager1() {
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 50));
@@ -267,38 +231,33 @@ public class AppTest {
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 1000));
     }
 
-    /*@Test
+    @Test
     public void testTransactionManager3() {
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
-
-        Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
-    }*/
+        Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
+    }
 
     @Test
     public void testTransactionManager4() {
         Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
-        Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
-    }
-    
-    @Test
-    public void testTransactionManager5() {
-        Assert.assertEquals(true, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10000));
     }
-    
-   @Test
-    public void TestTransectionManager6(){
+
+    @Test
+    public void TestTransectionManager5() {
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp1.getAccountNumber(), 10));
     }
-    
+
     @Test
-    public void TestTransectionManager7(){
+    public void TestTransectionManager6() {
         Assert.assertEquals(false, trnMan.processTransaction(temp1.getAccountNumber(), temp1.getAccountNumber(), 10000));
     }
 
-    /**************************************************************************************************
-     * 
-     **************************************************************************************************/
+    /**
+     * ************************************************************************************************
+     *
+     *************************************************************************************************
+     */
     @Test
     public void testTimings1() {
         tim.setSourceAccountNumber(1);
@@ -338,348 +297,384 @@ public class AppTest {
         tim.setTime(timeTemp);
         Assert.assertThat(test, not(tim.getTime()));
     }
-    
-    /**************************************************************************************************
-     * 
-     **************************************************************************************************/
-    
+
+    /**
+     * ************************************************************************************************
+     *
+     *************************************************************************************************
+     */
     @Test
-    public void TestAtomicTransaction1(){
+    public void TestAtomicTransaction1() {
         Assert.assertEquals(true, trnMan.addAtomicTransaction("Test", temp1.getAccountNumber(), temp2.getAccountNumber(), 5));
     }
-    
+
     @Test
-    public void TestAtomicTransaction2(){
+    public void TestAtomicTransaction2() {
         Assert.assertEquals(8, trnMan.a_TransactionsDB.size());
     }
-    
+
     @Test
-    public void TestAtomicTransaction3(){
+    public void TestAtomicTransaction3() {
         Assert.assertEquals(false, trnMan.addAtomicTransaction("Test Trn", temp1.getAccountNumber(), temp2.getAccountNumber(), 10));
     }
-    
+
     @Test
-    public void TestAtomicTransaction4(){
-        insertTr1 = new Transaction(5,1,10);
+    public void TestAtomicTransaction4() {
+        insertTr1 = new Transaction(5, 1, 10);
         atmTran = new AtomicTransaction("Test1", insertTr1);
-        
-        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", 5,temp2.getAccountNumber(),10));
+
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", 5, temp2.getAccountNumber(), 10));
     }
-    
+
     @Test
-    public void TestAtomicTransaction5(){
-        insertTr1 = new Transaction(0,5,10);
+    public void TestAtomicTransaction5() {
+        insertTr1 = new Transaction(0, 5, 10);
         atmTran = new AtomicTransaction("Test1", insertTr1);
-        
-        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", temp1.getAccountNumber(),5,10));
+
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", temp1.getAccountNumber(), 5, 10));
     }
-    
+
     @Test
-    public void TestAtomicTransaction6(){
-        insertTr1 = new Transaction(0,1,-10);
+    public void TestAtomicTransaction6() {
+        insertTr1 = new Transaction(0, 1, -10);
         atmTran = new AtomicTransaction("Test1", insertTr1);
-        
-        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1",temp1.getAccountNumber(),temp2.getAccountNumber(),-10));
+
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", temp1.getAccountNumber(), temp2.getAccountNumber(), -10));
     }
-    
+
     @Test
-    public void TestAtomicTransaction7(){
+    public void TestAtomicTransaction7() {
         Assert.assertEquals(0, trnMan.atomicSearch("Test Trn"));
     }
-    
+
     @Test
-    public void TestAtomicTransaction8(){
+    public void TestAtomicTransaction8() {
         Assert.assertEquals(0, trnMan.atomicSearch("test trn"));
     }
-    
+
     @Test
-    public void TestAtomicTransaction9(){
+    public void TestAtomicTransaction9() {
         Assert.assertEquals(-1, trnMan.atomicSearch("tst"));
     }
-    
-    /*@Test
-    public void TestAtomicTransaction10(){
-        trnMan.atomicRemove("Test Trn");
-        
-        Assert.assertEquals(1, trnMan.a_TransactionsDB.size());
-    }
-    
+
     @Test
-    public void TestAtomicTransaction11(){
-        trnMan.atomicRemove("Test Trn");
-        
-        Assert.assertEquals(-1, trnMan.atomicSearch("Test Trn"));
-    }*/
-    
-    @Test
-    public void TestAtomicTransaction12(){
+    public void TestAtomicTransaction10() {
         Assert.assertEquals(false, trnMan.addAtomicTransaction("CmpTran1", temp1.getAccountNumber(), temp2.getAccountNumber(), 5));
     }
-    
+
     @Test
-    public void TestAtomicTransaction13(){
+    public void TestAtomicTransaction11() {
         Assert.assertEquals(false, trnMan.addAtomicTransaction("tst", temp1.getAccountNumber(), temp1.getAccountNumber(), 5));
     }
-    
-    
-    
-    /**************************************************************************************************
-     * 
-     **************************************************************************************************/
-    
+
+    /**
+     * ************************************************************************************************
+     *
+     *************************************************************************************************
+     */
     @Test
-    public void TestCompoundTransaction1(){
+    public void TestCompoundTransaction1() {
         Assert.assertEquals(6, trnMan.c_TransactionsDB.size());
     }
-    
+
     @Test
-    public void TestCompoundTransaction2(){
+    public void TestCompoundTransaction2() {
         ArrayList<String> al = new ArrayList<String>();
         al.add("Test Trn");
         al.add("Test Trn1");
-        
+
         Assert.assertEquals(true, trnMan.addCompoundTransaction("Testing", al));
     }
-    
+
     @Test
-    public void TestCompoundTransaction3(){
+    public void TestCompoundTransaction3() {
         ArrayList<String> al = new ArrayList<String>();
         al.add("CmpTran1");
         al.add("CmpTran2");
-        
+
         Assert.assertEquals(true, trnMan.addCompoundTransaction("Testing", al));
     }
-    
+
     @Test
-    public void TestCompoundTransaction4(){
+    public void TestCompoundTransaction4() {
         ArrayList<String> al = new ArrayList<String>();
         al.add("CmpTrn1");
         al.add("CmpTrn2");
-        
+
         Assert.assertEquals(false, trnMan.addCompoundTransaction("CmpTran2", al));
     }
-    
+
     @Test
-    public void TestCompoundTransaction5(){
+    public void TestCompoundTransaction5() {
         ArrayList<String> al = new ArrayList<String>();
-        
+
         Assert.assertEquals(false, trnMan.addCompoundTransaction("tst", al));
     }
-    
+
     @Test
-    public void TestCompoundTransaction6(){
+    public void TestCompoundTransaction6() {
         ArrayList<String> al = new ArrayList<String>();
         al.add("cmp");
         al.add("CmpTrn2");
-        
+
         Assert.assertEquals(false, trnMan.addCompoundTransaction("tst", al));
     }
-    
+
     @Test
-    public void TestCompoundTransaction7(){
+    public void TestCompoundTransaction7() {
         ArrayList<String> al = new ArrayList<String>();
         al.add("CmpTrn1");
         al.add("cmp");
-        
+
         Assert.assertEquals(false, trnMan.addCompoundTransaction("tst", al));
     }
-    
+
     @Test
-    public void TestCompoundTransaction8(){
+    public void TestCompoundTransaction8() {
         ArrayList<String> al = new ArrayList<String>();
         al.add("CmpTran1");
         al.add("CmpTran2");
         al.add("Test Trn1");
-        
+
         Assert.assertEquals(true, trnMan.addCompoundTransaction("tst", al));
     }
-    
+
     @Test
-    public void TestCompoundTransaction9(){
-        Assert.assertEquals(0,trnMan.compoundSearch("CmpTran1"));
+    public void TestCompoundTransaction9() {
+        Assert.assertEquals(0, trnMan.compoundSearch("CmpTran1"));
     }
-    
+
     @Test
-    public void TestCompoundTransaction10(){
-        Assert.assertEquals(-1,trnMan.compoundSearch("tst"));
+    public void TestCompoundTransaction10() {
+        Assert.assertEquals(-1, trnMan.compoundSearch("tst"));
     }
-    
-    /*@Test
-    public void TestCompoundTransaction11(){
-        trnMan.compoundRemove("CmpTran1");
-        Assert.assertEquals(1,trnMan.c_TransactionsDB.size());
-    }
-    
+
     @Test
-    public void TestCompoundTransaction12(){
-        trnMan.compoundRemove("CmpTran1");
-        Assert.assertEquals(-1,trnMan.compoundSearch("CmpTran1"));
-    }*/
-    
-    @Test
-    public void TestCompoundTransaction13(){
+    public void TestCompoundTransaction11() {
         ArrayList<String> al = new ArrayList<String>();
         al.add("Test Trn");
         al.add("Test Trn1");
         Assert.assertEquals(false, trnMan.addCompoundTransaction("Test Trn", al));
     }
-    
-    /**************************************************************************************************
-     * 
-     **************************************************************************************************/
-    
+
+    /**
+     * ************************************************************************************************
+     *
+     *************************************************************************************************
+     */
     @Test
-    public void TestProcessCompTran1(){
+    public void TestProcessCompTran1() {
         Assert.assertEquals(false, trnMan.processCompoundTransaction("tn"));
     }
-    
+
     @Test
-    public void TestProcessCompTran2(){
+    public void TestProcessCompTran2() {
         Assert.assertEquals(true, trnMan.processCompoundTransaction("Test Trn"));
     }
-    
+
     @Test
-    public void TestProcessCompTran3(){
+    public void TestProcessCompTran3() {
         Assert.assertEquals(true, trnMan.processCompoundTransaction("CmpTran1"));
     }
-    
+
     @Test
-    public void TestProcessCompTran4(){
+    public void TestProcessCompTran4() {
         Assert.assertEquals(true, trnMan.processCompoundTransaction("CmpTran2"));
     }
-    
+
     @Test
-    public void TestProcessCompTran5(){
+    public void TestProcessCompTran5() {
         ArrayList<String> al = new ArrayList<String>();
         al.add("CmpTran1");
         al.add("CmpTran2");
         trnMan.addCompoundTransaction("tst", al);
-        
+
         Assert.assertEquals(true, trnMan.processCompoundTransaction("tst"));
     }
-    
+
     @Test
-    public void TestProcessCompTran6(){
-        insertTr1 = new Transaction(temp1.getAccountNumber(),temp2.getAccountNumber(),5);
+    public void TestProcessCompTran6() {
+        insertTr1 = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 5);
         atmTran = new AtomicTransaction("tempTrnsaction0", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
-        
-        insertTr1 = new Transaction(temp1.getAccountNumber(),temp2.getAccountNumber(),10000);
+
+        insertTr1 = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10000);
         atmTran = new AtomicTransaction("tempTrnsaction1", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
-        
+
         ArrayList<String> al = new ArrayList<String>();
         al.add("tempTrnsaction0");
         al.add("tempTrnsaction1");
-        
+
         trnMan.addCompoundTransaction("tempCompTransaction1", al);
-        
+
         Assert.assertEquals(false, trnMan.processCompoundTransaction("tempCompTransaction1"));
     }
-    
+
     @Test
-    public void TestProcessCompTran7(){
+    public void TestProcessCompTran7() {
         ArrayList<String> al = new ArrayList<String>();
         al.add("CmpTran1");
         al.add("CmpTran2");
         al.add("Test Trn");
         trnMan.addCompoundTransaction("tst", al);
-        
+
         Assert.assertEquals(true, trnMan.processCompoundTransaction("tst"));
     }
-    
-    /**************************************************************************************************
-     * 
-     **************************************************************************************************/
-    
+
+    /**
+     * ************************************************************************************************
+     *
+     *************************************************************************************************
+     */
     @Test
-    public void TestPresets1(){
-        Assert.assertEquals(true, trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+    public void TestPresets1() {
+        Assert.assertEquals(true, trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, 100));
     }
-    
+
     @Test
-    public void TestPresets2(){
-        Assert.assertEquals(true, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+    public void TestPresets2() {
+        Assert.assertEquals(true, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, 100));
     }
-    
+
     @Test
-    public void TestPresets3(){
-        Assert.assertEquals(false, trnMan.executePreset("something", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+    public void TestPresets3() {
+        Assert.assertEquals(false, trnMan.executePreset("something", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, 100));
     }
-    
+
     @Test
-    public void TestPresets4(){
-        Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", 20, temp2.getAccountNumber(), 100,100));
+    public void TestPresets4() {
+        Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", 20, temp2.getAccountNumber(), 100, 100));
     }
-    
+
     @Test
-    public void TestPresets5(){
-        Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), 20, 100,100));
+    public void TestPresets5() {
+        Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), 20, 100, 100));
     }
-    
+
     @Test
-    public void TestPresets6(){
-        Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), -100,100));
+    public void TestPresets6() {
+        Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), -100, 100));
     }
-    
+
     @Test
-    public void TestPresets7(){
+    public void TestPresets7() {
         Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, -100));
     }
-    
+
     @Test
-    public void TestPresets8(){
+    public void TestPresets8() {
         Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 999999, 100));
     }
-    
+
     @Test
-    public void TestPresets9(){
+    public void TestPresets9() {
         Assert.assertEquals(false, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, 999999));
     }
-    
+
     @Test
-    public void TestPresets10(){
-        Assert.assertEquals(true, trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
-        Assert.assertEquals(true, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100,100));
+    public void TestPresets10() {
+        Assert.assertEquals(true, trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, 100));
+        Assert.assertEquals(true, trnMan.executePreset("Preset Low Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 100, 100));
     }
-    
-    /**************************************************************************************************
-     * 
-     **************************************************************************************************/
-    
+
+    /**
+     * ************************************************************************************************
+     *
+     *************************************************************************************************
+     */
     @Test
-    public void testNewPreset1(){
+    public void testNewPreset1() {
         Assert.assertEquals(false, trnMan.createPreset("Preset High Risk", 3123, 3143, 6565, 4444, 10));
     }
-    
+
     @Test
-    public void testNewPreset2(){
+    public void testNewPreset2() {
         Assert.assertEquals(false, trnMan.createPreset("new preset", 9999, 3143, 6565, 4444, 10));
     }
-    
+
     @Test
-    public void testNewPreset3(){
+    public void testNewPreset3() {
         Assert.assertEquals(false, trnMan.createPreset("new preset", 3123, 9999, 6565, 4444, 10));
     }
-    
+
     @Test
-    public void testNewPreset4(){
+    public void testNewPreset4() {
         Assert.assertEquals(false, trnMan.createPreset("new preset", 3123, 3143, 9999, 4444, 10));
     }
-    
-    
+
     @Test
-    public void testNewPreset5(){
+    public void testNewPreset5() {
         Assert.assertEquals(false, trnMan.createPreset("new preset", 3123, 3143, 6565, 9999, 10));
     }
-    
+
     @Test
-    public void testNewPreset6(){
+    public void testNewPreset6() {
         Assert.assertEquals(false, trnMan.createPreset("new preset", 3123, 3143, 6565, 4444, 120));
     }
-    
+
     @Test
-    public void testNewPreset7(){
+    public void testNewPreset7() {
         Assert.assertEquals(false, trnMan.createPreset("new preset", 3123, 3143, 6565, 4444, -10));
+    }
+
+    /**
+     * ************************************************************************************************
+     *
+     *************************************************************************************************
+     */
+    @Test
+    public void testOrdering1() {
+        Assert.assertEquals(null, trnMan.traverseCompoundTransaction("Preset High Risk", -5, 3123));
+    }
+
+    @Test
+    public void testOrdering2() {
+        Assert.assertEquals(null, trnMan.traverseCompoundTransaction("Preset High Risk", 5, 3123));
+    }
+
+    @Test
+    public void testOrdering3() {
+        Assert.assertEquals(null, trnMan.traverseCompoundTransaction("something", 1, 3123));
+    }
+
+    @Test
+    public void testOrdering4() {
+        trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 20, 100);
+        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>();
+        at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Commision")));
+        at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Deposit")));
+        at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Main")));
+        Assert.assertEquals(at, trnMan.traverseCompoundTransaction("Preset High Risk", 1, 3123));
+    }
+
+    @Test
+    public void testOrdering5() {
+        trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 20, 100);
+        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>();
+        at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Main")));
+        at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Deposit")));
+        at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Commision")));
+        Assert.assertEquals(at, trnMan.traverseCompoundTransaction("Preset High Risk", 2, 3123));
+    }
+
+    @Test
+    public void testOrdering6() {
+        trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 20, 100);
+        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>();
+        at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Deposit")));
+        Assert.assertEquals(at, trnMan.traverseCompoundTransaction("Preset High Risk", 3, 3123));
+    }
+
+    @Test
+    public void testOrdering7() {
+        trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 20, 100);
+        Assert.assertEquals(null, trnMan.traverseCompoundTransaction("Preset High Risk", 3, 9999));
+    }
+
+    @Test
+    public void testOrdering8() {
+        trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 20, 100);
+        Assert.assertEquals(null, trnMan.traverseCompoundTransaction("Preset High Risk", 3, temp1.getAccountNumber()));
     }
 }
