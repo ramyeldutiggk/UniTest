@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class AppTest {
 
-    //Declertion of objects
+    //Declaration of objects
     static Account temp1, temp2, tempAcc;
     static AccountDatabase adb;
     static Transaction trn, insertTr1;
@@ -17,14 +17,14 @@ public class AppTest {
     static AtomicTransaction atmTran;
     static CompoundTransaction cmpTran;
 
-    @Before //This method is executed before eachand every test
+    @Before //This method is executed before each and every test
     public void setup1() {
-        adb = new AccountDatabase(); //Creating new instance of account databse
+        adb = new AccountDatabase(); //Creating new instance of account database
         trnMan = new TransactionManager(); //Creating new instance of TransactionManager
         tim = new Timings(0, 0, 0); //Creating new instance of timings
         adb.setDatabase(new ArrayList<Account>()); //This is due to static implementation of the AccountDatabase ArrayList
-        temp1 = new Account(adb.getSize() + 1, "Niki", 100); //Creating a new accoount
-        adb.getDatabase().add(temp1); //Adding the new account to the databse
+        temp1 = new Account(adb.getSize() + 1, "Niki", 100); //Creating a new account
+        adb.getDatabase().add(temp1); //Adding the new account to the database
         temp2 = new Account(adb.getSize() + 1, "Malcolm", 1000); //Creating a second account
         adb.getDatabase().add(temp2); //Adding this second account to the database
 
@@ -644,7 +644,7 @@ public class AppTest {
     @Test
     public void testOrdering4() {
         trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 20, 100);
-        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>(); //The strings below are the names of the proceses expected. They are added in the order they are expected
+        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>(); //The strings below are the names of the processes expected. They are added in the order they are expected
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Commision")));
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Deposit")));
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Main")));
@@ -654,7 +654,7 @@ public class AppTest {
     @Test
     public void testOrdering5() {
         trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 20, 100);
-        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>(); //The strings below are the names of the proceses expected. They are added in the order they are expected
+        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>(); //The strings below are the names of the processes expected. They are added in the order they are expected
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Main")));
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Deposit")));
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Commision")));
@@ -664,7 +664,7 @@ public class AppTest {
     @Test
     public void testOrdering6() {
         trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 20, 100);
-        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>(); //The strings below are the names of the proceses expected. They are added in the order they are expected
+        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>(); //The strings below are the names of the processes expected. They are added in the order they are expected
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Deposit")));
         Assert.assertEquals(at, trnMan.traverseCompoundTransaction("Preset High Risk", 3, 3123));
     }

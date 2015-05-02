@@ -27,17 +27,20 @@ public class TransactionManager {
         Timings t = new Timings(src, dsc, timeTemp);
 
         if (src == dsc) {
-            System.out.println("Source and destination accounts in a transaction can't be equal.");
+            System.out.println("Source and destination accounts in a transaction cannot be equal.");
             return false;
         } else {
 
             for (int counter = transactionTime.size() - 1; counter >= 0; counter--) {
                 timeTemp = System.currentTimeMillis();
+                
+                //Checks if transaction occurred longer than 15 seconds ago to remove from list
                 if (timeTemp - transactionTime.get(counter).getTime() > 15000) {
                     transactionTime.remove(counter);
                     continue;
                 }
 
+                //Checks if any of the given accounts formed part of a transaction which was processed less than 15 seconds ago
                 if (transactionTime.get(counter).getSourceAccountNumber() == src || transactionTime.get(counter).getSourceAccountNumber() == dsc || transactionTime.get(counter).getDestinationAccountNumber() == src || transactionTime.get(counter).getDestinationAccountNumber() == dsc) {
                     if ((timeTemp - transactionTime.get(counter).getTime()) < 15000) {
                         counter++;
@@ -60,7 +63,7 @@ public class TransactionManager {
 
     public boolean addAtomicTransaction(String inputName, int acc1, int acc2, long amount) {
         if ((compoundSearch(inputName) != -1) || (atomicSearch(inputName) != -1)) {
-            System.out.println("Atomic transaction with that name already exists.");
+            System.out.println("A transaction with that name already exists.");
             return false;
         } else if (AccountDatabase.getAccount(acc1) == null) {
             System.out.println("Account " + acc1 + " does not exist.");
@@ -114,7 +117,8 @@ public class TransactionManager {
             System.out.println("Compound transaction must have more than 1 child.");
             return false;
         } else {
-            for (int counter = 0; counter < children.size(); counter++) {
+            //Checks if the compound transaction's children transactions exists
+        	for (int counter = 0; counter < children.size(); counter++) {
                 if ((this.compoundSearch(children.get(counter)) == -1) && (this.atomicSearch(children.get(counter)) == -1)) {
                     System.out.println("Transaction with title " + children.get(counter) + " does not exist!");
                     return false;
@@ -146,7 +150,9 @@ public class TransactionManager {
 
             return this.processTransaction(trn.getSourceAccountNumber(), trn.getDestinationAccountNumber(), trn.getAmount());
         } else if ((index = compoundSearch(name)) != -1) {
-            for (int counter = 0; counter < this.c_TransactionsDB.get(index).getChildren().size(); counter++) {
+            
+        	//Checks if all children transactions of the compound transaction have been processed successfully
+        	for (int counter = 0; counter < this.c_TransactionsDB.get(index).getChildren().size(); counter++) {
                 if (!this.processCompoundTransaction(this.c_TransactionsDB.get(index).getChildren().get(counter))) {
                     System.out.println("Transaction having name " + this.c_TransactionsDB.get(index).getChildren().get(counter) + " failed!");
                     return false;
@@ -197,6 +203,7 @@ public class TransactionManager {
                         dest = this.a_TransactionsDB.get(cnt).getTrn().getDestinationAccountNumber();
                     }
                 }
+                //Calculates commission
                 this.editPresetAtomicTransaction(presetName + " Commision", dest, (long) (amm2 * (percent / 100)));
                 result = processCompoundTransaction(this.c_TransactionsDB.get(counter).getName());
                 if (result) {
@@ -270,6 +277,7 @@ public class TransactionManager {
         return true;
     }
     
+     //Recursively returns atomic transactions within a compound transaction
      public ArrayList<AtomicTransaction> returnAtomic(String inputName, ArrayList<AtomicTransaction> result) {
         int index;
 
