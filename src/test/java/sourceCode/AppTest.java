@@ -8,6 +8,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class AppTest {
 
+    //Declertion of objects
     static Account temp1, temp2, tempAcc;
     static AccountDatabase adb;
     static Transaction trn, insertTr1;
@@ -16,40 +17,41 @@ public class AppTest {
     static AtomicTransaction atmTran;
     static CompoundTransaction cmpTran;
 
-    @Before
+    @Before //This method is executed before eachand every test
     public void setup1() {
-        adb = new AccountDatabase();
-        trnMan = new TransactionManager();
-        tim = new Timings(0, 0, 0);
+        adb = new AccountDatabase(); //Creating new instance of account databse
+        trnMan = new TransactionManager(); //Creating new instance of TransactionManager
+        tim = new Timings(0, 0, 0); //Creating new instance of timings
         adb.setDatabase(new ArrayList<Account>()); //This is due to static implementation of the AccountDatabase ArrayList
-        temp1 = new Account(adb.getSize() + 1, "Niki", 100);
-        adb.getDatabase().add(temp1);
-        temp2 = new Account(adb.getSize() + 1, "Malcolm", 1000);
-        adb.getDatabase().add(temp2);
+        temp1 = new Account(adb.getSize() + 1, "Niki", 100); //Creating a new accoount
+        adb.getDatabase().add(temp1); //Adding the new account to the databse
+        temp2 = new Account(adb.getSize() + 1, "Malcolm", 1000); //Creating a second account
+        adb.getDatabase().add(temp2); //Adding this second account to the database
 
-        trnMan.setA_TransactionsDB(new ArrayList<AtomicTransaction>());
-        trnMan.setC_TransactionsDB(new ArrayList<CompoundTransaction>());
+        trnMan.setA_TransactionsDB(new ArrayList<AtomicTransaction>()); //Resetting the atomic transaction list
+        trnMan.setC_TransactionsDB(new ArrayList<CompoundTransaction>()); //Reseting the compound transaction list
 
-        insertTr1 = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10);
-        atmTran = new AtomicTransaction("Test Trn", insertTr1);
-        trnMan.a_TransactionsDB.add(atmTran);
+        insertTr1 = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10); //Creating a new transaction
+        atmTran = new AtomicTransaction("Test Trn", insertTr1); //Creating a new atomic transaction
+        trnMan.a_TransactionsDB.add(atmTran); //Adding the previous atomic transaction to the list
 
-        insertTr1 = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10);
-        atmTran = new AtomicTransaction("Test Trn1", insertTr1);
-        trnMan.a_TransactionsDB.add(atmTran);
+        insertTr1 = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 10);//Creating a new transaction
+        atmTran = new AtomicTransaction("Test Trn1", insertTr1);//Creating a new atomic transaction 
+        trnMan.a_TransactionsDB.add(atmTran);//Adding the previous atomic transaction to the list
 
-        ArrayList<String> chil1 = new ArrayList<String>();
+        ArrayList<String> chil1 = new ArrayList<String>(); //Creating a list with the children of the upcoming compound transaction
         chil1.add("Test Trn");
         chil1.add("Test Trn1");
-        cmpTran = new CompoundTransaction("CmpTran1", chil1);
-        trnMan.c_TransactionsDB.add(cmpTran);
+        cmpTran = new CompoundTransaction("CmpTran1", chil1); //Creating a compound transaction with the previous list as its children
+        trnMan.c_TransactionsDB.add(cmpTran); //Adding the compound transaction to the compound transaction list
 
-        ArrayList<String> chil2 = new ArrayList<String>();
+        ArrayList<String> chil2 = new ArrayList<String>(); //Creating a list with the children of the upcoming compound transaction
         chil2.add("Test Trn");
         chil2.add("CmpTran1");
-        cmpTran = new CompoundTransaction("CmpTran2", chil2);
-        trnMan.c_TransactionsDB.add(cmpTran);
-
+        cmpTran = new CompoundTransaction("CmpTran2", chil2); //Creating a compound transaction with the previous list as its children
+        trnMan.c_TransactionsDB.add(cmpTran);//Adding the compound transaction to the compound transaction list
+        
+        //All the below add accounts to the account databse. These accounts are due to the transaction presets used in the second change
         tempAcc = new Account(3123, "High Risk Deposit Account", 99999);
         adb.getDatabase().add(tempAcc);
         tempAcc = new Account(8665, "Low Risk Deposit Account", 99999);
@@ -67,8 +69,8 @@ public class AppTest {
         tempAcc = new Account(4445, "Low Risk Commision Dest. Account", 99999);
         adb.getDatabase().add(tempAcc);
 
-        trnMan.createPreset("Preset High Risk", 3123, 3143, 6565, 4444, 10);
-        trnMan.createPreset("Preset Low Risk", 8665, 3133, 6588, 4445, 5);
+        trnMan.createPreset("Preset High Risk", 3123, 3143, 6565, 4444, 10); //Creating a preset
+        trnMan.createPreset("Preset Low Risk", 8665, 3133, 6588, 4445, 5); //Creating another preset
     }
 
     /**
@@ -77,7 +79,7 @@ public class AppTest {
      *************************************************************************************************
      */
     @Test
-    public void testAccount1() {
+    public void testAccount1() { 
         Assert.assertEquals(true, temp1.adjustBalance(-50));
     }
 
@@ -321,26 +323,26 @@ public class AppTest {
 
     @Test
     public void TestAtomicTransaction4() {
-        insertTr1 = new Transaction(5, 1, 10);
-        atmTran = new AtomicTransaction("Test1", insertTr1);
+        insertTr1 = new Transaction(5, 1, 10);//Creating a new transaction
+        atmTran = new AtomicTransaction("Test1", insertTr1);//Creating an atomic transaction with the newly created transaction as a parameter
 
-        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", 5, temp2.getAccountNumber(), 10));
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", 5, temp2.getAccountNumber(), 10));//New atomic transaction added to the atomic transaction list
     }
 
     @Test
     public void TestAtomicTransaction5() {
-        insertTr1 = new Transaction(0, 5, 10);
-        atmTran = new AtomicTransaction("Test1", insertTr1);
+        insertTr1 = new Transaction(0, 5, 10);//Creating a new transaction
+        atmTran = new AtomicTransaction("Test1", insertTr1);//Creating an atomic transaction with the newly created transaction as a parameter
 
-        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", temp1.getAccountNumber(), 5, 10));
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", temp1.getAccountNumber(), 5, 10));//New atomic transaction added to the atomic transaction list
     }
 
     @Test
     public void TestAtomicTransaction6() {
-        insertTr1 = new Transaction(0, 1, -10);
-        atmTran = new AtomicTransaction("Test1", insertTr1);
+        insertTr1 = new Transaction(0, 1, -10);//Creating a new transaction
+        atmTran = new AtomicTransaction("Test1", insertTr1);//Creating an atomic transaction with the newly created transaction as a parameter
 
-        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", temp1.getAccountNumber(), temp2.getAccountNumber(), -10));
+        Assert.assertEquals(false, trnMan.addAtomicTransaction("Test1", temp1.getAccountNumber(), temp2.getAccountNumber(), -10)); //New atomic transaction added to the atomic transaction list
     }
 
     @Test
@@ -380,7 +382,7 @@ public class AppTest {
 
     @Test
     public void TestCompoundTransaction2() {
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<String>();//Creating a new compound transaction then adding it to the list of compound transactions
         al.add("Test Trn");
         al.add("Test Trn1");
 
@@ -389,7 +391,7 @@ public class AppTest {
 
     @Test
     public void TestCompoundTransaction3() {
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<String>();//Creating a new compound transaction then adding it to the list of compound transactions
         al.add("CmpTran1");
         al.add("CmpTran2");
 
@@ -398,7 +400,7 @@ public class AppTest {
 
     @Test
     public void TestCompoundTransaction4() {
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<String>();//Creating a new compound transaction then adding it to the list of compound transactions
         al.add("CmpTrn1");
         al.add("CmpTrn2");
 
@@ -407,14 +409,14 @@ public class AppTest {
 
     @Test
     public void TestCompoundTransaction5() {
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<String>();//Creating a new compound transaction then adding it to the list of compound transactions
 
         Assert.assertEquals(false, trnMan.addCompoundTransaction("tst", al));
     }
 
     @Test
     public void TestCompoundTransaction6() {
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<String>();//Creating a new compound transaction then adding it to the list of compound transactions
         al.add("cmp");
         al.add("CmpTrn2");
 
@@ -423,7 +425,7 @@ public class AppTest {
 
     @Test
     public void TestCompoundTransaction7() {
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<String>();//Creating a new compound transaction then adding it to the list of compound transactions
         al.add("CmpTrn1");
         al.add("cmp");
 
@@ -432,7 +434,7 @@ public class AppTest {
 
     @Test
     public void TestCompoundTransaction8() {
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<String>();//Creating a new compound transaction then adding it to the list of compound transactions
         al.add("CmpTran1");
         al.add("CmpTran2");
         al.add("Test Trn1");
@@ -452,7 +454,7 @@ public class AppTest {
 
     @Test
     public void TestCompoundTransaction11() {
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<String>();//Creating a new compound transaction then adding it to the list of compound transactions
         al.add("Test Trn");
         al.add("Test Trn1");
         Assert.assertEquals(false, trnMan.addCompoundTransaction("Test Trn", al));
@@ -485,7 +487,7 @@ public class AppTest {
 
     @Test
     public void TestProcessCompTran5() {
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<String>();//Creating a new compound transaction using a number of transactions created previously and executing the new compound transaction
         al.add("CmpTran1");
         al.add("CmpTran2");
         trnMan.addCompoundTransaction("tst", al);
@@ -495,7 +497,7 @@ public class AppTest {
 
     @Test
     public void TestProcessCompTran6() {
-        insertTr1 = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 5);
+        insertTr1 = new Transaction(temp1.getAccountNumber(), temp2.getAccountNumber(), 5); //Creating two new atomic transactions
         atmTran = new AtomicTransaction("tempTrnsaction0", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
 
@@ -503,18 +505,18 @@ public class AppTest {
         atmTran = new AtomicTransaction("tempTrnsaction1", insertTr1);
         trnMan.a_TransactionsDB.add(atmTran);
 
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<String>(); //Adding atomic transactions to the array list
         al.add("tempTrnsaction0");
         al.add("tempTrnsaction1");
 
-        trnMan.addCompoundTransaction("tempCompTransaction1", al);
+        trnMan.addCompoundTransaction("tempCompTransaction1", al); //Adding the new compound transaction
 
         Assert.assertEquals(false, trnMan.processCompoundTransaction("tempCompTransaction1"));
     }
 
     @Test
     public void TestProcessCompTran7() {
-        ArrayList<String> al = new ArrayList<String>();
+        ArrayList<String> al = new ArrayList<String>(); //Creating a new compound transaction using a number of transactions created previously and executing the new compound transaction
         al.add("CmpTran1");
         al.add("CmpTran2");
         al.add("Test Trn");
@@ -642,7 +644,7 @@ public class AppTest {
     @Test
     public void testOrdering4() {
         trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 20, 100);
-        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>();
+        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>(); //The strings below are the names of the proceses expected. They are added in the order they are expected
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Commision")));
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Deposit")));
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Main")));
@@ -652,7 +654,7 @@ public class AppTest {
     @Test
     public void testOrdering5() {
         trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 20, 100);
-        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>();
+        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>(); //The strings below are the names of the proceses expected. They are added in the order they are expected
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Main")));
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Deposit")));
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Commision")));
@@ -662,7 +664,7 @@ public class AppTest {
     @Test
     public void testOrdering6() {
         trnMan.executePreset("Preset High Risk", temp1.getAccountNumber(), temp2.getAccountNumber(), 20, 100);
-        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>();
+        ArrayList<AtomicTransaction> at = new ArrayList<AtomicTransaction>(); //The strings below are the names of the proceses expected. They are added in the order they are expected
         at.add(trnMan.a_TransactionsDB.get(trnMan.atomicSearch("Preset High Risk Deposit")));
         Assert.assertEquals(at, trnMan.traverseCompoundTransaction("Preset High Risk", 3, 3123));
     }
