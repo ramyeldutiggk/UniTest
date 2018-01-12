@@ -90,7 +90,7 @@ public class AppTest {
 
     @Test
     public void testAccount3() {
-        Assert.assertEquals(1, temp1.getAccountNumber());
+        Assert.assertEquals(10, temp1.getAccountNumber());
     }
 
     @Test
