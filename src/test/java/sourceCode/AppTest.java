@@ -95,22 +95,22 @@ public class AppTest {
 
     @Test
     public void testAccount4() {
-        Assert.assertThat(3, not(temp1.getAccountNumber()));
+        Assert.assertThat(30, not(temp1.getAccountNumber()));
     }
 
     @Test
     public void testAccount5() {
-        Assert.assertEquals("Niki", temp1.getAccountName());
+        Assert.assertEquals("Nikitha", temp1.getAccountName());
     }
 
     @Test
     public void testAccount6() {
-        Assert.assertThat("Malcolm", not(temp1.getAccountName()));
+        Assert.assertThat("Malcolm hehe", not(temp1.getAccountName()));
     }
 
     @Test
     public void testAccount7() {
-        Assert.assertEquals(100, temp1.getAccountBalance());
+        Assert.assertEquals(1000, temp1.getAccountBalance());
     }
 
     @Test
