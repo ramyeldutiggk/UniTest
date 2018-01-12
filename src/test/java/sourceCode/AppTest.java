@@ -80,7 +80,7 @@ public class AppTest {
      */
     @Test
     public void testAccount1() { 
-        Assert.assertEquals(true,, temp1.adjustBalance(-50));
+        Assert.assertEquals(true, temp1.adjustBalance(-50));
     }
 
     @Test
